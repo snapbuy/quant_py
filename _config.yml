@@ -7,7 +7,7 @@ logo: logo.png
 
 repository:
   url: https://github.com/hyunyulhenry/quant_py
-  branch: master
+  branch: main
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -16,6 +16,7 @@ execute:
 
 html:
   comments:
+    hypothesis: true
     utterances:
       repo: "hyunyulhenry/quant_py"
 
