@@ -277,11 +277,11 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hyunyulhenry/quant_python"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hyunyulhenry/quant_py"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/hyunyulhenry/quant_python/issues/new?title=Issue%20on%20page%20%2Fapi_trading.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/hyunyulhenry/quant_py/issues/new?title=Issue%20on%20page%20%2Fapi_trading.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -302,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hyunyulhenry/quant_python/master?urlpath=tree/docs/api_trading.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hyunyulhenry/quant_py/main?urlpath=tree/api_trading.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -406,7 +406,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
+    <a class="reference internal nav-link" href="#id19">
      17.7.2. 포트폴리오 리밸런싱
     </a>
    </li>
@@ -514,7 +514,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
+    <a class="reference internal nav-link" href="#id19">
      17.7.2. 포트폴리오 리밸런싱
     </a>
    </li>
@@ -532,7 +532,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="api">
 <h1><span class="section-number">17. </span>증권사 API 연결과 매매하기<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
 <p>조건에 맞는 포트폴리오를 계산했으면, 실제로 매매하는 일이 남았다. 종목이 몇개 되지않고 리밸런싱 주기가 길다면(예: 월간 혹은 분기별), 매번 HTS를 통해 직접 매매하는 것도 나쁘지는 않다. 그러나 증권사에서 제공하는 API를 이용할 경우 리밸런싱 작업 역시 자동으로 할 수 있다.</p>
-<p>기존 국내 증권사들이 제공하던 API는 HTS에 로그인을 한 후 COM 방식을 연결해야 하는 매우 불편한 방식이었다. 반면 2022년 한국투자증권에서 Rest API와 웹소켓 방식을 제공함에 따라 HTS에 로그인을 하지 않고 API Key만을 이용한 트레이딩이 가능해졌다. 또한 국내 뿐만 아니라 해외주식에 대한 조회/주문 기능도 제공하고 이씨다.</p>
+<p>기존 국내 증권사들이 제공하던 API는 HTS에 로그인을 한 후 COM 방식을 연결해야 하는 매우 불편한 방식이었다. 반면 2022년 한국투자증권에서 Rest API와 웹소켓 방식을 제공함에 따라 HTS에 로그인을 하지 않고 API Key만을 이용한 트레이딩이 가능해졌다. 또한 국내 뿐만 아니라 해외주식에 대한 조회/주문 기능도 제공하고 있다.</p>
 <table class="colwidths-auto table" id="api-compare">
 <caption><span class="caption-number">Table 17.1 </span><span class="caption-text">증권사 API 비교</span><a class="headerlink" href="#api-compare" title="Permalink to this table">¶</a></caption>
 <thead>
@@ -1707,14 +1707,16 @@ End
 <li><p>만일 현재시간이 3시(endDt) 이후 일 경우에는 스케줄을 모두 지우고 <code class="docutils literal notranslate"><span class="pre">break</span></code>를 통해 작업을 정지한다.</p></li>
 </ol>
 <p>HTS를 확인해보면 한 주씩 주문이 나가는 것을 확인할 수 있다.</p>
-<div class="figure align-default" id="mock-7">
-<img alt="_images/mock_7.png" src="_images/mock_7.png" />
+<div class="figure align-default" id="mock-8">
+<img alt="_images/mock_8.png" src="_images/mock_8.png" />
 </div>
 <p>3시가 지난 후 계좌를 확인해보면, 포트폴리오 매수가 제대로 진행되었다.</p>
-<p>[3시 계좌 사진]</p>
+<div class="figure align-default" id="id18">
+<img alt="_images/mock_7.png" src="_images/mock_7.png" />
 </div>
-<div class="section" id="id18">
-<h3><span class="section-number">17.7.2. </span>포트폴리오 리밸런싱<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id19">
+<h3><span class="section-number">17.7.2. </span>포트폴리오 리밸런싱<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>이번에는 매수와 매도를 동시에 하는 리밸런싱 작업을 해보도록 하겠다. 모델 포트폴리오는 ‘멀티팩터 포트폴리오’ 구성을 통해 나온 결과를 사용하겠으며, 나머지 코드는 위와 동일하다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1775,7 +1777,7 @@ End
 </div>
 </div>
 </div>
-<p>9시 10분부터 매수와 매도가 동시에 일어남을 확인할 수 있다.</p>
+<p>입력한 대로 9시 10분부터 매수와 매도가 동시에 일어남을 확인할 수 있다.</p>
 <p>[사진]</p>
 <p>이번에도 3시가 지난 후 거래가 제대로 진행되었는지 확인해보도록 하자.</p>
 </div>

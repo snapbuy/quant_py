@@ -15,8 +15,7 @@ execute:
   execute_notebooks: 'off'
 
 html:
-  comments:
-    hypothesis: true
+  coments:    
     utterances:
       repo: "hyunyulhenry/quant_py"
 
