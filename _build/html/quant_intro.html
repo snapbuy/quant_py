@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. 퀀트에 대해 알아보기 &#8212; 파이썬을 이용한 퀀트 투자 포트폴리오 만들기</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. 파이썬 기초 배워보기" href="python.html" />
+    <link rel="prev" title="파이썬을 이용한 퀀트 투자 포트폴리오 만들기" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">파이썬을 이용한 퀀트 투자 포트폴리오 만들기</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   파이썬을 이용한 퀀트 투자 포트폴리오 만들기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  퀀트와 프로그래밍 기초 배워보기
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. 퀀트에 대해 알아보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   2. 파이썬 기초 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eda.html">
+   3. 데이터 분석 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot.html">
+   4. 데이터 시각화 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sql.html">
+   5. SQL 기초 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sql_in_python.html">
+   6. 파이썬에서 SQL 연결하기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  크롤링을 이용한 데이터 수집
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   7. 크롤링을 위한 웹 기본지식
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="crawl_basic.html">
+   8. 정적 크롤링 실습하기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="selenium.html">
+   9. 동적 크롤링과 정규 표현식
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_korea.html">
+   10. 국내 주식 데이터 수집
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_global.html">
+   11. 전 세계 주식 데이터 수집하기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_ref.html">
+   12. 투자 참고용 데이터 수집
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  포트폴리오 구성, 백테스트 및 매매하기
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="factor.html">
+   13. 퀀트 전략을 이용한 종목선정
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio.html">
+   14. 포트폴리오 구성 전략
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="technical.html">
+   15. 트레이딩을 위한 기술적 지표
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtest.html">
+   16. 백테스팅 시뮬레이션
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api_trading.html">
+   17. 증권사 API 연결과 매매하기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  부록
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install_python.html">
+   파이썬 다운로드 및 설치하기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install_sql.html">
+   SQL 다운로드 및 설치하기
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/quant_intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hyunyulhenry/quant_python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hyunyulhenry/quant_python/issues/new?title=Issue%20on%20page%20%2Fquant_intro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hyunyulhenry/quant_python/master?urlpath=tree/docs/quant_intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1. 퀀트 투자의 핵심 재료, 데이터
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2. 퀀트 투자에 프로그래밍이 필요한 이유
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   1.3. 최고의 인기언어, 파이썬
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3.1. 패키지란?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     1.3.2. 함수와 메서드의 차이
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   1.4. 데이터 관리의 표준, SQL
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>퀀트에 대해 알아보기</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1. 퀀트 투자의 핵심 재료, 데이터
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2. 퀀트 투자에 프로그래밍이 필요한 이유
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   1.3. 최고의 인기언어, 파이썬
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3.1. 패키지란?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     1.3.2. 함수와 메서드의 차이
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   1.4. 데이터 관리의 표준, SQL
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1><span class="section-number">1. </span>퀀트에 대해 알아보기<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>투자에 관심이 있는 사람들이라면 ‘퀀트 투자’라는 단어를 한 번씩은 들어보았을 것이다. 퀀트 투자에서 ‘퀀트’란 모형을 기반으로 금융상품의 가격을 산정하거나, 이를 바탕으로 투자를 하는 사람을 말한다. 퀀트(Quant)라는 단어가 ‘계량적’을 의미하는 퀀티터티브(<strong>Quant</strong>itative)의 앞 글자를 따왔음을 생각하면 쉽게 이해가 될 것이다.</p>
+<p>일반적으로 투자자들이 산업과 기업을 분석해 가치를 매기는 정성적인 투자법과는 달리, 퀀트 투자는 수학과 통계, 데이터를 기반으로 전략을 만들고 이를 바탕으로 투자하는 정량적인 투자법을 의미한다. <a class="reference internal" href="#diff"><span class="std std-numref">Table 1.1</span></a>은 퀀트 투자와 정성적 투자의 차이가 비교되어 있다.</p>
+<table class="colwidths-auto table" id="diff">
+<caption><span class="caption-number">Table 1.1 </span><span class="caption-text">퀀트 투자와 정성적 투자의 차이</span><a class="headerlink" href="#diff" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>분류</p></th>
+<th class="head"><p>퀀트 투자</p></th>
+<th class="head"><p>정성적 투자</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>객관성</p></td>
+<td><p>높음</p></td>
+<td><p>낮음</p></td>
+</tr>
+<tr class="row-odd"><td><p>투자기회</p></td>
+<td><p>높음</p></td>
+<td><p>낮음</p></td>
+</tr>
+<tr class="row-even"><td><p>감정적 요인</p></td>
+<td><p>적음</p></td>
+<td><p>높음</p></td>
+</tr>
+<tr class="row-odd"><td><p>반복 가능성</p></td>
+<td><p>높음</p></td>
+<td><p>낮음</p></td>
+</tr>
+<tr class="row-even"><td><p>위험통제능력</p></td>
+<td><p>높음</p></td>
+<td><p>낮음</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="simple">
+<li><p>퀀트 투자는 규칙에 기반한 투자이므로 객관성이 높지만, 정성적 투자는 개인의 분석에 의존하기에 주관성이 높다.</p></li>
+<li><p>퀀트 투자는 데이터와 규칙만 있다면 한 번에 수 백, 수 천 종목에 대한 분석도 가능하지만, 정성적 투자는 분석할 수 있는 종목의 수가 제한되어 있다.</p></li>
+<li><p>퀀트 투자는 규칙에 기반하므로 감정에 휘둘릴 위험이 적지만, 정성적 투자는 인간의 감정적 개입될 가능성이 높다.</p></li>
+<li><p>퀀트 투자는 동일한 규칙을 누구든지 반복 가능하지만, 정성적 투자는 분석하는 사람에 따라 다른 결과를 보인다.</p></li>
+<li><p>퀀트 투자는 규칙을 철저하게 지킬 경우 위험통제능력이 높지만, 정성적 투자는 인간의 감정에 휘둘려 공포에 휩싸이기 쉽다.</p></li>
+</ol>
+<p>퀀트 투자는 이와 같은 장점들로 인해 날로 인기가 증가하고 있다. 해외의 경우 퀀트 투자를 전문으로 하는 자산관리 회사도 많을 뿐만 아니라, 정성적인 투자를 하는 회사들 조차 일정 부분은 계량 분석의 도움을 받고 있다. 또한 세계 최고의 헤지펀드 중 대부분은 이미 퀀트를 기반으로 운용하고 있다.</p>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1. </span>퀀트 투자의 핵심 재료, 데이터<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>퀀트들은 데이터를 통해 전략을 만들어내므로 그들에게 데이터는 가장 기본이 되면서도 중요한 밑천이다. 이는 마치 요리사에게 있어 재료와도 같다. 만일 재료가 부실하다면 제대로 된 요리를 만들 수 없을 뿐만 아니라 먹고 탈이 날 수도 있다. 반면 재료가 싱싱하고 최상급이라면 좋은 요리를 만들어낼 수 있다. 또한 재료가 한정적이라면 할 수 있는 요리의 수도 한정적이지만, 재료가 다채롭다면 요리사의 실력에 따라 얼마든지 다양한 요리를 만들 수 있다. 퀀트 투자의 영역 또한 마찬가지다. 만일 데이터가 부실하거나 틀린 내용이라면 잘못된 전략을 만들어 손실을 보게 될 것이다. 또한 데이터가 한정적이라면 만들 수 있는 전략의 수도 한정적이지만, 데이터가 다채롭다면, 예를 들어 전 세계 모든 국가의 주식뿐 아니라 모든 자산군의 데이터가 있다면 이를 다루는 퀀트의 실력에 따라 얼마든지 다양한 전략을 만들 수 있다.</p>
+<p>그렇다면 퀀트 투자에 필요한 데이터는 어떻게 구할까? 전문 투자자의 경우 ClariFi, 캐피탈 IQ, 팩셋, 톰슨 로이터, 블룸버그 등 해외의 여러 데이터 공급업체를 통해 양질의 데이터를 구할 수 있다. 하지만 그 비용이 1년에 최소 수천만원에서 수십억원에 이르므로 개인 투자자가 이러한 서비스를 이용하는 것은 사실상 불가능하다. 국내의 데이터 공급업체를 이용할 경우에는 그보다 저렴한 금액으로도 데이터를 구할 수 있지만, 데이터의 양이 매우 한정적이다. 웹스크래핑 혹은 크롤링과 같은 기술을 통해 웹페이지의 데이터를 무료로 추출하는 방법도 있다. 본 책에는 개인 투자자들이 현실적으로 데이터를 구할 수 있는 방법인 크롤링과 API를 이용해 국내 및 글로벌 데이터를 구하는 방법에 대해 살펴보도록 하겠다.</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.2. </span>퀀트 투자에 프로그래밍이 필요한 이유<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>우리가 구한 데이터는 연구나 투자에 바로 사용할 수 있는 형태로 주어지는 경우가 거의 없다. 따라서 데이터를 목적에 맞게 처리하는 과정을 거쳐야 하며, 이를 흔히 데이터 클렌징 작업이라고 한다. 또한 정제된 데이터를 활용한 투자 전략의 백테스트나 종목 선정을 위해서 프로그래밍은 필수다. 물론 엑셀을 이용해도 간단한 형태의 백테스트 및 종목 선정은 가능하지만, 응용성 및 효율성의 측면에서 엑셀은 매우 비효율적이다.</p>
+<p>데이터를 수집하고 클렌징 작업을 할 때 대상이 몇 종목 되지 않는다면 엑셀을 이용해도 충분히 가능하다. 그러나 종목 수가 수천 종목을 넘어간다면 데이터를 손으로 일일이 처리하기가 사실상 불가능에 가깝다. 이러한 단순 반복 작업은 프로그래밍을 이용한다면 훨씬 효율적으로 수행할 수 있다.</p>
+<p>백테스트에서도 프로그래밍이 훨씬 효율적이다. 과거 12개월 누적수익률이 높은 종목에 투자하는 모멘텀 전략의 백테스트를 한다고 가정하자. 처음에는 엑셀로 백테스트를 하는 것이 편하다고 생각할 수 있다. 그러나 만일 12개월이 아닌 6개월 누적 수익률로 백테스트를 하고자 한다면 어떨까? 엑셀에서 다시 6개월 누적수익률을 구하기 위해 수식을 바꾸고 드래그하는 작업을 반복해야 할 것아다. 그러나 프로그래밍을 이용한다면 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">12</span></code> 부분을 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">6</span></code>으로 변경한 후 단지 클릭 한 번만으로 새로운 백테스트를 할 수 있다.</p>
+<p>데이터의 용량 측면에서도 프로그래밍을 이용하는 것이 훨씬 효율적이다. 만약 엑셀 용량이 100MB 이며, 투자 전략이 계속해서 늘어나는 경우를 생각해보자. 엑셀에서 A라는 전략을 백테스트하기 위해서는 해당 데이터로 작업한 후 저장할 것이다. 그 후 B라는 전략을 새롭게 백테스트하려면 해당 데이터를 새로운 엑셀 파일에 복사해 작업한 후 다시 저장해야 한다. 결과적으로 10개의 전략만 백테스트 하더라도 100MB짜리 엑셀 파일이 10개, 즉 1GB 정도의 엑셀 파일이 쌓이게 된다. 만일 데이터가 바뀔 경우 다시 10개 엑셀 시트의 데이터를 일일이 바꿔야 하는 귀찮음도 감수해야 한다. 물론 하나의 엑셀 파일 내에서 모든 전략을 수행할 수도 있지만, 이러한 경우 속도가 상당히 저하되는 문제가 있다.</p>
+<p>프로그래밍을 이용하면 어떠할까? 백테스트를 수행하는 프로그래밍 스크립트는 불과 몇 KB에 불과하므로, 10개의 전략에 대한 스크립트 파일을 합해도 1MB가 되지 않는다. 데이터가 바뀌더라도 원본 데이터 파일 하나만 수정해주면 된다.</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">1.3. </span>최고의 인기언어, 파이썬<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>인간이 사용하는 언어의 종류가 다양하듯이, 프로그래밍 언어의 종류 역시 다양하다. 대략 700여 개 이상의 프로그래밍 언어 중 대중적으로 사용되는 언어는 그리 많지 않으므로, 대중성과 효율성을 위해 사용량이 많은 언어를 이용하는 것이 좋다. <a class="reference internal" href="#tiobe"><span class="std std-numref">Fig. 1.1</span></a>은 프로그래밍 언어의 사용 순위로써, 파이썬(Python)은 1위를 기록하고 있을 정도로 매우 대중적인 언어다.</p>
+<div class="figure align-default" id="tiobe">
+<img alt="_images/tiobe.png" src="_images/tiobe.png" />
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">프로그래밍 언어 사용 통계 순위</span><a class="headerlink" href="#tiobe" title="Permalink to this image">¶</a></p>
+</div>
+<p>이처럼 파이썬의 인기가 높은 가장 큰 이유는 무료인데다 일반인들이 사용하기에도 매우 편한 형태로 구성되어 있기 때문이다. 기존에는 적게는 수십만 원, 많게는 수천만 원을 지불해야 했던 상용 소프트웨어의 기능을 파이썬에서도 모두 구현할 수 있을 뿐만 아니라, 훨씬 더 많은 기능을 활용할 수도 있다. 이로 인해 학계와 산업계에서 점차 기존 소프트웨어 대신 파이썬을 사용하는 비중이 늘어나고 있다. 또한 책이나 온라인 강의 등 파이썬을 공부할 수 있는 환경도 많아졌기에 진입 장벽도 매우 낮다.</p>
+<div class="section" id="id5">
+<h3><span class="section-number">1.3.1. </span>패키지란?<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>패키지(package)는 기능이 비슷한 여러 함수들이 모여있는 꾸러미라고 볼 수 있으며, 파이썬이 사랑받는 이유 중 하나는 오픈 소스 생태계로 인한 다양한 패키지가 있다는 점도 크다. 전 세계의 사람들이 패키지를 만들어 온라인에 공개하고 있으며, 누구든지 이를 쉽게 다운로드 받아 사용할 수 있다. 파이썬 패키지를 공유하는 소프트웨어 저장소 PyPI(<a class="reference external" href="http://pypi.org">pypi.org</a>)에는 38만개가 넘는 패키지가 공개되어 있다(2022년 7월 기준). 즉 복잡하게 코드를 짜지 않아도 기존의 패키지를 잘만 이용하면 매우 쉽게 개발 혹은 데이터 분석을 할 수 있다.</p>
+<p>패키지에 있는 함수를 사용하기 위해서는 <strong>[패키지 설치 → 패키지 불러오기 → 함수 사용]</strong> 의 단계를 거친다. 패키지는 한 번만 설치하면 되지만, 불러오는 작업은 파이썬을 새로 열때마다 반복해야 한다.</p>
+<p>아나콘다에는 사람들이 자주 쓰는 주요 패키지가 대부분 들어있으므로(2022년 7월 기준 678개), 해당 패키지들의 경우 별도의 설치 과정이 없이 바로 사용할 수 있다. 아나콘다에 들어 있는 패키지 목록은 아래 페이지에서 확인할 수 있다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">py3</span><span class="mf">.9</span><span class="n">_win</span><span class="o">-</span><span class="mi">64</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>아나콘다에 포함되지 않은 패키지를 사용하기 위해서는 먼저 패키지를 설치해야 한다. 예로써 백테스팅에 사용되는 <code class="docutils literal notranslate"><span class="pre">bt</span></code> 패키지를 설치해보도록 하자. 패키지를 설치하기 위해서는 아나콘다 프롬프트를 이용하면 된다. 윈도우의 경우 시작 메뉴를 클릭한 후 [Anaconda Prompt]를 검색한 후 실행한다.</p>
+<div class="figure align-default" id="prompt">
+<img alt="_images/prompt.png" src="_images/prompt.png" />
+<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">아나콘다 프롬프트 검색 및 실행</span><a class="headerlink" href="#prompt" title="Permalink to this image">¶</a></p>
+</div>
+<p>파이썬에서 패키지를 설치하거나 관리할 때는 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 명령어를 사용한다. <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">패키지명</span></code>을 입력하면 해당 패키지를 설치할 수 있다. 아나콘다 프롬프트에 다음과 같이 입력한 후 엔터를 눌러보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">bt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="bt">
+<img alt="_images/bt.png" src="_images/bt.png" />
+<p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">bt 패키지 다운로드</span><a class="headerlink" href="#bt" title="Permalink to this image">¶</a></p>
+</div>
+<p>코드를 실행하면 파이썬 패키지 저장소 PyPI(<a class="reference external" href="http://pypi.org">pypi.org</a>)에서 패키지 관련 파일을 다운로드해 하드디스크에 설치하는 과정이 프롬프트에 출력된다. 만일 패키지 설치 중 ‘Proceed (y/n)?’ 라는 메시지가 나오면 ‘y’를 입력하고 엔터를 누르면 된다.</p>
+<p>아나콘다에 포함되어있는 패키지 외에 본 책의 이해를 위해 추가적으로 설치해야 하는 패키지는 다음과 같다.</p>
+<ul class="simple">
+<li><p>selenium</p></li>
+<li><p>webdriver_manager</p></li>
+<li><p>tiingo</p></li>
+<li><p>yahoo_fin</p></li>
+<li><p>xmltodict</p></li>
+<li><p>pandas_datareader</p></li>
+<li><p>riskfolio-lib</p></li>
+<li><p>bt</p></li>
+<li><p>schedule</p></li>
+</ul>
+<p>다운로드 받은 패키지를 사용하기 위해서는 이를 불러와야 한다. 패키지는 파이썬 스크립트에서 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">패키지이름</span></code>을 통해 불러올 수 있다. 예를 들어 pandas 패키지를 불러오는 방법은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>패키지 이름은 해당 패키지 내의 함수들을 사용할 때 계속해서 사용된다. 만일 패키지 이름이 너무 길면 이를 매번 입력하는것이 불편하기 때문에 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">패키지이름</span> <span class="pre">as</span> <span class="pre">패키지별명</span></code> 형태로 불러올 수 있다. pandas 패키지는 일반적으로 pd로 별명을 지정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>불러온 패키지 안의 내용을 살펴볼 때는 <code class="docutils literal notranslate"><span class="pre">dir(패키지이름)</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">dir(패키지별명)</span></code>을 입력한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">selenium</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">selenium</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__builtins__&#39;,
+ &#39;__cached__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__path__&#39;,
+ &#39;__spec__&#39;,
+ &#39;__version__&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>많은 패키지들은 하위 패키지를 가지고 있으며, 하위 패키지 중에는 상위 패키지를 불러올 때 자동으로 불러오지만 그렇지 않는 것도 있다. 자동으로 불러오지 않는 하위 패키지는 다음처럼 수동으로 불러와야 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">selenium.webdriver</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">selenium</span><span class="o">.</span><span class="n">webdriver</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Chrome&#39;,
+ &#39;ChromeOptions&#39;,
+ &#39;ChromiumEdge&#39;,
+ &#39;DesiredCapabilities&#39;,
+ &#39;Edge&#39;,
+ &#39;EdgeOptions&#39;,
+ &#39;Firefox&#39;,
+ &#39;FirefoxOptions&#39;,
+ &#39;FirefoxProfile&#39;,
+ &#39;Ie&#39;,
+ &#39;IeOptions&#39;,
+ &#39;Keys&#39;,
+ &#39;Opera&#39;,
+ &#39;Proxy&#39;,
+ &#39;Remote&#39;,
+ &#39;Safari&#39;,
+ &#39;WPEWebKit&#39;,
+ &#39;WPEWebKitOptions&#39;,
+ &#39;WebKitGTK&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>패키지의 함수를 사용하기 위해서는 <code class="docutils literal notranslate"><span class="pre">패키지이름.함수()</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">패키지별명.함수()</span></code>를 입력한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
+<span class="n">iris</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>먼저 seaborn 패키지를 sns라는 별명으로 불러온 후, 데이터셋을 불러오는 함수인 <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code>을 이용해 ‘iris’ 데이터셋을 불러왔다.</p>
+<p>패키지를 불러올때 모든 함수를 불러오는 것이 아닌 특정 함수만 선택해서 불러올 수도 있다. 이는 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">패키지이름</span> <span class="pre">import</span> <span class="pre">함수</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">패키지이름</span> <span class="pre">import</span> <span class="pre">함수1,</span> <span class="pre">함수2,</span> <span class="pre">함수3</span></code> 형태로 불러온다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>이번에는 seaborn 패키지에서 <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> 함수만 불러왔다. 이처럼 특정 함수만 불러온 경우, 함수명 앞에 패키지이름을 붙여주지 않아도 함수가 작동한다. 만일 한번에 모든 함수를 불러오고 싶을 때는 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">패키지이름</span> <span class="pre">import</span> <span class="pre">*</span></code> 를 입력하면 된다.</p>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">1.3.2. </span>함수와 메서드의 차이<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>파이썬 관련 책을 살펴보면 똑같이 <code class="docutils literal notranslate"><span class="pre">something()</span></code> 형태로 생겼지만 어떤 것은 함수, 어떤 것은 메서드라 불린다. 먼저 함수는 특정 기능을 수행하는 역할을 하며, 각 함수마다 나름의 기능을 가지고 있다. 예를 들어 파이썬의 내장 함수인 <code class="docutils literal notranslate"><span class="pre">sum()</span></code>은 합계를 구한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>특정 패키지에서 제공하는 함수도 있다. pandas의 <code class="docutils literal notranslate"><span class="pre">DataFrame()</span></code> 함수는 데이터프레임을 만드는 역할을 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]})</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>반면 메서드는 클래스 및 객체와 연관되어 있는 함수다. <code class="docutils literal notranslate"><span class="pre">info()</span></code> 메서드는 위에서 만든 데이터프레임 객체의 정보를 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3 entries, 0 to 2
+Data columns (total 1 columns):
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   x       3 non-null      int64
+dtypes: int64(1)
+memory usage: 152.0 bytes
+</pre></div>
+</div>
+</div>
+</div>
+<p>각 객체 혹은 자료 구조에 따라 사용할 수 있는 메서드가 다르다. <code class="docutils literal notranslate"><span class="pre">info()</span></code> 메서드는 데이터프레임에는 사용할 수 있지만, 리스트 객체에는 사용할 수 없다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">lst</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="list-error">
+<img alt="_images/list_error.png" src="_images/list_error.png" />
+</div>
+<p>위 코드를 실행하면 <strong>AttributeError: ‘list’ object has no attribute ‘info’</strong> 라는 에러가 뜬다. list 객체는 <code class="docutils literal notranslate"><span class="pre">info()</span></code> 매서드를 보유하고 있지 않아 에러가 발생하는 것이다. 즉 함수는 <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">pd.DataFrame()</span></code>과 같이 독립적으로 사용되는 반면, 메서드는 a라는 특정 객체가 존재할 때 <code class="docutils literal notranslate"><span class="pre">a.head()</span></code>, <code class="docutils literal notranslate"><span class="pre">a.info()</span></code>와 같은 형태로 사용된다.</p>
+</div>
+</div>
+<div class="section" id="sql">
+<h2><span class="section-number">1.4. </span>데이터 관리의 표준, SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h2>
+<p>만일 수많은 데이터를 텍스트나 엑셀 파일로 관리할 경우 어떠한 단점이 있을까? 먼저 다수의 사람이 데이터를 공유하기 어려우며, 원하는 데이터가 있으면 매번 파일을 전송해주어야 하는 번거로움이 있다. 둘째로는 대량의 데이터를 다루기가 힘들다. 마지막으로 파일 삭제, 하드 디스크 고장, 보안 문제 등 사고에 대응하기가 어렵다. 이러한 이유로 실무에서는 대부분 데이터베이스를 이용해 데이터를 효율적으로 관리한다.</p>
+<p>데이터베이스(database, DB)란 여러 사람이 공유하여 사용할 목적으로 체계화하여 통합, 관리하는 데이터의 집합이다. 예를 들어 티커, 주가, 재무제표, 목표주가 등 투자와 관련된 모든 데이터를 데이터베이스에 저장한 후 이를 관리하거나 사용할 수 있다. 데이터베이스 관리 시스템(database management system, DBMS)이란 다수의 사용자들이 데이터베이스 내의 데이터를 접근할 수 있도록 해주는 소프트웨어 도구의 집합이다. DBMS는 대량의 데이터를 다수의 사람이 안전하고 간단히 다룰 수 있게 해주는 장점이 있다.</p>
+<div class="figure align-default" id="dbms">
+<img alt="_images/dbms.png" src="_images/dbms.png" />
+<p class="caption"><span class="caption-number">Fig. 1.4 </span><span class="caption-text">데이터베이스 관리 시스템의 활용</span><a class="headerlink" href="#dbms" title="Permalink to this image">¶</a></p>
+</div>
+<p>DBMS 중 가장 일반적으로 사용되는 것이 관계형 데이터베이스(Relational Database)다. 이는 엑셀 시트처럼 열과 행으로 이루어진 2차원 표 형식으로써 데이터를 관리하거나 이해하기 쉽다. 또한 SQL이라는 전용 언어를 사용해서 데이터를 처리할 수 있다. 이러한 관계형 데이터베이스 관리 시스템 중 대표적으로 사용되는 것으로는 오라클 RDBMS, MS SQL Server, Postgre SQL, MySQL 등이 있으며 본 책에서는 무료로 사용 가능한 MySQL을 살펴보도록 하겠다.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>파이썬 및 SQL를 설치하는 법은 부록에 설명되어 있으니 참조하기 바란다.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">파이썬을 이용한 퀀트 투자 포트폴리오 만들기</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>파이썬 기초 배워보기</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By 이현열<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

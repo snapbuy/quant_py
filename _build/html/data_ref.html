@@ -1,0 +1,1577 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. 투자 참고용 데이터 수집 &#8212; 파이썬을 이용한 퀀트 투자 포트폴리오 만들기</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="13. 퀀트 전략을 이용한 종목선정" href="factor.html" />
+    <link rel="prev" title="11. 전 세계 주식 데이터 수집하기" href="data_global.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">파이썬을 이용한 퀀트 투자 포트폴리오 만들기</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   파이썬을 이용한 퀀트 투자 포트폴리오 만들기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  퀀트와 프로그래밍 기초 배워보기
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quant_intro.html">
+   1. 퀀트에 대해 알아보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   2. 파이썬 기초 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eda.html">
+   3. 데이터 분석 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot.html">
+   4. 데이터 시각화 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sql.html">
+   5. SQL 기초 배워보기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sql_in_python.html">
+   6. 파이썬에서 SQL 연결하기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  크롤링을 이용한 데이터 수집
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   7. 크롤링을 위한 웹 기본지식
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="crawl_basic.html">
+   8. 정적 크롤링 실습하기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="selenium.html">
+   9. 동적 크롤링과 정규 표현식
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_korea.html">
+   10. 국내 주식 데이터 수집
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_global.html">
+   11. 전 세계 주식 데이터 수집하기
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. 투자 참고용 데이터 수집
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  포트폴리오 구성, 백테스트 및 매매하기
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="factor.html">
+   13. 퀀트 전략을 이용한 종목선정
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio.html">
+   14. 포트폴리오 구성 전략
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="technical.html">
+   15. 트레이딩을 위한 기술적 지표
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtest.html">
+   16. 백테스팅 시뮬레이션
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api_trading.html">
+   17. 증권사 API 연결과 매매하기
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  부록
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install_python.html">
+   파이썬 다운로드 및 설치하기
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install_sql.html">
+   SQL 다운로드 및 설치하기
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/data_ref.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hyunyulhenry/quant_python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hyunyulhenry/quant_python/issues/new?title=Issue%20on%20page%20%2Fdata_ref.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hyunyulhenry/quant_python/master?urlpath=tree/docs/data_ref.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dart-open-api">
+   12.1. DART의 Open API를 이용한 데이터 수집하기
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#api-key">
+     12.1.1. API Key 발급 및 추가하기
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     12.1.2. 고유번호 다운로드
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     12.1.3. 공시 데이터
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       12.1.3.1. 전체 종목의 공시 데이터 수집
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       12.1.3.2. 특정 기업의 공시 데이터 수집
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     12.1.4. 사업보고서 주요 정보
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fred">
+   12.2. FRED 데이터 다운로드
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     12.2.1. 장단기 금리차
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     12.2.2. 기대 인플레이션
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fear-greed-index">
+     12.2.3. Fear &amp; Greed Index
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>투자 참고용 데이터 수집</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dart-open-api">
+   12.1. DART의 Open API를 이용한 데이터 수집하기
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#api-key">
+     12.1.1. API Key 발급 및 추가하기
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     12.1.2. 고유번호 다운로드
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     12.1.3. 공시 데이터
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       12.1.3.1. 전체 종목의 공시 데이터 수집
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       12.1.3.2. 특정 기업의 공시 데이터 수집
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     12.1.4. 사업보고서 주요 정보
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fred">
+   12.2. FRED 데이터 다운로드
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     12.2.1. 장단기 금리차
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     12.2.2. 기대 인플레이션
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fear-greed-index">
+     12.2.3. Fear &amp; Greed Index
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1><span class="section-number">12. </span>투자 참고용 데이터 수집<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>이번 장에서는 주식과 재무제표 같은 금융 데이터 외에 투자에 도움이 될 수 있는 기업의 공시내용 및 각종 투자 지표를 수집하는 방법에 대해 알아보도록 하겠다.</p>
+<div class="section" id="dart-open-api">
+<h2><span class="section-number">12.1. </span>DART의 Open API를 이용한 데이터 수집하기<a class="headerlink" href="#dart-open-api" title="Permalink to this headline">¶</a></h2>
+<p>DART(Data Analysis, Retrieval and Transfer System)는 금융감독원 전자공시시스템으로써, 상장법인 등이 공시서류를 인터넷으로 제출하고, 투자자 등 이용자는 제출 즉시 인터넷을 통해 조회할 수 있도록 하는 종합적 기업공시 시스템이다. 홈페이지에서도 각종 공시내역을 확인할 수 있지만, 해당 사이트에서 제공하는 API를 이용할 경우 더욱 쉽게 공시 내용을 수집할 수 있다.</p>
+<p>API 제공자는 본인이 가진 데이터베이스를 다른 누군가가 쉽게 사용할 수 있는 형태로 가지고 있으며, 해당 데이터베이스에 접근할 수 있는 열쇠인 API 주소를 가진 사람은 이를 언제든지 사용할 수 있다. 즉, API 주소만 알고 있다면 데이터를 언제, 어디서, 누구나 쉽게 이용할 수 있다는 장점이 있다. 또한 대부분의 경우 사용자가 필요한 데이터만을 가지고 있으므로 접속 속도가 빠르며, 데이터를 가공하는 번거로움도 줄어든다.</p>
+<div class="figure align-default" id="api">
+<img alt="_images/api.png" src="_images/api.png" />
+<p class="caption"><span class="caption-number">Fig. 12.1 </span><span class="caption-text">API의 개념</span><a class="headerlink" href="#api" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="api-key">
+<h3><span class="section-number">12.1.1. </span>API Key 발급 및 추가하기<a class="headerlink" href="#api-key" title="Permalink to this headline">¶</a></h3>
+<p>먼저 <a class="reference external" href="https://opendart.fss.or.kr/">https://opendart.fss.or.kr/</a> 에서 회원가입을 한 후 [인증키 신청/관리] → [인증키 신청]을 통해 API Key를 발급받아야 한다.</p>
+<div class="figure align-default" id="dart-api-key">
+<img alt="_images/dart_api_key.png" src="_images/dart_api_key.png" />
+<p class="caption"><span class="caption-number">Fig. 12.2 </span><span class="caption-text">OpenAPI 인증키 신청</span><a class="headerlink" href="#dart-api-key" title="Permalink to this image">¶</a></p>
+</div>
+<p>계정을 생성하고 이메일을 통해 이용자 등록을 한 후 로그인을 한다. 그 후 [오픈API 이용현황]을 살펴보면 <strong>API Key</strong> 부분에 발급받은 Key가 있으며, 금일 몇번의 API를 요청했는지가 일일이용현황에 나온다. 하루 총 10,000번까지 데이터를 요청할 수 있다.</p>
+<div class="figure align-default" id="dart-api-status">
+<img alt="_images/dart_api_status.png" src="_images/dart_api_status.png" />
+<p class="caption"><span class="caption-number">Fig. 12.3 </span><span class="caption-text">OpenAPI 이용현황</span><a class="headerlink" href="#dart-api-status" title="Permalink to this image">¶</a></p>
+</div>
+<p>다음으로 발급받은 API Key를 keyring 패키지를 이용해 저장한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyring</span>
+<span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s1">&#39;System&#39;</span><span class="p">,</span> <span class="s1">&#39;User Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>[System]에는 시스템 종류, [User Name]에는 본인의 이름, [Password]에는 발급받은 API Key를 입력한다. 한번 입력된 값은 계속 저장되어 있다. 저장한 키를 불러오는 법은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="s1">&#39;System&#39;</span><span class="p">,</span> <span class="s1">&#39;User Name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">12.1.2. </span>고유번호 다운로드<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Open API에서 각 기업의 데이터를 받기 위해서는 종목에 해당하는 고유번호를 알아야한다. 이에 대한 개발가이드는 아래 페이지에 나와 있다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&amp;apiId=2019018
+</pre></div>
+</div>
+<p>위 페이지의 내용을 코드로 나타내보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyring</span>
+<span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">rq</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="s1">&#39;dart_api_key&#39;</span><span class="p">,</span> <span class="s1">&#39;Henry&#39;</span><span class="p">)</span>
+<span class="n">codezip_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">codezip_data</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codezip_url</span><span class="p">)</span>
+<span class="n">codezip_data</span><span class="o">.</span><span class="n">headers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Cache-Control&#39;: &#39;no-cache, no-store&#39;, &#39;Connection&#39;: &#39;keep-alive&#39;, &#39;Set-Cookie&#39;: &#39;WMONID=jZMlNqAPcBa; Expires=Wed, 26-Jul-2023 23:14:8 GMT; Path=/&#39;, &#39;Pragma&#39;: &#39;no-cache&#39;, &#39;Expires&#39;: &#39;0&#39;, &#39;Content-Transfer-Encoding&#39;: &#39;binary&#39;, &#39;Content-Disposition&#39;: &#39;: attachment; filename=CORPCODE.zip&#39;, &#39;Date&#39;: &#39;Tue, 26 Jul 2022 14:14:08 GMT&#39;, &#39;Content-Type&#39;: &#39;application/x-msdownload;charset=UTF-8&#39;, &#39;Content-Length&#39;: &#39;1596697&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_password()</span></code> 함수를 통해 API Key를 불러온다.</p></li>
+<li><p><a class="reference external" href="https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key=">https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key=</a> 뒤에 본인의 API 키를 입력한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code> 함수를 통해 해당 페이지 내용을 받는다.</p></li>
+<li><p>헤더를 확인해보면 ‘attachment; filename=CORPCODE.zip’, 즉 파일이 첨부되어 있다. 이에 대해 좀더 자세히 알아보도록 하자.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codezip_data</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;: attachment; filename=CORPCODE.zip&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>headers의 ‘content-disposition’ 부분을 확인해보면 ‘CORPCODE.zip’ 파일이 첨부되어 있다. 해당 파일의 압축을 풀어 첨부된 내용을 확인해보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codezip_file</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">codezip_data</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+<span class="n">codezip_file</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;CORPCODE.xml&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">BytesIO()</span></code>를 통해 바이너리스트림 형태로 만든 후, <code class="docutils literal notranslate"><span class="pre">ZipFile()</span></code> 함수를 통해 압축을 풀어준다. <code class="docutils literal notranslate"><span class="pre">namelist()</span></code>를 통해 파일명을 확인해보면 ‘CORPCODE.xml’라는 파일이 존재하며, 이를 불러오도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xmltodict</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">code_data</span> <span class="o">=</span> <span class="n">codezip_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;CORPCODE.xml&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">data_odict</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">code_data</span><span class="p">)</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_odict</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+<span class="n">corp_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">corp_list</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>stock_code</th>
+      <th>modify_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00434003</td>
+      <td>다코</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00434456</td>
+      <td>일산약품</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00430964</td>
+      <td>굿앤엘에스</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00432403</td>
+      <td>한라판지</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00388953</td>
+      <td>크레디피아제이십오차유동화전문회사</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">decode()</span></code> 함수를 통해 UTF-8 형태로 변경한다.</p></li>
+<li><p>xmltodict 패키지의 <code class="docutils literal notranslate"><span class="pre">parse()</span></code> 함수를 이용해 딕셔너리 형태로 변경한다.</p></li>
+<li><p>위 데이터를 <code class="docutils literal notranslate"><span class="pre">dumps()</span></code> 함수를 통해 JSON 형태로 바꿔준 후, <code class="docutils literal notranslate"><span class="pre">loads()</span></code> 함수를 통해 불러온다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code> 함수를 통해 result 내에서 list 부분만 불러온다.</p></li>
+<li><p>데이터프레임 형태로 변경해준다.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">corp_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>94135
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corp_list</span><span class="p">[</span><span class="n">corp_list</span><span class="p">[</span><span class="s1">&#39;stock_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="kc">None</span><span class="p">])]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>stock_code</th>
+      <th>modify_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00434003</td>
+      <td>다코</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00434456</td>
+      <td>일산약품</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00430964</td>
+      <td>굿앤엘에스</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00432403</td>
+      <td>한라판지</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00388953</td>
+      <td>크레디피아제이십오차유동화전문회사</td>
+      <td>None</td>
+      <td>20170630</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">len()</span></code> 함수를 통해 종목수를 확인해보면 거래소의 상장 종목수보다 훨씬 많으며, 이는 stock_code 열이 빈 종목, 즉 거래소에 상장되지 않은 종목도 포함되어 있기 때문이다. 따라서 해당 데이터는 삭제하여 거래소 상장 종목만을 남긴 후 DB에 저장한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="n">corp_list</span> <span class="o">=</span> <span class="n">corp_list</span><span class="p">[</span><span class="o">~</span><span class="n">corp_list</span><span class="o">.</span><span class="n">stock_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+    <span class="p">[</span><span class="kc">None</span><span class="p">])]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://root:1234@127.0.0.1:3306/stock_db&#39;</span><span class="p">)</span>
+<span class="n">corp_list</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;dart_code&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">12.1.3. </span>공시 데이터<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4><span class="section-number">12.1.3.1. </span>전체 종목의 공시 데이터 수집<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>먼저 전체 종목의 공시를 수집하도록 하며, 개발가이드는 아래 페이지에 나와있다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&amp;apiId=2019001
+</pre></div>
+</div>
+<p>각종 요청인자를 통해 URL을 생성 후 전송하여, 요청에 맞는 데이터를 받을 수 있다. 공시 검색에 해당하는 인자는 <a class="reference internal" href="#dart-api-input"><span class="std std-numref">Fig. 12.4</span></a>와 같다.</p>
+<div class="figure align-default" id="dart-api-input">
+<img alt="_images/dart_api_input.png" src="_images/dart_api_input.png" />
+<p class="caption"><span class="caption-number">Fig. 12.4 </span><span class="caption-text">OpenAPI 요청 인자 예시</span><a class="headerlink" href="#dart-api-input" title="Permalink to this image">¶</a></p>
+</div>
+<p>페이지 하단에서 인자를 입력 후 [검색]을 누르면 <a class="reference internal" href="#dart-api-exam"><span class="std std-numref">Fig. 12.5</span></a>와 같이 각 인자에 맞게 생성된 URL과 그 결과를 볼 수 있다.</p>
+<div class="figure align-default" id="dart-api-exam">
+<img alt="_images/dart_api_exam.png" src="_images/dart_api_exam.png" />
+<p class="caption"><span class="caption-number">Fig. 12.5 </span><span class="caption-text">OpenAPI 테스트 예시</span><a class="headerlink" href="#dart-api-exam" title="Permalink to this image">¶</a></p>
+</div>
+<p>이를 참조하여 시작일과 종료일을 토대로 최근 공시 100건에 해당하는 url을 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+
+<span class="n">bgn_date</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">notice_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;https://opendart.fss.or.kr/api/list.json?crtfc_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">&amp;bgn_de=</span><span class="si">{</span><span class="n">bgn_date</span><span class="si">}</span><span class="s1">&amp;end_de=</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1">&amp;page_no=1&amp;page_count=100&#39;&#39;&#39;</span>
+
+<span class="n">notice_data</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">notice_url</span><span class="p">)</span>
+<span class="n">notice_data_df</span> <span class="o">=</span> <span class="n">notice_data</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+<span class="n">notice_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">notice_data_df</span><span class="p">)</span>
+
+<span class="n">notice_data_df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>stock_code</th>
+      <th>corp_cls</th>
+      <th>report_nm</th>
+      <th>rcept_no</th>
+      <th>flr_nm</th>
+      <th>rcept_dt</th>
+      <th>rm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>95</th>
+      <td>00249441</td>
+      <td>씨씨에스</td>
+      <td>066790</td>
+      <td>K</td>
+      <td>기타시장안내(씨씨에스 1WR 신주인수권 행사기간 만료 및 상장폐지 예고)</td>
+      <td>20220726900401</td>
+      <td>코스닥시장본부</td>
+      <td>20220726</td>
+      <td>코</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>00152880</td>
+      <td>코오롱글로벌</td>
+      <td>003070</td>
+      <td>Y</td>
+      <td>[기재정정]단일판매ㆍ공급계약체결</td>
+      <td>20220726800444</td>
+      <td>코오롱글로벌</td>
+      <td>20220726</td>
+      <td>유</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>00113465</td>
+      <td>하나증권</td>
+      <td></td>
+      <td>E</td>
+      <td>증권발행실적보고서</td>
+      <td>20220726000318</td>
+      <td>하나증권</td>
+      <td>20220726</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>01397620</td>
+      <td>루닛</td>
+      <td>328130</td>
+      <td>K</td>
+      <td>주식등의대량보유상황보고서(약식)</td>
+      <td>20220726000316</td>
+      <td>WELLALIKELIMITED</td>
+      <td>20220726</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>00657756</td>
+      <td>무송지오씨</td>
+      <td>135160</td>
+      <td>N</td>
+      <td>주요사항보고서(전환사채권발행결정)</td>
+      <td>20220726000287</td>
+      <td>무송지오씨</td>
+      <td>20220726</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ol class="simple">
+<li><p>‘bgn_date’에는 현재로부터 일주일 전 날짜룰, ‘end_date’는 오늘 날짜를, 페이지별 건수에 해당하는 ‘page_count’에는 100을 입력한다.</p></li>
+<li><p>홈페이지에 나와있는 예시에 맞게 URL을 작성해준다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code> 함수를 통해 해당 페이지 내용을 받는다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json()</span></code> 함수를 통해 JSON 데이터를 불러온 후, list 부분만을 선택한다.</p></li>
+<li><p>데이터프레임 형태로 변경한다.</p></li>
+</ol>
+<p>데이터를 확인해보면 우리가 원하는 공시정보, 즉 일주일 전부터 오늘까지 전체 종목에 대한 100건의 공시 정보를 받을 수 있다.</p>
+</div>
+<div class="section" id="id5">
+<h4><span class="section-number">12.1.3.2. </span>특정 기업의 공시 데이터 수집<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>이번에는 고유번호를 추가하여 전체 종목이 아닌 원하는 기업의 공시만 받도록 한다. 예시로써 삼성전자의 공시 데이터를 수집하겠으며, 삼성전자의 고유번호는 [00126380] 다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corp_list</span><span class="p">[</span><span class="n">corp_list</span><span class="p">[</span><span class="s1">&#39;corp_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;삼성전자&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>stock_code</th>
+      <th>modify_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2473</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>20220509</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bgn_date</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">corp_code</span> <span class="o">=</span> <span class="s1">&#39;00126380&#39;</span>
+
+<span class="n">notice_url_ss</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;https://opendart.fss.or.kr/api/list.json?crtfc_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">&amp;corp_code=</span><span class="si">{</span><span class="n">corp_code</span><span class="si">}</span><span class="s1">&amp;bgn_de=</span><span class="si">{</span><span class="n">bgn_date</span><span class="si">}</span><span class="s1">&amp;end_de=</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1">&amp;page_no=1&amp;page_count=100&#39;&#39;&#39;</span>
+
+<span class="n">notice_data_ss</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">notice_url_ss</span><span class="p">)</span>
+<span class="n">notice_data_ss_df</span> <span class="o">=</span> <span class="n">notice_data_ss</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+<span class="n">notice_data_ss_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">notice_data_ss_df</span><span class="p">)</span>
+
+<span class="n">notice_data_ss_df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>stock_code</th>
+      <th>corp_cls</th>
+      <th>report_nm</th>
+      <th>rcept_no</th>
+      <th>flr_nm</th>
+      <th>rcept_dt</th>
+      <th>rm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>Y</td>
+      <td>임원ㆍ주요주주특정증권등소유상황보고서</td>
+      <td>20220706000082</td>
+      <td>홍형선</td>
+      <td>20220706</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>Y</td>
+      <td>지속가능경영보고서등관련사항(자율공시)</td>
+      <td>20220630800927</td>
+      <td>삼성전자</td>
+      <td>20220630</td>
+      <td>유</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>Y</td>
+      <td>임원ㆍ주요주주특정증권등소유상황보고서</td>
+      <td>20220630000199</td>
+      <td>윤종덕</td>
+      <td>20220630</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>Y</td>
+      <td>임원ㆍ주요주주특정증권등소유상황보고서</td>
+      <td>20220628000109</td>
+      <td>권상욱</td>
+      <td>20220628</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>005930</td>
+      <td>Y</td>
+      <td>임원ㆍ주요주주특정증권등소유상황보고서</td>
+      <td>20220627000141</td>
+      <td>전소영</td>
+      <td>20220627</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ol class="simple">
+<li><p>시작일을 과거 30일로 수정하였으며, 기존 URL에 종목코드에 해당하는 ‘&amp;corp_code=’ 부분을 추가한다.</p></li>
+<li><p>그 이후 진행과정은 이전과 동일하다.</p></li>
+</ol>
+<p>데이터 중 ‘rcept_no’는 공시번호에 해당하며, 해당 데이터를 이용해 공시에 해당하는 URL에 접속하여 내역을 확인할 수도 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notice_url_exam</span> <span class="o">=</span> <span class="n">notice_data_ss_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;rcept_no&#39;</span><span class="p">]</span>
+<span class="n">notice_dart_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://dart.fss.or.kr/dsaf001/main.do?rcpNo=</span><span class="si">{</span><span class="n">notice_url_exam</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">notice_dart_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220722000492
+</pre></div>
+</div>
+</div>
+</div>
+<p>dart 홈페이지의 공시에 해당하는 url과 첫번째 공시에 해당하는 공시번호를 합쳐준다. 위 url에 접속하여 해당 공시를 좀 더 자세하게 확인할 수 있다.</p>
+<div class="figure align-default" id="dart-web">
+<img alt="_images/dart_web.png" src="_images/dart_web.png" />
+<p class="caption"><span class="caption-number">Fig. 12.6 </span><span class="caption-text">공시 정보의 확인</span><a class="headerlink" href="#dart-web" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">12.1.4. </span>사업보고서 주요 정보<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>API를 이용하여 사업보고서의 주요 정보 역시 다운로드 받을 수 있으며, 제공하는 목록은 다음과 같다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&amp;apiId=2019005
+</pre></div>
+</div>
+<p>이 중 예시로써 [배당에 관한 사항]을 다운로드 받도록 하며, 개발가이드 페이지는 다음과 같다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&amp;apiId=2019006
+</pre></div>
+</div>
+<p>URL 생성에 필요한 요청 인자는 다음과 같다.</p>
+<table class="colwidths-auto table" id="div-input">
+<caption><span class="caption-number">Table 12.1 </span><span class="caption-text">배당에 관한 사항 주요 인자</span><a class="headerlink" href="#div-input" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>키</p></th>
+<th class="head"><p>명칭</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>crtfc_key</p></td>
+<td><p>API 인증키</p></td>
+<td><p>발급받은 인증키</p></td>
+</tr>
+<tr class="row-odd"><td><p>corp_code</p></td>
+<td><p>고유번호</p></td>
+<td><p>공시대상회사의 고유번호(8자리)</p></td>
+</tr>
+<tr class="row-even"><td><p>bsns_year</p></td>
+<td><p>사업년도</p></td>
+<td><p>사업연도(4자리)</p></td>
+</tr>
+<tr class="row-odd"><td><p>reprt_code</p></td>
+<td><p>보고서 코드</p></td>
+<td><p><ul>1분기보고서 : 11013</ul> <ul>반기보고서 : 11012 </ul> <ul>3분기보고서 : 11014</ul> <ul>사업보고서 : 11011 </ul></p></td>
+</tr>
+</tbody>
+</table>
+<p>이를 바탕으로 삼성전자의 2021년 사업보고서를 통해 배당에 관한 사항을 살펴보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corp_code</span> <span class="o">=</span> <span class="s1">&#39;00126380&#39;</span>
+<span class="n">bsns_year</span> <span class="o">=</span> <span class="s1">&#39;2021&#39;</span>
+<span class="n">reprt_code</span> <span class="o">=</span> <span class="s1">&#39;11011&#39;</span>
+
+<span class="n">url_div</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;https://opendart.fss.or.kr/api/alotMatter.json?crtfc_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">&amp;corp_code=</span><span class="si">{</span><span class="n">corp_code</span><span class="si">}</span><span class="s1">&amp;bsns_year=</span><span class="si">{</span><span class="n">bsns_year</span><span class="si">}</span><span class="s1">&amp;reprt_code=</span><span class="si">{</span><span class="n">reprt_code</span><span class="si">}</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">div_data_ss</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_div</span><span class="p">)</span>
+<span class="n">div_data_ss_df</span> <span class="o">=</span> <span class="n">div_data_ss</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+<span class="n">div_data_ss_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">div_data_ss_df</span><span class="p">)</span>
+
+<span class="n">div_data_ss_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rcept_no</th>
+      <th>corp_cls</th>
+      <th>corp_code</th>
+      <th>corp_name</th>
+      <th>se</th>
+      <th>thstrm</th>
+      <th>frmtrm</th>
+      <th>lwfr</th>
+      <th>stock_knd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20220308000798</td>
+      <td>Y</td>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>주당액면가액(원)</td>
+      <td>100</td>
+      <td>100</td>
+      <td>100</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20220308000798</td>
+      <td>Y</td>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>(연결)당기순이익(백만원)</td>
+      <td>39,243,791</td>
+      <td>26,090,846</td>
+      <td>21,505,054</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20220308000798</td>
+      <td>Y</td>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>(별도)당기순이익(백만원)</td>
+      <td>30,970,954</td>
+      <td>15,615,018</td>
+      <td>15,353,323</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20220308000798</td>
+      <td>Y</td>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>(연결)주당순이익(원)</td>
+      <td>5,777</td>
+      <td>3,841</td>
+      <td>3,166</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20220308000798</td>
+      <td>Y</td>
+      <td>00126380</td>
+      <td>삼성전자</td>
+      <td>현금배당금총액(백만원)</td>
+      <td>9,809,438</td>
+      <td>20,338,075</td>
+      <td>9,619,243</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>API 인증키, 고유번호, 사업년도, 보고서 코드에 해당하는 데이터를 입력하여 URL을 생성하고, 앞에서 했던것과 동일한 방식으로 데이터를 불러온다. 데이터를 확인해보면, 사업보고서 중 배당에 관한 사항만이 나타나 있다. 위 URL의 ‘alotMatter’ 부분을 각 사업보고서에 해당하는 값으로 변경해주면 다른 정보 역시 동일한 방법으로 수집이 가능하다.</p>
+</div>
+</div>
+<div class="section" id="fred">
+<h2><span class="section-number">12.2. </span>FRED 데이터 다운로드<a class="headerlink" href="#fred" title="Permalink to this headline">¶</a></h2>
+<p>미국 연방준비은행에서 관리하는 Federal Reserve Economic Data(FRED)는 미국 및 각국의 중요 경제지표 데이터를 살펴볼 때 가장 많이 참조되는 곳 중 하나이다. 509,000여 개의 방대한 데이터를 API 형태로 제공하고 있으며, pandas_datareader 패키지의 <code class="docutils literal notranslate"><span class="pre">DataReader()</span></code> 함수를 이용하면 이곳에서 제공하는 여러 데이터를 쉽게 받을 수 있다.</p>
+<div class="section" id="id7">
+<h3><span class="section-number">12.2.1. </span>장단기 금리차<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>장기로 돈을 빌리는 것이 단기로 빌리는 것보다 위험하므로 금리 역시 높아야 하는 것이 당연하며, 이러한 장기금리와 단기금리와의 차이를 기간 프리미엄(Term Premium)이라고 한다. 그러나 가끔씩 장기금리가 단기금리보다 낮아지는 현상이 발생하며, 이는 주요 금융시장 및 경제지표 가운데 경기침체에 대한 예측력이 가장 정확한 것으로 알려져 있다. 실제로 미국에서는 1960년 이후 발생한 모든 경기침체에 앞서 장단기 금리가 역전되어 음수가 되었다.</p>
+<p>FRED에서 각 항목별 코드를 찾는 방법은 매우 간단하다. 먼저 FRED 웹사이트(<a class="reference external" href="https://fred.stlouisfed.org/">https://fred.stlouisfed.org/</a>) 에서 원하는 데이터를 검색한다. 만일 ‘10년-2년 장단기 금리차’에 해당하는 코드를 찾고자 한다면 [10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity]를 검색하여 해당 페이지로 이동한다. 이 중 <a class="reference internal" href="#fred-code"><span class="std std-numref">Fig. 12.7</span></a>에서 네모로 표시한 [T10Y2Y]가 10년 금리와 2년 금리차의 코드에 해당한다. 동일한 방법으로 10년 금리와 3개월 금리 차이에 해당하는 [10-Year Treasury Constant Maturity Minus 3-Month Treasury Constant Maturity]를 검색해보면 해당 코드가 [T10Y3M]임을 알 수 있다.</p>
+<div class="figure align-default" id="fred-code">
+<img alt="_images/fred_code.png" src="_images/fred_code.png" />
+<p class="caption"><span class="caption-number">Fig. 12.7 </span><span class="caption-text">FRED 코드 확인</span><a class="headerlink" href="#fred-code" title="Permalink to this image">¶</a></p>
+</div>
+<p>해당 데이터를 다운로드 받아보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">t10y2y</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;T10Y2Y&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1990-01-01&#39;</span><span class="p">)</span>
+<span class="n">t10y3m</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;T10Y3M&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1990-01-01&#39;</span><span class="p">)</span>
+
+<span class="n">rate_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">t10y2y</span><span class="p">,</span> <span class="n">t10y3m</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rate_diff</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10Y - 2Y&#39;</span><span class="p">,</span> <span class="s1">&#39;10Y - 3M&#39;</span><span class="p">]</span>
+
+<span class="n">rate_diff</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>10Y - 2Y</th>
+      <th>10Y - 3M</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2022-07-20</th>
+      <td>-0.21</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>2022-07-21</th>
+      <td>-0.19</td>
+      <td>0.43</td>
+    </tr>
+    <tr>
+      <th>2022-07-22</th>
+      <td>-0.21</td>
+      <td>0.28</td>
+    </tr>
+    <tr>
+      <th>2022-07-25</th>
+      <td>-0.19</td>
+      <td>0.19</td>
+    </tr>
+    <tr>
+      <th>2022-07-26</th>
+      <td>-0.21</td>
+      <td>0.26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>데이터 출처에 해당하는 부분에 ‘fred’를 입력하면 FRED의 API를 통해 데이터를 받아올 수 있다. 장단기 금리차를 주가 지수와 비교해 그려보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 주가지수 다운로드</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;^GSPC&#39;</span><span class="p">,</span> <span class="s1">&#39;yahoo&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1990-01-01&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Malgun Gothic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">unicode_minus</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t10y2y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;10Y-2Y&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t10y3m</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;10Y-3M&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;장단기 금리차&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sp</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]),</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;S&amp;P500&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;S&amp;P500 지수(로그)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/data_ref_29_0.png" src="_images/data_ref_29_0.png" />
+</div>
+</div>
+<p>2000년 IT 버블, 20008년 금융위기, 2020년 코로나로 인한 하락 직전에는 항상 장단기 금리차가 음수를 기록했다.</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">12.2.2. </span>기대 인플레이션<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>기대 인플레이션이란 현재 정보를 바탕으로 미래에 예상되는 인플레이션이다. 이는 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[기대\ 인플레이션 = 10년물\ 미국\ 국채금리 - 10년물\ 물가연동국채(TIPS)\ 금리\]</div>
+<p>만일 향후 인플레이션이 올 것이라고 사람들이 전망한다면, 물가연동국채를 매수하므로 물가연동국채의 가격이 상승하고 해당 금리는 하락하게 될 것이다. 따라서 물가연동국채의 금리가 하락할 수록 기대 인플레이션은 상승한다. 기대 인플레이션 역시 자산의 가격에 매우 크게 영향을 미치는 요소이며, FED의 목표 중 하나가 기대 인플레이션을 2%로 유지하는 것이므로, 해당 지표의 위치를 통해 FED의 향후 움직임 및 자산 가격의 변동을 예측할 수 있다. FRED에서 기대 인플레이션에 해당하는 코드는 [T10YIE] 이다. 해당 데이터를 받아보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">bei</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;T10YIE&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1990-01-01&#39;</span><span class="p">)</span>
+
+<span class="n">bei</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T10YIE</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2022-07-19</th>
+      <td>2.39</td>
+    </tr>
+    <tr>
+      <th>2022-07-20</th>
+      <td>2.38</td>
+    </tr>
+    <tr>
+      <th>2022-07-21</th>
+      <td>2.33</td>
+    </tr>
+    <tr>
+      <th>2022-07-22</th>
+      <td>2.34</td>
+    </tr>
+    <tr>
+      <th>2022-07-25</th>
+      <td>2.36</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>이번에는 그래프로 나타내보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">bei</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/data_ref_33_0.png" src="_images/data_ref_33_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="fear-greed-index">
+<h3><span class="section-number">12.2.3. </span>Fear &amp; Greed Index<a class="headerlink" href="#fear-greed-index" title="Permalink to this headline">¶</a></h3>
+<p>CNN에서는 발표하는 Fear &amp; Greed Index(공포와 탐욕 지수)는 투자 심리를 반영하는 대표적인 지수다. 해당 지수는 총 7개 지표를 이용해 계산된다.</p>
+<ol class="simple">
+<li><p>주가의 강도</p></li>
+<li><p>시장의 모멘텀</p></li>
+<li><p>주가의 확산정도</p></li>
+<li><p>시장 변동성</p></li>
+<li><p>안전 자산에 대한 수요</p></li>
+<li><p>풋옵션과 콜옵션 비율</p></li>
+<li><p>투기 등급에 대한 수요</p></li>
+</ol>
+<p>위 7개 지표를 합산하여 0점에서 100점 사이의 점수를 구하며, 점수가 낮을 수록 시장이 공포에 휩싸여 있음을, 점수가 높을 수록 시장이 탐욕에 물들어 있음을 나타낸다.</p>
+<div class="figure align-default" id="fear-greed">
+<img alt="_images/fear_greed.png" src="_images/fear_greed.png" />
+<p class="caption"><span class="caption-number">Fig. 12.8 </span><span class="caption-text">Fear &amp; Greed Index</span><a class="headerlink" href="#fear-greed" title="Permalink to this image">¶</a></p>
+</div>
+<p>해당 지표는 아래 사이트에서 확인할 수 있다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">money</span><span class="o">.</span><span class="n">cnn</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">fear</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">greed</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>개발자도구 화면을 통해 현재 점수가 위치하는 곳을 찾아보면, 클래스 이름이 [market-fng-gauge__dial-number-value]이며, 내용이 동적으로 계속 변하기에 정적 크롤링이 아닌 동적 크롤링을 이용해야 한다. 셀레니움을 사용해 해당 지표를 크롤링 해보자.</p>
+<div class="figure align-default" id="fear-greed-html">
+<img alt="_images/fear_greed_html.png" src="_images/fear_greed_html.png" />
+<p class="caption"><span class="caption-number">Fig. 12.9 </span><span class="caption-text">해당 지표의 태그 확인</span><a class="headerlink" href="#fear-greed-html" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">selenium</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.service</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">webdriver_manager.chrome</span> <span class="kn">import</span> <span class="n">ChromeDriverManager</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="n">Service</span><span class="p">(</span><span class="n">ChromeDriverManager</span><span class="p">()</span><span class="o">.</span><span class="n">install</span><span class="p">()))</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://edition.cnn.com/markets/fear-and-greed&#39;</span><span class="p">)</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span>
+                          <span class="n">value</span><span class="o">=</span><span class="s1">&#39;market-fng-gauge__dial-number-value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>크롬 드라이버를 로드한다.</p></li>
+<li><p>해당 URL을 브라우저에 띄운다.</p></li>
+<li><p>클래스명이 [market-fng-gauge__dial-number-value]인 곳을 찾은 후, 텍스트를 추출한다.</p></li>
+<li><p>브라우저를 닫는다.</p></li>
+<li><p>지표가 문자형이므로 정수형으로 변경한다.</p></li>
+</ol>
+<p>해당 지표를 통해 투자 심리를 객관적으로 판단할 수 있다. <strong>‘공포에 사서 탐욕에 팔아라’</strong> 라는 투자 격언이 있듯이, 지표가 지나치게 낮은 공포 구간에서는 오히려 매수를, 지표가 지나치게 높은 탐욕 구간에서는 투자 비중을 줄이는 선택을 할 수 있다.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="data_global.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">11. </span>전 세계 주식 데이터 수집하기</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="factor.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>퀀트 전략을 이용한 종목선정</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By 이현열<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
