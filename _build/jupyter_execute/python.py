@@ -1430,7 +1430,7 @@ for i in number:
     print(i ** 2)
 
 
-# ```{figure} image/quant_intro/loop_error.png
+# ```{figure} image/python/loop_error.png
 # ---
 # name: loop_error
 # ---
