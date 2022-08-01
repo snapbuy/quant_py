@@ -1430,7 +1430,11 @@ for i in number:
     print(i ** 2)
 
 
-# ![image.png](attachment:image.png)
+# ```{figure} image/quant_intro/loop_error.png
+# ---
+# name: loop_error
+# ---
+# ```
 # 
 # `for`문을 통해 순서대로 값들의 제곱을 출력하는 명령어를 실행하면 '문자 4'는 제곱을 할 수 없어 오류가 발생한다. `try-except`문을 사용하면 이처럼 오류가 발생하는 루프를 무시하고 다음 루프로 넘어갈 수 있다.
 
