@@ -14,8 +14,10 @@ repository:
 execute:
   execute_notebooks: 'off'
 
-html:
-  comments:    
+html:  
+  use_issues_button: true
+  use_repository_button: true
+  comments:
     utterances:
       repo: "hyunyulhenry/quant_py"
 
