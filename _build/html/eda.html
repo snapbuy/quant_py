@@ -2233,7 +2233,7 @@ Name: index1, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">data_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s1">&#39;https://raw.githubusercontent.com/hyunyulhenry/fin_ds/master/data/kospi.csv&#39;</span><span class="p">)</span>
+    <span class="s1">&#39;https://raw.githubusercontent.com/hyunyulhenry/quant_py/main/kospi.csv&#39;</span><span class="p">)</span>
 <span class="n">data_csv</span>
 </pre></div>
 </div>
@@ -2354,7 +2354,7 @@ Name: index1, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_excel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
-    <span class="s1">&#39;https://github.com/hyunyulhenry/fin_ds/raw/master/data/kospi.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;kospi&#39;</span><span class="p">)</span>
+    <span class="s1">&#39;https://github.com/hyunyulhenry/quant_py/raw/main/kospi.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;kospi&#39;</span><span class="p">)</span>
 <span class="n">data_excel</span>
 </pre></div>
 </div>
@@ -7725,7 +7725,7 @@ dtype: int64
 <img alt="_images/group.png" src="_images/group.png" />
 <p class="caption"><span class="caption-number">Fig. 3.20 </span><span class="caption-text">그룹 연산의 개념</span><a class="headerlink" href="#group" title="Permalink to this image">¶</a></p>
 </div>
-<p><a class="reference internal" href="sql.html#group"><span class="std std-numref">Fig. 5.23</span></a>은 그룹 연산의 개념을 그림으로 나타낸 것이다. 먼저 데이터프레임에서 ‘Col 1’이 A, B, C인 데이터 별로 그룹을 나눈 후, 각 그룹에서 ‘Col 2’의 합을 구한다. 마지막으로 계산된 결과를 하나로 합친다. 펭귄 데이터셋을 통해 그룹 연산을 배워보도록 하자.</p>
+<p><a class="reference internal" href="#group"><span class="std std-numref">Fig. 3.20</span></a>은 그룹 연산의 개념을 그림으로 나타낸 것이다. 먼저 데이터프레임에서 ‘Col 1’이 A, B, C인 데이터 별로 그룹을 나눈 후, 각 그룹에서 ‘Col 2’의 합을 구한다. 마지막으로 계산된 결과를 하나로 합친다. 펭귄 데이터셋을 통해 그룹 연산을 배워보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>

@@ -458,13 +458,13 @@ df.iloc[0:2, 0:3]
 # 
 # 이 중 가장 대표적인 파일 포맷인 CSV와 EXCEL 파일을 읽고 쓰는 법에 대해 살펴보기로 하자. (SQL과 HTML을 읽고 쓰는 법에 대해서는 나중에 다시 다룬다.) 
 
-# In[42]:
+# In[6]:
 
 
 import pandas as pd
 
 data_csv = pd.read_csv(
-    'https://raw.githubusercontent.com/hyunyulhenry/fin_ds/master/data/kospi.csv')
+    'https://raw.githubusercontent.com/hyunyulhenry/quant_py/main/kospi.csv')
 data_csv
 
 
@@ -492,11 +492,11 @@ data_csv.to_csv('data.csv')
 # 
 # 이번에는 엑셀 파일을 불러오는 법을 살펴보도록 하자. 
 
-# In[43]:
+# In[7]:
 
 
 data_excel = pd.read_excel(
-    'https://github.com/hyunyulhenry/fin_ds/raw/master/data/kospi.xlsx', sheet_name='kospi')
+    'https://github.com/hyunyulhenry/quant_py/raw/main/kospi.xlsx', sheet_name='kospi')
 data_excel
 
 
