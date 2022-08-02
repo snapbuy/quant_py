@@ -952,7 +952,7 @@ dtype: float64
 </div>
 <p>이 중 원하는 데이터의 이름을 찾는법은 다음과 같다. 먼저 홈페이지에서 원하는 팩터를 검색한 후, [CSV] 글자에서 마우스를 우클릭 해 [링크 주소 복사]를 누른다. PBR에 따른 수익률에 해당하는 ‘Portfolios Formed on Book-to-Market’의 다운로드 링크를 메모장 등에서 확인해보면 다음과 같습니다.</p>
 <p><a class="reference external" href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_BE-ME_CSV.zip">https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_BE-ME_CSV.zip</a></p>
-<p>이 중 끝부분의 ‘Portfolios_Formed_on_BE-ME_CSV’ 에서 _CSV 를 제외한 글자인 ‘Portfolios_Formed_on_BE-ME’를 <code class="docutils literal notranslate"><span class="pre">DataReader()</span></code> 함수 내에 입력하면 해당 데이터가 다운로드 된다.</p>
+<p>이 중 끝부분의 ‘Portfolios_Formed_on_BE-ME_CSV’ 에서 ‘_CSV’ 를 제외한 글자인 ‘Portfolios_Formed_on_BE-ME’를 <code class="docutils literal notranslate"><span class="pre">DataReader()</span></code> 함수 내에 입력하면 해당 데이터가 다운로드 된다.</p>
 </div>
 <div class="section" id="pbr">
 <h3><span class="section-number">13.3.2. </span>PBR별 포트폴리오의 수익률<a class="headerlink" href="#pbr" title="Permalink to this headline">¶</a></h3>
@@ -1145,7 +1145,7 @@ dtype: float64
 </table>
 </div></div></div>
 </div>
-<p>딕셔너리 형태에 여러개의 테이블이 존재하며, 이 중 첫번째에 위치하는 데이터가 PBR을 기준으로 종목을 나눈 후 시가총액가중방식으로 포트폴리오를 구성하였을 경우 월간 수익률을 의미한다. 각 열에 대한 설명은 다음과 같다.</p>
+<p>딕셔너리 형태에 여러개의 테이블이 존재하며, 이 중 첫번째에 위치하는 데이터가 PBR을 기준으로 종목을 나눈 후 시가총액가중방식으로 포트폴리오를 구성하였을 때의 월간 수익률을 의미한다. 각 열에 대한 설명은 다음과 같다.</p>
 <ul class="simple">
 <li><p>&lt;=0: PBR이 0 이하인 기업들의 포트폴리오</p></li>
 <li><p>Lo 30, Med 40, Hi 30: PBR 기준 상위 30%, 30-70%, 하위 30%로 나눈 포트폴리오</p></li>
@@ -1180,16 +1180,16 @@ dtype: float64
 <li><p>원하는 열만 선택한다.</p></li>
 <li><p>해당 사이트의 데이터는 1이 1%를 의미하므로, 올바른 계산을 위해 100으로 나누어준 후 <code class="docutils literal notranslate"><span class="pre">cumprod()</span></code> 메서드를 통해 누적 수익률을 계산한다.</p></li>
 </ol>
-<p>누적 수익률을 확인해보면, B/M 값이 높을 수록, 즉 PBR이 낮을 수록(Hi 20) 수익률이 높은 가치주 효과가 확인됩니다. 그러나 Hi 20과 다른 포트폴리오간의 수익률 차이가 너무 커 제대로된 비교가 되지 않는다. 이처럼 <span class="math notranslate nohighlight">\(y\)</span>축을 단순 수익률로 볼 경우 장기적인 성장률을 왜곡시키므로, 로그 수익률로 나타내는 것이 일반적이다. 단순 수익률(<span class="math notranslate nohighlight">\(r\)</span>)과 로그 수익률(<span class="math notranslate nohighlight">\(R\)</span>) 간의 관계는 다음과 같다.</p>
+<p>누적 수익률을 확인해보면, B/M 값이 높을 수록, 즉 PBR이 낮을 수록(Hi 20) 수익률이 높은 가치주 효과가 확인된다. 그러나 Hi 20과 다른 포트폴리오간의 수익률 차이가 너무 커 제대로된 비교가 되지 않는다. 이처럼 <span class="math notranslate nohighlight">\(y\)</span>축을 단순 수익률로 볼 경우 장기적인 성장률을 왜곡시키므로, 로그 수익률로 나타내는 것이 일반적이다. 단순 수익률(<span class="math notranslate nohighlight">\(r\)</span>)과 로그 수익률(<span class="math notranslate nohighlight">\(R\)</span>) 간의 관계는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[(1+r) = e^R\]</div>
 <div class="math notranslate nohighlight">
-\[log(1+r) = R\]</div>
+\[ln(1+r) = R\]</div>
 <p>즉 단순 수익률에 1을 더한 후 로그를 취하면 로그 수익률을 구할 수 있다. 또한 단순 수익률은 누적 수익률을 계산할 때 <span class="math notranslate nohighlight">\((1+r_1)\times(1+r_2)\times\dots\times(1+r_n)\)</span> 처럼 곱을 해 나가지면 로그 수익률은 <span class="math notranslate nohighlight">\(R_1+R_2+\dots+R_n\)</span> 처럼 더하면 된다. 이는 아래의 관계 때문이다.</p>
 <div class="math notranslate nohighlight">
 \[(1+r_1)(1+r_2) = e^{R_1}e^{R_2} = e^{R_1+R_2}\]</div>
 <div class="math notranslate nohighlight">
-\[log(1+r_1)(1+r_2) = R_1+R_2\]</div>
+\[ln(1+r_1)(1+r_2) = R_1+R_2\]</div>
 <p>위의 관계를 이용해 로그 차트로 다시 나타내보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1664,10 +1664,10 @@ dtype: float64
 </div>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">rank()</span></code> 함수를 통해 PER와 PBR 열의 순위를 구하며, <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">0</span></code>을 입력하여 순위는 열 방향으로 구한다. 즉 PER 내에서의 순위, PBR 내에서의 순위를 구한다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code> 함수 내에 <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code>를 통해 위에서 구한 순위를 행 방향으로 값을 더하며, skipna = False를 통해 NA가 있는 종목은 제외한다. 그 후 다시 <code class="docutils literal notranslate"><span class="pre">rank()</span></code> 함수를 통해 순위의 합 기준으로 다시 순위를 구한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code> 함수 내에 <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code>를 통해 위에서 구한 순위를 행 방향으로 값을 더하며, <code class="docutils literal notranslate"><span class="pre">skipna</span> <span class="pre">=</span> <span class="pre">False</span></code>를 통해 NA가 있는 종목은 제외한다. 그 후 다시 <code class="docutils literal notranslate"><span class="pre">rank()</span></code> 함수를 통해 순위의 합 기준으로 다시 순위를 구한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">value_sum</span> <span class="pre">&lt;=</span> <span class="pre">20</span></code> 즉 순위가 낮은 20 종목을 선택한다. 이는 PER과 PBR가 낮은 종목이라고 볼 수 있다.</p></li>
 </ol>
-<p>전통적으로 PER와 PBR이 낮은 금융주 및 지주회사가 많이 분포되어 있다.</p>
+<p>전통적으로 PER와 PBR이 낮은 지주회사가 많이 분포되어 있다.</p>
 </div>
 <div class="section" id="id7">
 <h3><span class="section-number">13.3.4. </span>여러 지표 결합하기<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
@@ -1953,7 +1953,7 @@ dtype: float64
 <li><p>위에서 구한 다섯개 지표들의 순위를 더한 후 다시 순위를 매긴다.</p></li>
 <li><p>최종 순위가 낮은 20 종목을 선택한다. 즉 하나의 지표보다 다섯개 지표가 골고루 낮은 종목을 선택한다.</p></li>
 </ol>
-<p>단순 저PER, 저PBR 포트폴리오와 달리 금융주 및 지주회사가 아닌 종목들도 포함되어 있다.</p>
+<p>단순 저PER, 저PBR 포트폴리오와 달리 지주회사가 아닌 종목들도 포함되어 있다.</p>
 </div>
 </div>
 <div class="section" id="id8">
@@ -1963,7 +1963,7 @@ dtype: float64
 <p class="admonition-title">Note</p>
 <p>계산 기간에 따른 가격 모멘텀의 종류</p>
 <ul class="simple">
-<li><p>단기 모멘텀: 최근 한 주 혹은 1개월 수익률이 높을(수록) 차월 수익률이 낮은(높은) 현상. 단기 수익률 반전 현상이라고도 함.</p></li>
+<li><p>단기 모멘텀: 최근 한 주 혹은 1개월 수익률이 높을(낮을)수록 차월 수익률이 낮은(높은) 현상. 단기 수익률 반전 현상이라고도 함.</p></li>
 <li><p>중기 모멘텀: 최근 3~12개월 수익률이 높았던 주식이 향후에도 지속적으로 상승하는 현상.</p></li>
 <li><p>장기 모멘텀: 최근 3~5년 수익률이 낮았던 종목들이, 수익률이 높았던 종목보다 성과가 높은 현상. 장기 수익률 반전 현상이라고도 함.</p></li>
 </ul>
@@ -2513,7 +2513,7 @@ dtype: float64
 </div>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">rank()</span></code> 함수를 통해 12개월 수익률 열의 순위를 구하며, 모멘텀의 경우 지표가 높을수록 좋으므로 <code class="docutils literal notranslate"><span class="pre">ascending</span> <span class="pre">=</span> <span class="pre">False</span></code> 인자를 통해 내림차순으로 순위를 구한다.</p></li>
-<li><p>momentum_rank &lt;= 20 즉 모멘텀이 높은 20 종목을 선택한다.</p></li>
+<li><p>‘momentum_rank &lt;= 20’ 즉 모멘텀이 높은 20 종목을 선택한다.</p></li>
 </ol>
 <p>마지막으로 해당 종목들의 가격 그래프를 확인해보도록 하자.</p>
 <div class="cell docutils container">
@@ -2565,7 +2565,7 @@ dtype: float64
 <p>동일한 누적수익률을 가진 두 종목이 있다고 가정해보자. A의 경우 상승폭이 작다가 최근 급등하여 누적수익률이 높아진 경우다. 반면 B의 경우 꾸준하게 상승하여 누적수익률이 높아진 경우다. 이 중 꾸준하게 상승한 B가 더 뛰어난 모멘텀 주식이라고 볼 수 있다. 이처럼 꾸준한 상승을 측정하기 위해 실무에서는 단순 12개월 수익률이 아닌 3~12개월 수익률을 같이 보거나, 변동성을 함께 고려하기도 한다. 그 중 모멘텀의 꾸준함을 측정하는 지표 중 하나가 ‘K-Ratio’다. 해당 지표는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[K-Ratio = \frac{누적수익률의\ 기울기}{표준\ 오차}\]</div>
-<p>누적수익률이 높을수록 기울기도 커져 분자는 커진다. 또한 추세가 꾸준할수록 표준 오차가 작아 분자는 작아진다. 따라서 추세가 꾸준하게 많이 상승할수록 K-Ratio는 증가한다. 먼저 K-Ratio를 측정하는 법을 살펴보자.</p>
+<p>누적수익률이 높을수록 기울기도 커져 분자는 커진다. 또한 추세가 꾸준할수록 표준 오차가 작아 분모는 작아진다. 따라서 추세가 꾸준하게 많이 상승할수록 K-Ratio는 증가한다. 먼저 K-Ratio를 측정하는 법을 살펴보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
@@ -2741,8 +2741,8 @@ dtype: float64
 </div>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(x\)</span> 축에 해당하는 값과, 빈 딕셔너리(k_ratio)를 만든다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">loop</span></code> 구문을 통해 모든 종목에 대한 K-Ratio를 구한다.</p></li>
-<li><p>해당 종목이 상장한지 1년이 되지 않아 K-Ratio를 구할 수 없을 경우 <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">except</span></code> 구문을 통해 nan을 저장한다.</p></li>
+<li><p>for문을 통해 모든 종목에 대한 K-Ratio를 구한다.</p></li>
+<li><p>해당 종목이 상장한지 1년이 되지 않아 K-Ratio를 구할 수 없을 경우 try except문을 통해 nan을 저장한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code> 메서드를 통해 딕셔너리를 데이터프레임 형태로 변경한다.</p></li>
 </ol>
 <p>이제 K-Ratio가 높은 종목을 찾아보도록 하자.</p>
@@ -2960,15 +2960,15 @@ dtype: float64
 <div class="section" id="id11">
 <h2><span class="section-number">13.5. </span>퀄리티 전략<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>벤자민 그레이엄 이후 유지되고 있는 기본적 분석 혹은 가치 투자자들의 가장 중요한 투자 지표 중 하나는 기업의 우량성(퀄리티)이다. 벤저민 그레이엄은 종목 선정에 있어 유동 자산이 풍부하여 재무적으로 건전하고, 꾸준하게 이익을 달성하는 기업을 강조했다. 최고의 투자자로 꼽히는 워런 버핏의 종목 선정 기준 역시 실적의 강력한 성장 추세와 높은 자기자본 이익률로 알려져 있습니다.</p>
-<p>그러나 어떠한 지표가 기업의 우량성을 나타내는지 한 마디로 정의하기에는 너무나 주관적이고 광범위해 쉽지 않다. 애스니스는 연구를 통해 수익성, 성장성, 안정성이 높을 주식일수록 수익률이 높은 경향이 있음을 보였다. 이 외에도 학계 혹은 업계에서 사용되는 우량성 관련 지표는 다음과 같이 요약할 수 있다.</p>
+<p>그러나 어떠한 지표가 기업의 우량성을 나타내는지 한 마디로 정의하기에는 너무나 주관적이고 광범위해 쉽지 않다. 연구에 따르면 수익성, 성장성, 안정성이 높을 주식일수록 수익률이 높은 경향이 있다. 이 외에도 학계 혹은 업계에서 사용되는 우량성 관련 지표는 다음과 같이 요약할 수 있다.</p>
 <ol class="simple">
 <li><p>수익성: 기업이 돈을 얼마나 잘 버는가(ROE, ROA, 매출총이익률 등).</p></li>
 <li><p>수익의 안정성: 기업이 얼마나 안정적으로 돈을 버는가(ROE의 변동성 등).</p></li>
 <li><p>재무 구조: 기업의 재무 구조가 얼마나 안전한가(차입비율 등).</p></li>
 <li><p>이익의 성장: 기업의 이익 증가율이 얼마나 되는가(전년 대비 ROE 증가율 등).</p></li>
-<li><p>재무 신뢰도: 재무제표를 얼마나 신뢰할 수 있는가(회계 처리 방법 등).
-6 배당: 얼마나 주주 친화적인가(배당금, 신주발행, 자사주 매입 등.)
-7 투자: 얼마나 신사업에 투자를 하는가(총자산의 증가 등)</p></li>
+<li><p>재무 신뢰도: 재무제표를 얼마나 신뢰할 수 있는가(회계 처리 방법 등).</p></li>
+<li><p>배당: 얼마나 주주 친화적인가(배당금, 신주발행, 자사주 매입 등.)</p></li>
+<li><p>투자: 얼마나 신사업에 투자를 하는가(총자산의 증가 등)</p></li>
 </ol>
 <p>이 중 사람들이 가장 중요하게 여기는 것은 바로 수익성이다. 돈을 벌지 못하는 기업은 지속될 수 없기 때문이다. 기업의 규모가 크면 당연히 돈을 더 많이 벌기 때문에 단순히 수익의 양이 아닌, 기업의 규모에 비해 얼마를 버는지 표준화를 통해 비교해야 한다. <a class="reference internal" href="#quality-table"><span class="std std-numref">Table 13.4</span></a>는 널리 사용되고 있는 수익성 지표들이다.</p>
 <table class="colwidths-auto table" id="quality-table">
@@ -2986,7 +2986,7 @@ dtype: float64
 <td><p>당기순이익</p></td>
 <td><p>자본</p></td>
 </tr>
-<tr class="row-odd"><td><p>ROE(Return on Asset)</p></td>
+<tr class="row-odd"><td><p>ROA(Return on Asset)</p></td>
 <td><p>총자산이익률</p></td>
 <td><p>당기순이익</p></td>
 <td><p>자산</p></td>
@@ -3144,7 +3144,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>먼저 DB에서 티커 테이블과 재무제표 테이블 중 수익성을 계산하는데 필요한 계정(당기순이익, 매출총이익, 영업활동으로으로인한현금흐름, 자산, 자본 / 분기 데이터)을 불러온다.</p>
+<p>먼저 DB에서 티커 테이블과 재무제표 테이블 중 수익성을 계산하는데 필요한 계정(당기순이익, 매출총이익, 영업활동으로인한현금흐름, 자산, 자본 / 분기 데이터)을 불러온다. 각종 수익성 지표들을 계산해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs_list</span> <span class="o">=</span> <span class="n">fs_list</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;종목코드&#39;</span><span class="p">,</span> <span class="s1">&#39;계정&#39;</span><span class="p">,</span> <span class="s1">&#39;기준일&#39;</span><span class="p">])</span>
@@ -3270,8 +3270,8 @@ dtype: float64
 </div>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sort_values()</span></code> 메서드를 통해 정렬을 한다.</p></li>
-<li><p>‘종목코드’와 ‘계정’ 별로 그룹을 묶은 후 TTM 값을 구하기 위해 <code class="docutils literal notranslate"><span class="pre">rolling()</span></code> 메서드를 통해 4분기 합을 구한다., 4분기 데이터가 없는 경우는 계산하지 않는다.</p></li>
-<li><p>자산과 자본의 경우 재무상태표 항목이므로 평균을 구하며, 나머지 항목은 그대로 사용한다.</p></li>
+<li><p>‘종목코드’와 ‘계정’ 별로 그룹을 묶은 후 TTM 값을 구하기 위해 <code class="docutils literal notranslate"><span class="pre">rolling()</span></code> 메서드를 통해 4분기 합을 구한다. <code class="docutils literal notranslate"><span class="pre">min_periods=4</span></code>를 통해 4분기 데이터가 없는 경우는 계산하지 않는다.</p></li>
+<li><p>자산과 자본의 경우 재무상태표 항목이므로 합이 아닌 평균을 구하며, 나머지 항목은 합을 그대로 사용한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tail(1)</span></code>을 통해 종목코드와 계정 별 최근 데이터만 선택한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 함수를 통해 가로로 긴 형태로 변경한다.</p></li>
 <li><p>수익성 지표에 해당하는 ROE, GPA, CFO를 각각 구한다.</p></li>
@@ -3312,7 +3312,7 @@ dtype: float64
 <img alt="_images/factor_70_0.png" src="_images/factor_70_0.png" />
 </div>
 </div>
-<p>비슷한 수익성 지표임에도 불구하고 서로 간의 상관관계가 꽤 낮다. 따라서 지표를 통합적으로 고려하면 분산효과를 기대할 수 있다.</p>
+<p>비슷한 수익성 지표임에도 불구하고 서로 간의 상관관계가 꽤 낮다. 따라서 지표를 통합적으로 고려하면 분산효과를 기대할 수 있다. 수익성이 높은 종목을 선택해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quality_sum</span> <span class="o">=</span> <span class="n">quality_rank</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span>
@@ -3524,7 +3524,7 @@ dtype: float64
 <div class="section" id="id15">
 <h3><span class="section-number">13.6.1. </span>퀄리티와 밸류 간의 관계<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>투자의 정석 중 하나는 좋은 기업을 싸게 사는 것이다. 이를 팩터의 관점에서 이해하면 퀄리티 팩터와 밸류 팩터로 이해할 수도 있다.</p>
-<p>여러 논문에 따르면 흔히 밸류 팩터와 퀄리티 팩터는 반대의 관계에 있다. 먼저 가치주들은 위험이 크기 때문에 시장에서 소외를 받아 저평가가 이루어지는 것이며, 이러한 위험에 대한 대가로 밸류 팩터의 수익률이 높다. 반대로 사람들은 우량주에 기꺼이 프리미엄을 지불하려 하기 때문에 퀄리티 팩터의 수익률이 높기도 하다. 이는 마치 동전의 양면과 같지만, 장기적으로 가치주와 우량주 모두 우수한 성과를 기록한다. 먼저 퀄리티의 지표인 매출총이익과 밸류 지표인 PBR을 통해 둘 사이의 관계를 확인해 보자.</p>
+<p>여러 논문에 따르면 흔히 밸류 팩터와 퀄리티 팩터는 반대의 관계에 있다. 먼저 가치주들은 위험이 크기 때문에 시장에서 소외를 받아 저평가가 이루어지는 것이며, 이러한 위험에 대한 대가로 밸류 팩터의 수익률이 높다. 반대로 사람들은 우량주에 기꺼이 프리미엄을 지불하려 하기 때문에 퀄리티 팩터의 수익률이 높기도 하다. 이는 마치 동전의 양면과 같지만, 장기적으로 가치주와 우량주 모두 우수한 성과를 기록한다. 먼저 퀄리티 지표인 매출총이익과 밸류 지표인 PBR을 통해 둘 사이의 관계를 확인해 보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
@@ -3605,7 +3605,7 @@ dtype: float64
 </div></div></div>
 </div>
 <ol class="simple">
-<li><p>DB에서 밸류 테이블과 재무제표 테이블 중 매출총이익, 자산 항목(연간 재무제표 기준)을 불러온다.</p></li>
+<li><p>DB에서 밸류 테이블 중 PBR 데이터와 재무제표 테이블 중 매출총이익, 자산 항목(연간 재무제표 기준)을 불러온다.</p></li>
 <li><p>밸류 지표가 음수인 경우 nan으로 변환한 후, 피벗을 한다.</p></li>
 <li><p>재무제표 데이터 중 가장 최근 데이터를 이용해 매출총이익률을 구한다.</p></li>
 <li><p>두 지표의 순위를 각각 구한 후 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 함수를 통해 하나로 합친다. 매출총이익률의 경우 내림차순으로 순위를 구한다.</p></li>
@@ -3639,7 +3639,7 @@ dtype: float64
 <li><p>밸류와 재무제표 테이블을 하나로 합친다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dropna()</span></code>를 통해 NA가 있는 데이터는 제거한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">qcut()</span></code> 함수를 이용해 PBR을 5분위수로 나누어준다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 함수를 통해 PBR의 분위수별 그룹을 묶어 준 후, 각 그룹별 GPA의 평균값을 구한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 함수를 통해 PBR의 분위수별 그룹을 묶어 준 후, 각 그룹별 GPA의 평균을 구한다.</p></li>
 <li><p>그래프로 나타낸다.</p></li>
 </ol>
 <p>그림에서 알 수 있듯이 PBR이 낮을수록 GPA도 낮으며, 즉 가치주일수록 우량성은 떨어진다. 반면에 PBR이 높을수록 GPA도 높으며, 이는 주식의 가격이 비쌀수록 우량성도 높다는 뜻이다. 이를 이용해 밸류 팩터와 퀄리티 팩터 간의 관계를 나타내면 다음과 같다.</p>
@@ -3647,7 +3647,7 @@ dtype: float64
 <img alt="_images/tableqv.png" src="_images/tableqv.png" />
 <p class="caption"><span class="caption-number">Fig. 13.3 </span><span class="caption-text">밸류 팩터와 퀄리티 팩터간의 관계</span><a class="headerlink" href="#tableqv" title="Permalink to this image">¶</a></p>
 </div>
-<p>주가가 쌀수록 기업의 우량성은 떨어지며(①번), 반대로 기업의 우량성이 좋으면 주식은 비싼 경향(③번)이 있다. 물론 우량성도 떨어지고 비싸기만한 주식(②번)을 사려는 사람들 아마 없을 겁이. 결과적으로 우리가 원하는 최고의 주식은 우량성이 있으면서도 가격은 싼 주식(④번)이다. 프렌치 라이브러리의 데이터를 이용해 4개 포트폴리오의 수익률 차이를 확인해보도록 하자.</p>
+<p>주가가 쌀수록(저밸류) 기업의 우량성은 떨어지며(①번), 반대로 기업의 우량성이 좋으면 주식은 비싼 경향(③번)이 있다. 물론 우량성도 떨어지고 비싸기만한 주식(②번)을 사려는 사람들 아마 없을 것이다. 결과적으로 우리가 원하는 최고의 주식은 우량성이 있으면서도 가격은 싼 주식(④번)이다. 프렌치 라이브러리의 데이터를 이용해 4개 포트폴리오의 수익률 차이를 확인해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -4112,7 +4112,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>투하자본 수익률은 비교적 쉽게 계산할 수 있습니다. 분모에 해당하는 투하자본은 재무제표 항목을 그대로 사용하면 되며, 분자인 이자 및 법인세 차감전이익은 위에서 이미 구해둔 값을 사용하면 된다.</p>
+<p>투하자본 수익률은 비교적 쉽게 계산할 수 있다. 분모에 해당하는 투하자본은 재무제표 항목을 그대로 사용하면 되며, 분자인 이자 및 법인세 차감전이익은 위에서 이미 구해둔 값을 사용하면 된다.</p>
 <p>이제 두 지표를 활용해 마법공식 포트폴리오를 구성하겠다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4310,7 +4310,12 @@ dtype: float64
 <span class="n">data_bind</span><span class="p">[</span><span class="s1">&#39;투자구분&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">magic_rank</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;마법공식&#39;</span><span class="p">,</span> <span class="s1">&#39;기타&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data_bind</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;이익 수익률&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;투하자본 수익률&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;투자구분&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;투자구분&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_bind</span><span class="p">,</span>
+                <span class="n">x</span><span class="o">=</span><span class="s1">&#39;이익 수익률&#39;</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="s1">&#39;투하자본 수익률&#39;</span><span class="p">,</span>
+                <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;투자구분&#39;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="s1">&#39;투자구분&#39;</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -4676,8 +4681,8 @@ dtype: int64
 <h2><span class="section-number">13.9. </span>멀티팩터 포트폴리오<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
 <p>앞에서 배웠던 팩터 이론들과 결합 방법들을 응용해 멀티팩터 포트폴리오를 구성해보자. 각 팩터에 사용되는 지표는 다음과 같다.</p>
 <ul class="simple">
-<li><p>퀄리티: 자기자본이익률(ROE), 매출총이익(GPA), 영업활동현금흐름(OCFA)</p></li>
-<li><p>밸류: PER, PBR, PSR, PCR</p></li>
+<li><p>퀄리티: 자기자본이익률(ROE), 매출총이익(GPA), 영업활동현금흐름(CFO)</p></li>
+<li><p>밸류: PER, PBR, PSR, PCR, DY</p></li>
 <li><p>모멘텀: 12개월 수익률, K-Ratio</p></li>
 </ul>
 <div class="cell docutils container">
@@ -5165,7 +5170,7 @@ dtype: int64
 <li><p>섹터 정보가 없는 경우 ‘기타’를 입력한다.</p></li>
 <li><p>CMP_CD(종목코드)는 중복되는 열이므로 <code class="docutils literal notranslate"><span class="pre">drop()</span></code> 메서드를 통해 제거한다.</p></li>
 </ol>
-<p>이번에는 각 섹터별로 아웃라이어를 제거한 후 순위와 Z-Score를 구하는 함수(col_clean)를 만들어보도록 하겠다.</p>
+<p>이번에는 각 섹터별로 아웃라이어를 제거한 후 순위와 Z-Score를 구하는 함수(<code class="docutils literal notranslate"><span class="pre">col_clean</span></code>)를 만들어보도록 하겠다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">col_clean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">asc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -5711,7 +5716,7 @@ dtype: int64
 </div></div></div>
 </div>
 <ol class="simple">
-<li><p>밸류 지표에 해당하는 PBR, PCR, PER, PSR 열을 선택한 후, <code class="docutils literal notranslate"><span class="pre">col_clean()</span></code> 함수를 적용한다. 또한 인자에 True를 입력해 오름차순으로 순위를 구한다.</p></li>
+<li><p>밸류 지표에 해당하는 PBR, PCR, PER, PSR 열을 선택한 후, <code class="docutils literal notranslate"><span class="pre">col_clean()</span></code> 함수를 적용한다. 또한 인자에 <code class="docutils literal notranslate"><span class="pre">True</span></code>를 입력해 오름차순으로 순위를 구한다.</p></li>
 <li><p>DY(배당수익률)의 경우 내림차순으로 순위를 계산해야 하므로 <code class="docutils literal notranslate"><span class="pre">col_clean()</span></code> 함수에 False를 입력한다.</p></li>
 <li><p>위의 두 결과를 합친 후 데이터프레임 형태로 변경한다.</p></li>
 <li><p>data_bind 테이블과 합치며, z_value 열에는 밸류 지표의 Z-Score가 표시된다.</p></li>
@@ -5866,11 +5871,6 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<ol class="simple">
-<li><p>모멘텀 지표에 해당하는 12M, K_ratio 열을 선택한 후 <code class="docutils literal notranslate"><span class="pre">col_clean()</span></code> 함수를 적용한다.</p></li>
-<li><p>data_bind 테이블과 합치며, z_momentum 열에는 모멘텀 지표의 Z-Score가 표시된다.</p></li>
-</ol>
-<p>각 팩터의 분포를 시가화해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_z</span> <span class="o">=</span> <span class="n">data_bind</span><span class="p">[[</span><span class="s1">&#39;z_quality&#39;</span><span class="p">,</span> <span class="s1">&#39;z_value&#39;</span><span class="p">,</span> <span class="s1">&#39;z_momentum&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -5889,7 +5889,7 @@ dtype: int64
 <img alt="_images/factor_134_0.png" src="_images/factor_134_0.png" />
 </div>
 </div>
-<p>각각 퀄리티 지표는 3개, 밸류 지표는 4개, 모멘텀 지표는 2개 기준을 이용해 계산했다. 그림에서 알 수 있듯이 기준을 많이 사용할 수록 Z-Score가 넓게 퍼져있는 모습을 보이며, 각 팩터별 분포가 동일하지 않다. 따라서 다시 Z-Score를 계산해 분포의 넓이를 비슷하게 맞춰주도록 한다.</p>
+<p>각각 퀄리티 지표는 3개, 밸류 지표는 5개, 모멘텀 지표는 2개 기준을 이용해 계산했다. 그림에서 알 수 있듯이 기준을 많이 사용할 수록 Z-Score가 넓게 퍼져있는 모습을 보이며, 각 팩터별 분포가 동일하지 않다. 따라서 다시 Z-Score를 계산해 분포의 넓이를 비슷하게 맞춰주도록 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_bind_final</span> <span class="o">=</span> <span class="n">data_bind</span><span class="p">[[</span><span class="s1">&#39;종목코드&#39;</span><span class="p">,</span> <span class="s1">&#39;z_quality&#39;</span><span class="p">,</span> <span class="s1">&#39;z_value&#39;</span><span class="p">,</span> <span class="s1">&#39;z_momentum&#39;</span>
@@ -6453,7 +6453,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>위 함수는 산점도를 표현하며 <span class="math notranslate nohighlight">\(x\)</span>축은 종목들의 순위, y축은 1, 색깔은 투자 여부인 invest에 따라 다르게 나타낸다. 해당 함수를 적용하기 위해 데이터프레임의 형태를 가공하도록 한다.</p>
+<p>위 함수는 산점도를 표현하며 <span class="math notranslate nohighlight">\(x\)</span>축은 종목들의 순위, <span class="math notranslate nohighlight">\(y\)</span>축은 1, 색깔은 투자 여부인 invest에 따라 다르게 나타낸다. 해당 함수를 적용하기 위해 데이터프레임의 형태를 가공하도록 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_melt</span> <span class="o">=</span> <span class="n">port_qvm</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s1">&#39;invest&#39;</span><span class="p">,</span>
@@ -6549,8 +6549,10 @@ dtype: int64
 <p>이번에는 동일한 방법으로 밸류 지표의 차이를 살펴보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist_value</span> <span class="o">=</span> <span class="n">data_melt</span><span class="p">[</span><span class="n">data_melt</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;PER&#39;</span><span class="p">,</span> <span class="s1">&#39;PBR&#39;</span><span class="p">,</span> <span class="s1">&#39;PCR&#39;</span><span class="p">,</span> <span class="s1">&#39;PSR&#39;</span><span class="p">,</span> <span class="s1">&#39;DY&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DY&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist_value</span> <span class="o">=</span> <span class="n">data_melt</span><span class="p">[</span><span class="n">data_melt</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;PER&#39;</span><span class="p">,</span> <span class="s1">&#39;PBR&#39;</span><span class="p">,</span> <span class="s1">&#39;PCR&#39;</span><span class="p">,</span> <span class="s1">&#39;PSR&#39;</span><span class="p">,</span> <span class="s1">&#39;DY&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DY&#39;</span><span class="p">,</span>
+                               <span class="mi">1</span> <span class="o">/</span> <span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
 <span class="n">hist_value</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hist_value</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;variable&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span>
 <span class="n">plot_rank</span><span class="p">(</span><span class="n">hist_value</span><span class="p">)</span>
 </pre></div>
@@ -6583,7 +6585,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>마지막으로 모델 포트폴리오에 해당하는 종목들의 종목코드를 엑셀로 저장한다.</p>
+<p>마지막으로 모델 포트폴리오에 해당하는 종목들의 종목코드를 엑셀 파일로 저장한다.</p>
 </div>
 </div>
 

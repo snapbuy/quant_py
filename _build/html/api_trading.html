@@ -440,7 +440,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
+    <a class="reference internal nav-link" href="#id18">
      17.7.2. 포트폴리오 리밸런싱
     </a>
    </li>
@@ -548,7 +548,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
+    <a class="reference internal nav-link" href="#id18">
      17.7.2. 포트폴리오 리밸런싱
     </a>
    </li>
@@ -590,7 +590,7 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-<p>이번 장에는 한국투자증권의 오픈 API를 이용해 매매 및 리밸런싱을 하는 법에 대해 알아보겠다. 오픈 API는 모의투자 계좌와 실제 계좌에서 사용할 수 있으므로, 모의투자 계좌를 대상으로 충분히 테스트를 거친 후 실졔 계좌에 적용하는 것이 좋다. 또한 API 사용법은 KIS Developers 홈페이지에 자세히 나와있으니 참조하기 바란다.</p>
+<p>이번 장에는 한국투자증권의 오픈 API를 이용해 매매 및 리밸런싱을 하는 법에 대해 알아보겠다. 오픈 API는 모의투자 계좌와 실제 계좌에서 사용할 수 있으므로, 모의투자 계좌를 대상으로 충분히 테스트를 거친 후 실졔 계좌에 적용하는 것이 안전하다. 또한 API 사용법은 KIS Developers 홈페이지에 자세히 나와있으니 참조하기 바란다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">apiportal</span><span class="o">.</span><span class="n">koreainvestment</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -602,42 +602,44 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="id1">
 <h2><span class="section-number">17.1. </span>모의투자 및 API 서비스 신청하기<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>모의투자 계좌에서 API 서비스를 테스트해보기 위해 모의계좌를 신청한다. 한국투자증권 홈페이지에 접속하여 로그인을 한 후 [서비스신청 → 실전/모의투자 → 상시모의투자 → 모의투자안내]를 선택하여 계좌를 개설한다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">securities</span><span class="o">.</span><span class="n">koreainvestment</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">research</span><span class="o">/</span><span class="n">virtual</span><span class="o">/</span><span class="n">_static</span><span class="o">/</span><span class="n">TF07da010000</span><span class="o">.</span><span class="n">jsp</span>
-</pre></div>
+<div class="figure align-default" id="mock">
+<img alt="_images/mock.png" src="_images/mock.png" />
+<p class="caption"><span class="caption-number">Fig. 17.2 </span><span class="caption-text">모의투자 신청하기</span><a class="headerlink" href="#mock" title="Permalink to this image">¶</a></p>
 </div>
 <p>[신청/재도전] 탭을 클릭한 후 리그구분에서 국내주식, 금액은 최대인 5억원을 선택한다. 그 후 이메일 및 휴대폰 번호를 입력하고 하단의 [신청]을 클릭한다.</p>
 <div class="figure align-default" id="start">
 <img alt="_images/start.png" src="_images/start.png" />
-<p class="caption"><span class="caption-number">Fig. 17.2 </span><span class="caption-text">모의투자 신청하기</span><a class="headerlink" href="#start" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.3 </span><span class="caption-text">모의투자 정보 입력</span><a class="headerlink" href="#start" title="Permalink to this image">¶</a></p>
 </div>
 <p>신청을 완료하면 다음과 같은 화면이 뜬다. 모의계좌번호는 API 신청시 필요하므로 기억해두거나 적어두기 바란다.</p>
 <div class="figure align-default" id="start2">
 <img alt="_images/start2.png" src="_images/start2.png" />
-<p class="caption"><span class="caption-number">Fig. 17.3 </span><span class="caption-text">모의투자 신청 결과</span><a class="headerlink" href="#start2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.4 </span><span class="caption-text">모의투자 신청 결과</span><a class="headerlink" href="#start2" title="Permalink to this image">¶</a></p>
 </div>
 <p>이제 API 서비스를 신청하도록 한다. 한국투자증권 홈페이지에서 [서비스신청 → Open API → KIS Developers → KIS Developers 서비스 신청하기]를 선택해 신청을 완료한다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">securities</span><span class="o">.</span><span class="n">koreainvestment</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">customer</span><span class="o">/</span><span class="n">systemdown</span><span class="o">/</span><span class="n">RestAPIService</span><span class="o">.</span><span class="n">jsp</span>
-</pre></div>
+<div class="figure align-default" id="developer">
+<img alt="_images/developer.png" src="_images/developer.png" />
+<p class="caption"><span class="caption-number">Fig. 17.5 </span><span class="caption-text">API 서비스 신청하기 (1)</span><a class="headerlink" href="#developer" title="Permalink to this image">¶</a></p>
 </div>
 <p>먼저 휴대폰 번호 인증을 한다.</p>
 <div class="figure align-default" id="api-1">
 <img alt="_images/api_1.png" src="_images/api_1.png" />
-<p class="caption"><span class="caption-number">Fig. 17.4 </span><span class="caption-text">API 서비스 신청하기 (1)</span><a class="headerlink" href="#api-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.6 </span><span class="caption-text">API 서비스 신청하기 (2)</span><a class="headerlink" href="#api-1" title="Permalink to this image">¶</a></p>
 </div>
 <p>다음으로 유의사항확인 화면에서 동의를 누른 후 다음을 클릭한다.</p>
 <div class="figure align-default" id="api-2">
 <img alt="_images/api_2.png" src="_images/api_2.png" />
-<p class="caption"><span class="caption-number">Fig. 17.5 </span><span class="caption-text">API 서비스 신청하기 (2)</span><a class="headerlink" href="#api-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.7 </span><span class="caption-text">API 서비스 신청하기 (3)</span><a class="headerlink" href="#api-2" title="Permalink to this image">¶</a></p>
 </div>
 <p>신청정보 화면에서 [종합계좌]와 [모의계좌] 모두 선택한다. 이후 [다음] 버튼을 클릭하면 인증화면으로 넘어간다.</p>
 <div class="figure align-default" id="id2">
 <img alt="_images/api_3.png" src="_images/api_3.png" />
-<p class="caption"><span class="caption-number">Fig. 17.6 </span><span class="caption-text">API 서비스 신청하기 (3)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.8 </span><span class="caption-text">API 서비스 신청하기 (4)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>인증을 마치면 종합계좌와 모의계좌에 각각 APP Key와 APP Secret이 생성된다. 해당 key를 통해 계좌 내에서 매매가 가능하므로 유출되지 않도록 조심한다.</p>
 <div class="figure align-default" id="id3">
 <img alt="_images/api_4.png" src="_images/api_4.png" />
-<p class="caption"><span class="caption-number">Fig. 17.7 </span><span class="caption-text">API 서비스 신청하기 (4)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.9 </span><span class="caption-text">API 서비스 신청하기 (5)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>발급받은 API Key를 keyring 패키지를 이용해 저장한다.</p>
 <div class="cell docutils container">
@@ -657,9 +659,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>‘User Name’에는 본인의 이름, ‘APP Key’와 ‘APP Secret’에는 각각 발급받은 API Key를 입력한다.</p>
 <p>HTS에서 [eFriend 모의투자] 탭을 선택해 모의투자 계좌에 로그인하면, 잔고에 신청한 금액인 5억이 있는것을 확인할 수 있다.</p>
+<div class="figure align-default" id="hts">
+<img alt="_images/hts.png" src="_images/hts.png" />
+<p class="caption"><span class="caption-number">Fig. 17.10 </span><span class="caption-text">모의투자 계좌 로그인</span><a class="headerlink" href="#hts" title="Permalink to this image">¶</a></p>
+</div>
 <div class="figure align-default" id="mock-1">
 <img alt="_images/mock_1.png" src="_images/mock_1.png" />
-<p class="caption"><span class="caption-number">Fig. 17.8 </span><span class="caption-text">모의투자 계좌잔고</span><a class="headerlink" href="#mock-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.11 </span><span class="caption-text">모의투자 계좌잔고</span><a class="headerlink" href="#mock-1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -670,7 +676,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>앞서 발급받은 App Key와 App Secret를 이용해 접근토큰을 받을 수 있으며, 접근토큰을 통해 계좌에 접근할 수 있다. 접근토큰을 발급받는 법은 KIS Developers의 ‘API 문서’ 페이지에 상세히 나와있다.</p>
 <div class="figure align-default" id="token">
 <img alt="_images/token.png" src="_images/token.png" />
-<p class="caption"><span class="caption-number">Fig. 17.9 </span><span class="caption-text">접근토큰 발급받기</span><a class="headerlink" href="#token" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.12 </span><span class="caption-text">접근토큰 발급받기</span><a class="headerlink" href="#token" title="Permalink to this image">¶</a></p>
 </div>
 <p>기본정보 및 LAYOUT의 항목에 맞춰 코드를 작성해보도록 하자.</p>
 <div class="cell docutils container">
@@ -723,7 +729,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">POST()</span></code> 함수를 통해 URL에 headers와 body를 보내며, <code class="docutils literal notranslate"><span class="pre">dumps()</span></code> 함수를 통해 딕셔너리를 JSON 문자열로 변환하여 전송하다. 그 후 결과물에서 ‘access_token’에 해당하는 부분을 찾아 저장한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">POST()</span></code> 함수를 통해 URL에 headers와 body를 보내며, <code class="docutils literal notranslate"><span class="pre">dumps()</span></code> 함수를 통해 딕셔너리를 JSON 문자열로 변환하여 전송한다. 그 후 결과물에서 ‘access_token’에 해당하는 부분을 찾아 저장한다.</p>
 </div>
 <div class="section" id="id6">
 <h3><span class="section-number">17.2.2. </span>해쉬키 발급받기<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
@@ -797,26 +803,26 @@ const thebe_selector_output = ".output, .cell_output"
 <p>이번에는 주식 주문을 넣는 방법들에 대해 알아본 후, API를 이용해 주문하는 법에 대해 알아보겠다.</p>
 <div class="section" id="id9">
 <h3><span class="section-number">17.4.1. </span>주식 주문 방법<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>A라는 주식을 사고 싶어도 파는 사람이 없다면 체결을 할 수가 없거나, 현재 가격보다 훨씬 비싼 가격을 제시해야 체결을 할 수 있다. 이처럼 이론적으로 좋은 주식을 택하는 것 못지않게 실제로 어떻게 체결을 시키는지는 성과에 큰 영향을 미친다. 너무 급하게 체결을 시키기 위해서는 불리한 가격에 거래를 해야 하지만, 너무 유리한 가격에만 거래를 시키려다가는 체결이 되지 않을수도 있다. 따라서 주식을 주문하는 방법에 대해 알고, 상황에 맞는 방법을 선택할 필요가 있다. 먼저 <a class="reference internal" href="#bidask"><span class="std std-numref">Fig. 17.10</span></a> 과 같이 시장에서 매수-매도 호가가 형성되어 있는 경우를 생각해보자. 현재 가격은 61,400원 이며, 팔고자 하는 사람들은 이 보다 비싼 가격에, 사고자 하는 사람들은 이 보다 싼 가격에 거래하기를 원한다.</p>
+<p>A라는 주식을 사고 싶어도 파는 사람이 없다면 체결을 할 수가 없거나, 현재 가격보다 훨씬 비싼 가격을 제시해야 체결을 할 수 있다. 이처럼 이론적으로 좋은 주식을 택하는 것 못지않게 실제로 어떻게 체결을 시키는지는 성과에 큰 영향을 미친다. 너무 급하게 체결을 시키기 위해서는 불리한 가격에 거래를 해야 하지만, 너무 유리한 가격에만 거래를 하려다가는 체결이 되지 않을수도 있다. 따라서 주식을 주문하는 방법에 대해 알고, 상황에 맞는 방법을 선택할 필요가 있다. 먼저 <a class="reference internal" href="#bidask"><span class="std std-numref">Fig. 17.13</span></a> 과 같이 시장에서 매수-매도 호가가 형성되어 있는 경우를 생각해보자. 현재 가격은 61,400원 이며, 팔고자 하는 사람들은 이 보다 비싼 가격에, 사고자 하는 사람들은 이 보다 싼 가격에 거래하기를 원한다.</p>
 <div class="figure align-default" id="bidask">
 <img alt="_images/bidask.png" src="_images/bidask.png" />
-<p class="caption"><span class="caption-number">Fig. 17.10 </span><span class="caption-text">매수-매도 호가</span><a class="headerlink" href="#bidask" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.13 </span><span class="caption-text">매수-매도 호가</span><a class="headerlink" href="#bidask" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>지정가 주문</strong></p>
 <p>가장 많이 사용되는 ‘지정가 주문’은 투자자가 종목을 얼마에 몇 주 사거나 팔겠다고 명확하게 명시하여 주문을 내는 방법이다. 만일 61,400원에 100,000주 매수주문을 내면, 기존 매도호가에 있는 70,180주를 매수하며 나머지 29,820주는 다시 누군가가 61,400원에 팔 때까지 매수 물량에 쌓인다. 반면 현재 가격보다 낮은 61,300원에 주문을 낼 경우 주가가 하락하지 않는 경우에는 체결이 되지 않을 수도 있다.</p>
 <p><strong>시장가 주문</strong></p>
-<p>가격에 상관없이 지금 당장 모든 주문을 체결해야 할 때 주문을 내는 방법이며, 대부분이 즉시 거래된다. 만일 시장가로 100,000주 매수 주문을 내면 61,400원에 있는 70,180주를 매 수하고, 이보다 비싼 61,500원에 나머지 29,820 주를 매수한다. 매물이 많은 종목이고 주문 내는 물량이 얼마 되지 않는다면 보통 1~2호가 내에서 체결이 된다. 그러나 매물이 없고, 나와 있는 물량에 비해 본인의 주문이 지나치게 많다면 모든 호가를 잡아먹어 굉장히 불리한 가격에 거래를 할 수도 있다.</p>
+<p>가격에 상관없이 지금 당장 모든 주문을 체결해야 할 때 주문을 내는 방법이며, 대부분이 즉시 체결된다. 만일 시장가로 100,000주 매수 주문을 내면 61,400원에 있는 70,180주를 매 수하고, 이보다 비싼 61,500원에 나머지 29,820 주를 매수한다. 매물이 많은 종목이며 주문을 내는 물량이 얼마 되지 않는다면 보통 1~2호가 내에서 체결이 된다. 그러나 매물이 없고, 나와 있는 물량에 비해 본인의 주문이 지나치게 많다면 모든 호가를 잡아먹어 굉장히 불리한 가격에 체결을 할 수도 있다.</p>
 <p><strong>조건부 지정가</strong></p>
 <p>지정가 주문과 시장가 주문을 합쳐놓은 형태로써, 지정가 주문으로 낸 주문이 종가 단일가 매매 개시 시점인 3시 20분까지 체결되지 않을 시, 시장가 주문으로 전환되어 단일가 매매를 통해 종가로 거래가 체결된다.</p>
 <p><strong>최유리 지정가</strong></p>
-<p>지정가 주문과 비슷하게 종목과 수량은 지정하지만, 매수 주문은 해당 주문 접수 시점에 가장 낮은 매도 가격을, 매도 주문은 가장 높은 매수 가격을 지정한다. 즉 지금 바로 거래할 수 있는 첫 가격으로 주문이 나간다. 만일 최유리 지정가로 100,000주 매수 주문을 내면 자동으로 61,400원에 70,180이 체결되며, 나머지 29,820주는 61,400원 매수 호가에 쌓이게 된다. 이는 시장가 주문과 큰 차이가 없는 듯 보이지만 매수/매도 1호가에만 주문이 나가기 때문에 호가를 잡아먹는 사태는 방지할 수 있다. 반면 장이 끝날때 까지 61,400원에 파는 사람이 없으면 해당 부분은 체결이 되지 않는다.</p>
+<p>지정가 주문과 비슷하게 종목과 수량을 지정하지만, 매수 주문은 해당 주문 접수 시점에 가장 낮은 매도 가격을, 매도 주문은 가장 높은 매수 가격을 지정한다. 즉 지금 바로 거래할 수 있는 첫 가격으로 주문이 나간다. 만일 최유리 지정가로 100,000주 매수 주문을 내면 자동으로 61,400원에 70,180이 체결되며, 나머지 29,820주는 61,400원 매수 호가에 쌓이게 된다. 이는 시장가 주문과 큰 차이가 없는 듯 보이지만 매수/매도 1호가에만 주문이 나가기 때문에 호가를 잡아먹는 사태는 방지할 수 있다. 반면 장이 끝날때 까지 61,400원에 파는 사람이 없으면 나머지 29,820주는 체결이 되지 않는다.</p>
 <p><strong>최우선 지정가</strong></p>
-<p>이 역시 지정가 주문과 비슷하게 종목과 수량은 지정하며, 매수 주문의 경우 해당 주문 접수 시점에 가장 높은 매수 가격을, 매도 주문은 가장 낮은 매도 가격을 지정한다. 즉 바로 사지기 직전의 가격으로 모든 주문이 나간다. 만일 최우선 지정가로 100,000주 매수 주문을 내면 매수 1호가인 61,300원에 주문이 쌓인다. 이는 최유리 지정가보다 조금이라도 더 유리한 가격으로 체결을 시킬 수 있지만, 나에게 유리한 방향으로 호가가 움직이지 않으면 거래가 되지 않을 수도 있다.</p>
+<p>이 역시 지정가 주문과 비슷하게 종목과 수량을 지정하며, 매수 주문의 경우 해당 주문 접수 시점에 가장 높은 매수 가격을, 매도 주문은 가장 낮은 매도 가격을 지정한다. 즉 바로 사거나 팔기 직전의 가격으로 모든 주문이 나간다. 만일 최우선 지정가로 100,000주 매수 주문을 내면 매수 1호가인 61,300원에 주문이 쌓인다. 이는 최유리 지정가보다 조금이라도 더 유리한 가격으로 체결을 시킬 수 있지만, 나에게 유리한 방향으로 호가가 움직이지 않으면 체결이 되지 않을 수도 있다.</p>
 <p>이 외에도 시간외 단일가, IOC 지정가, FOK 지정가 등의 복잡한 주문 형태도 있다.</p>
 </div>
 <div class="section" id="id10">
 <h3><span class="section-number">17.4.2. </span>매수 주문<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>API를 이용해 실제로 주문을 내보도록 하며, 모의투자의 경우 신용 주문이 되지 않아, 현금 주문에 대해 테스트해보겠다.</p>
+<p>API를 이용해 실제로 주문을 내보도록 하며, 모의투자의 경우 신용 주문이 되지 않아 현금 주문에 대해 테스트해보겠다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/uapi/domestic-stock/v1/trading/order-cash&quot;</span>
@@ -861,8 +867,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <ol class="simple">
 <li><p>URL을 만든다.</p></li>
-<li><p>data 부분에 LAYOUT에서 Body에 해당하는 값을 입력한다. ‘ORD_DVSN’는 주문 방법이며 ‘01’은 시장가 주문에 해당하는 코드다. ‘ORD_UNPR’는 주문 단가로써 시장가 주문의 경우에는 0을 입력한다(주문 방법 별 코드는 <a class="reference internal" href="#order-code"><span class="std std-numref">Table 17.2</span></a>를 참조하기 바람).</p></li>
-<li><p>headers 부분도 채워주도록 한다. 모의투자의 ‘주식 현금 매수 주문’에 해당하는 tr_id는 ‘VTTC0802U’이다(현금 매수/매도 별 td_id는 <a class="reference internal" href="#order-key"><span class="std std-numref">Table 17.3</span></a>를 참조하기 바람). 또한 주문의 경우 보안이 필요한 사항이므로, 위에서 입력한 data를 바탕으로 해쉬키를 발급받아 ‘hashkey’ 부분에 입력한다. 이는 위에서 만들어 둔 <code class="docutils literal notranslate"><span class="pre">hashkey()</span></code> 함수를 사용하면 쉽게 적용이 가능하다.</p></li>
+<li><p>data 부분에 LAYOUT에서 Body에 해당하는 값을 입력한다. ‘ORD_DVSN’는 주문 방법이며 ‘01’은 시장가 주문에 해당하는 코드다. ‘ORD_UNPR’는 주문 단가로써 시장가 주문의 경우에는 0을 입력한다(주문 방법별 코드는 <a class="reference internal" href="#order-code"><span class="std std-numref">Table 17.2</span></a>를 참조하기 바람).</p></li>
+<li><p>headers 부분도 채워주도록 한다. 모의투자의 ‘주식 현금 매수 주문’에 해당하는 tr_id는 ‘VTTC0802U’이다(현금 매수/매도별 td_id는 <a class="reference internal" href="#order-key"><span class="std std-numref">Table 17.3</span></a>를 참조하기 바람). 또한 주문의 경우 보안이 필요한 사항이므로, 위에서 입력한 data를 바탕으로 해쉬키를 발급받아 ‘hashkey’ 부분에 입력한다. 이는 위에서 만들어 둔 <code class="docutils literal notranslate"><span class="pre">hashkey()</span></code> 함수를 사용하면 쉽게 적용이 가능하다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">post()</span></code> 함수를 통해 요청을 하면 주문이 전송된다.</p></li>
 </ol>
 <table class="colwidths-auto table" id="order-code">
@@ -956,7 +962,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>HTS를 확인해보면 삼성전자 10주가 매수되어 있다.</p>
 <div class="figure align-default" id="mock-buy">
 <img alt="_images/mock_buy.png" src="_images/mock_buy.png" />
-<p class="caption"><span class="caption-number">Fig. 17.11 </span><span class="caption-text">매수주문 체결</span><a class="headerlink" href="#mock-buy" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.14 </span><span class="caption-text">매수주문 체결</span><a class="headerlink" href="#mock-buy" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id11">
@@ -1005,7 +1011,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>주문방법(ORD_DVSN) 코드에 ‘지정가 주문’에 해당하는 ‘00’을 입력하며, 주문 단가(ORD_UNPR)에는 거래가 되지 않을 만한 낮은 가격을 입력한다. 결과를 확인해보면 체결이 되지 않은 채 남아있다.</p>
 <div class="figure align-default" id="mock-2">
 <img alt="_images/mock_2.png" src="_images/mock_2.png" />
-<p class="caption"><span class="caption-number">Fig. 17.12 </span><span class="caption-text">미체결 주문</span><a class="headerlink" href="#mock-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.15 </span><span class="caption-text">미체결 주문</span><a class="headerlink" href="#mock-2" title="Permalink to this image">¶</a></p>
 </div>
 <p>미체결된 주문을 정정하기 위해서는 ‘한국거래소전송주문조직번호’와 ‘주문번호’ 정보를 알아야 하며, 이는 위의 결과에서 구할 수 있다.</p>
 <div class="cell docutils container">
@@ -1059,16 +1065,6 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;rt_cd&#39;: &#39;0&#39;,
- &#39;msg_cd&#39;: &#39;40620000&#39;,
- &#39;msg1&#39;: &#39;모의투자 정정주문이 완료 되었습니다.&#39;,
- &#39;output&#39;: {&#39;KRX_FWDG_ORD_ORGNO&#39;: &#39;00950&#39;,
-  &#39;ODNO&#39;: &#39;2933&#39;,
-  &#39;ORD_TMD&#39;: &#39;100556&#39;}}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1091,7 +1087,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>HTS를 확인해보면 미체결 주문이 정정되어 체결된 것을 확인할 수 있다.</p>
 <div class="figure align-default" id="mock-3">
 <img alt="_images/mock_3.png" src="_images/mock_3.png" />
-<p class="caption"><span class="caption-number">Fig. 17.13 </span><span class="caption-text">정정주문 체결</span><a class="headerlink" href="#mock-3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.16 </span><span class="caption-text">정정주문 체결</span><a class="headerlink" href="#mock-3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id12">
@@ -1129,7 +1125,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>‘tr_id’만 모의투자의 현금 매도에 해당하는 ‘VTTC0801U’로 변경하였으며, 나머지는 현금 매수와 동일하다.</p>
 <div class="figure align-default" id="mock-4">
 <img alt="_images/mock_4.png" src="_images/mock_4.png" />
-<p class="caption"><span class="caption-number">Fig. 17.14 </span><span class="caption-text">매도주문 체결</span><a class="headerlink" href="#mock-4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17.17 </span><span class="caption-text">매도주문 체결</span><a class="headerlink" href="#mock-4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -1270,7 +1266,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id14">
 <h2><span class="section-number">17.6. </span>스케줄링<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
-<p>포트폴리오를 교체하는 리밸런싱 작업은 몇 시간 혹은 몇 일에 걸쳐 나누어 해야, 시장에 충격을 주지 않으면서 내가 원하는 만큼 매매를 할 수 있다. 이를 위해서는 정해진 시간에 정해진 수량을 매수 혹은 매도하도록 계획을 짠 뒤 일르 실행하는 ‘스케줄링’에 대해 알 필요가 있다. 스케줄링이란 정해진 시간에 파이썬 스크립트를 자동으로 실행하게 해주며, 일반적으로 ‘schedule’ 패키지를 사용한다. 먼저 간단한 예제를 살펴보자.</p>
+<p>포트폴리오를 교체하는 리밸런싱 작업은 몇 시간 혹은 몇 일에 걸쳐 나누어 해야, 시장에 충격을 주지 않으면서 내가 원하는 만큼 매매를 할 수 있다. 이를 위해서는 정해진 시간에 정해진 수량을 매수 혹은 매도하도록 계획을 짠 뒤 실행하는 ‘스케줄링’에 대해 알 필요가 있다. 스케줄링이란 정해진 시간에 파이썬 스크립트를 자동으로 실행하게 해주며, 일반적으로 ‘schedule’ 패키지를 이용한다. 먼저 간단한 예제를 살펴보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -1433,7 +1429,7 @@ End
 <h2><span class="section-number">17.7. </span>포트폴리오 리밸런싱<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
 <p>앞서 배웠던 내용들을 응용해, 포트폴리오를 구성한 뒤 이를 매수하거나 다른 포트폴리오로 리밸런싱하는 작업을 해보도록 하자. 거래하는 종목이나 금액이 얼마 되지 않을때는 지정가 주문 혹은 시장가 주문으로도 체결이 가능하다. 그러나 종목수가 많고 금액이 커진다면 이러한 방법으로는 체결이 힘들다. 큰 금액을 한 번에 시장가로 주문하면 불리한 가격에 체결될 수 있고, 지정가로 주문하면 체결이 안될 가능성이 크기 때문이다. 그렇다고 하루 종일 수십 종목에 대해 계속해서 정정 주문을 내는 것도 현실적으로 불가능하다.</p>
 <p>따라서 전문투자자들은 리밸런싱 작업을 할 때 종종 시분할 매매(TWAP, Time Weighted Average Price)를 사용한다. 국내에서는 흔히 CD(Careful Discretion) 주문이라고도 한다. 즉 1,000 주를 매수해야 하면 주문 시간을 여러개로 나누어 조금씩 매수를 하는 것이다. 물량이 너무 많을 경우 몇 일에 걸쳐 나누어 주문을 체결을 하기도 한다. 이를 통해 한 번에 주문을 냄으로 인해 발생할 수 있는 시장충격을 최소화할 수 있으며, 미체결될 확률도 줄일 수 있다.</p>
-<p>본 책에서는 시간을 나누어 1주 단위로 최유리지정가 주문으로 내는 방법에 대해 실습해보도록 하겠다. 주문이 계속해서 1주 단위로 나가므로 거의 대부분 체결이 가능하며, 시장에 미치는 영향도 거의 없다. 또한 매매시간은 9시 10분부터 3시까지 하도록 한다. 9시부터 초반 10분간은 기관투자자들의 프로그램매매로 인해 가격 변동성이 크고 물량도 잘 없어, 불리한 가격에 체결될 확률이 높기 때문이다. 또한 3시에는 주문을 마감해야 남은 시간동안 미체결 물량 및 T+2 예수금 상황 등을 고려해 정리를 할 수 있기 때문이다.</p>
+<p>본 책에서는 시간을 나누어 1주 단위로 최유리지정가 주문으로 내는 방법에 대해 실습해보도록 하겠다. 주문이 계속해서 1주 단위로 나가므로 대부분 체결이 가능하며, 시장에 미치는 영향도 거의 없다. 또한 매매시간은 9시 10분부터 3시까지 하도록 한다. 9시부터 초반 10분간은 기관투자자들의 프로그램매매로 인해 가격 변동성이 크고 물량도 잘 없어, 불리한 가격에 체결될 확률이 높기 때문이다. 또한 3시에는 주문을 마감해야 남은 시간동안 미체결 물량 및 T+2 예수금 상황 등을 고려해 정리 작업을 할 수 있기 때문이다.</p>
 <div class="section" id="id17">
 <h3><span class="section-number">17.7.1. </span>포트폴리오 매수<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>먼저 모의계좌에서 국내 대형주 10개로 구성된 포트폴리오를 시분할로 매수해보도록 하자.</p>
@@ -1518,7 +1514,7 @@ End
 </div>
 </div>
 </div>
-<p>종목코드에 해당하는 ticker를 입력하면 현재가를 출력하는 함수를 만든다. 또한 API는 초당 10건까지 요청할 수 있으므로, 0.1초의 정지를 준다.</p>
+<p>종목코드에 해당하는 ticker를 입력하면 현재가를 출력하는 함수를 만든다. 또한 API는 초당 10건까지 요청할 수 있으므로, 연속조회를 위해 0.1초의 정지를 준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 주문</span>
@@ -1613,7 +1609,7 @@ End
 </div>
 </div>
 </div>
-<p>계좌의 보유종목 및 계좌잔고 항목을 조회하는 함수를 만든다. 이전에 설명했듯이 모의투자에서 잔고조회 API는 한번에 20종목까지, 실제계좌에서는 50종목까지 조회가 가능하다. 따라서 종목수가 이보다 더 많을 경우에는 연속조회를 통해 확인해야 한다. 연속조회 값이 없을 경우 <code class="docutils literal notranslate"><span class="pre">res.json()['ctx_area_nk100']</span></code> 값은 <code class="docutils literal notranslate"><span class="pre">''</span></code>이지만, 그 이상일 경우에는 연속조회를 시작해야하는 티커가 반환된다. 이를 이용해 해당 값이 <code class="docutils literal notranslate"><span class="pre">''</span></code>가 나올때까지 <code class="docutils literal notranslate"><span class="pre">while</span></code> 문을 이용해 연속조회를 한다. 또한 보유종목에서는 ‘종목코드’와 ‘보유수량’ 열만 선택하며, 만일 보유종목이 없는 경우에는 빈 데이터프레임을 입력한다. res2에는 계좌잔고를 입력한다.</p>
+<p>계좌의 보유종목 및 계좌잔고 항목을 조회하는 함수를 만든다. 이전에 설명했듯이 모의투자에서 잔고조회 API는 한번에 20종목까지, 실제계좌에서는 50종목까지 조회가 가능하다. 따라서 종목수가 이보다 더 많을 경우에는 연속조회를 통해 확인해야 한다. 연속조회 값이 없을 경우 <code class="docutils literal notranslate"><span class="pre">res.json()['ctx_area_nk100']</span></code> 값은 <code class="docutils literal notranslate"><span class="pre">''</span></code>이지만, 그 이상일 경우에는 연속조회를 시작해야하는 티커가 반환된다. 이를 이용해 해당 값이 <code class="docutils literal notranslate"><span class="pre">''</span></code>가 나올때까지 while문을 이용해 연속조회를 한다. 또한 보유종목에서는 ‘종목코드’와 ‘보유수량’ 열만 선택하며, 만일 보유종목이 없는 경우에는 빈 데이터프레임을 입력한다. res2에는 계좌잔고를 입력한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ap</span><span class="p">,</span> <span class="n">account</span> <span class="o">=</span> <span class="n">check_account</span><span class="p">()</span>
@@ -1621,7 +1617,7 @@ End
 </div>
 </div>
 </div>
-<p>위 코드를 실행하면 보유종목에 해당하는 res1은 ap 변수에, 계좌잔고에 해당하는 res2는 aum 변수에 각각 입력된다. 이제 각 종목 당 몇주를 사야하는지 수량을 계산하자.</p>
+<p>위 코드를 실행하면 보유종목에 해당하는 res1은 ap 변수에, 계좌잔고에 해당하는 res2는 account 변수에 각각 입력된다. 이제 각 종목 당 몇주를 사야하는지 수량을 계산하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 모델 포트폴리오</span>
@@ -1660,12 +1656,12 @@ End
 </div>
 <ol class="simple">
 <li><p>먼저 국내 대형주 10종목(모델 포트폴리오)의 티커를 데이터프레임(mp) 형태로 만든다.</p></li>
-<li><p>주당 투자 금액을 계산한다. 먼저 계좌잔고에서 총평가금액 항목을 가져온 후 <code class="docutils literal notranslate"><span class="pre">int()</span></code> 함수를 통해 숫자형태로 변경한다. 만일 총평가금액을 100% 투자할 경우, 리밸런싱 과정에서 주가의 등락에 의해 주문금액이 보유금액을 초과하는 일이 벌어질 수도 있으므로 1~5% 정도의 현금은 보유하는 것이 좋다. 즉 총평가금액의 98%만 투자에 이용하며, 이를 모델 포트폴리오의 종목수로 나누어 주당 투자 금액을 계산한다.</p></li>
+<li><p>주당 투자 금액을 계산한다. 계좌잔고에서 총평가금액 항목을 가져온 후 <code class="docutils literal notranslate"><span class="pre">int()</span></code> 함수를 통해 숫자형태로 변경한다. 만일 총평가금액을 100% 투자할 경우, 리밸런싱 과정에서 주가의 등락에 의해 주문금액이 보유금액을 초과하는 일이 벌어질 수도 있으므로 1~5% 정도의 현금은 보유하는 것이 좋다. 즉 총평가금액의 98%만 투자에 이용하며, 이를 모델 포트폴리오의 종목수로 나누어 종목당 투자 금액을 계산한다.</p></li>
 <li><p>투자하고자 하는 포트폴리오(mp)와 현재 포트폴리오(ap)를 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 함수를 통해 합치며, 모든 종목이 들어가야 하므로 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 방식으로 합친다.</p></li>
 <li><p>mp 중 현재 보유하고 있지 않은 종목은 NA로 표시되므로, 이를 0으로 바꾼다. 그 후 ‘보유수량’열의 값을 <code class="docutils literal notranslate"><span class="pre">to_numeric()</span></code> 함수를 이용해 숫자형태로 변경한다.</p></li>
 <li><p>앞서 만든 현재가를 확인하는 <code class="docutils literal notranslate"><span class="pre">get_price()</span></code> 함수를 이용해 모든 종목의 현재가를 확인한다.</p></li>
-<li><p>종목코드가 투자하고자 하는 대상, 즉 모델 포트폴리오에 있는 경우는 ‘주당 투자 금액/현재가’를 통해 목표수량이 얼마인지 계산한다. 그렇지 않을 경우, 즉 모델 포트폴리오에 존재하지 않아 전량 매도해야 하는 종목은 목표수량에 0을 입략한다.</p></li>
-<li><p>목표수량에서 보유수량을 빼 투자수량이 얼마인지 계산한다.</p></li>
+<li><p>종목코드가 투자하고자 하는 대상, 즉 모델 포트폴리오에 있는 경우는 ‘종목당 투자 금액/현재가’를 통해 종목당 목표수량이 얼마인지 계산한다. 그렇지 않을 경우, 즉 모델 포트폴리오에 존재하지 않아 전량 매도해야 하는 종목은 목표수량에 0을 입략한다.</p></li>
+<li><p>목표수량에서 보유수량을 빼 실제로 몇주를 투자해야 하는지 계산한다.</p></li>
 </ol>
 <p>만들어진 데이터프레임을 확인해보자.</p>
 <div class="cell docutils container">
@@ -1682,7 +1678,7 @@ End
 <li><p>종목코드: 투자하고자 하는 종목 및 보유 종목의 티커</p></li>
 <li><p>보유수량: 각 종목의 현재 보유수량</p></li>
 <li><p>현재가: 각 종목의 현재가</p></li>
-<li><p>목표수량: 총평가금액 기준으로 계산된 해당 종목의 목표수량</p></li>
+<li><p>목표수량: 총평가금액 기준으로 계산된 각 종목의 목표수량</p></li>
 <li><p>투자수량: 목표수량에서 보유수량이 빼서 계산된, 실제 투자해야되는 수량</p></li>
 </ul>
 <p>이제 각 종목 별로 시분할 주문을 스케줄에 입력한다.</p>
@@ -1715,10 +1711,10 @@ End
 </div>
 </div>
 <ol class="simple">
-<li><p>시작시간(startDt)은 현재보다 1분와 9시 10분 중 큰 값을 선택한다. 즉 9시 10분 이전에 코드를 실행하면 9시 10분부터 주문이 나가지만, 장이 시작하고 코드를 실행하면 1분 뒤부터 주문이 나가도록 한다.</p></li>
+<li><p>시작시간(startDt)은 현재보다 1분 뒤와 9시 10분 중 큰 값을 선택한다. 즉 9시 10분 이전에 코드를 실행하면 9시 10분부터 주문이 나가지만, 장이 시작하고 코드를 실행하면 1분 뒤부터 주문이 나가도록 한다.</p></li>
 <li><p>종료시간(endDt)는 오후 3시를 입력한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">schedule.clear()</span></code>를 통해 기존 등록된 스케줄을 모두 삭제한다.</p></li>
-<li><p>전 종목의 시분할 주문을 만든다. 포지션의 경우 만일 투자수량(n)이 0보다 클 경우 매수를 해야하므로 이에 해당하는 tr_id인 ‘VTTC0802U’을, 매도의 경우에는 ‘VTTC0801U’를 입력한다.</p></li>
+<li><p>for문을 통해 전 종목의 시분할 주문을 만든다. 포지션의 경우 만일 투자수량(n)이 0보다 클 경우 매수를 해야하므로 이에 해당하는 tr_id인 ‘VTTC0802U’을, 매도의 경우에는 ‘VTTC0801U’를 입력한다.</p></li>
 <li><p>시작시간부터 종료시간까지 투자수량의 절댓값에 해당하는 만큼 기간을 나눈다. 이 후 ‘시:분:초’의 형태로 만든다.</p></li>
 <li><p>스케줄러에 등록될 함수에 인자가 들어가는 경우는 <code class="docutils literal notranslate"><span class="pre">do(함수명,</span> <span class="pre">인자1,</span> <span class="pre">인자2,</span> <span class="pre">...)</span></code> 형태로 입력하면 된다.</p></li>
 </ol>
@@ -1741,79 +1737,68 @@ End
 <li><p>만일 현재시간이 3시(endDt) 이후 일 경우에는 스케줄을 모두 지우고 <code class="docutils literal notranslate"><span class="pre">break</span></code>를 통해 작업을 정지한다.</p></li>
 </ol>
 <p>HTS를 확인해보면 한 주씩 주문이 나가는 것을 확인할 수 있다.</p>
-<div class="figure align-default" id="mock-8">
-<img alt="_images/mock_8.png" src="_images/mock_8.png" />
+<div class="figure align-default" id="mock-7">
+<img alt="_images/mock_7.png" src="_images/mock_7.png" />
+<p class="caption"><span class="caption-number">Fig. 17.18 </span><span class="caption-text">포트폴리오 매수 진행</span><a class="headerlink" href="#mock-7" title="Permalink to this image">¶</a></p>
 </div>
 <p>3시가 지난 후 계좌를 확인해보면, 포트폴리오 매수가 제대로 진행되었다.</p>
-<div class="figure align-default" id="id18">
-<img alt="_images/mock_7.png" src="_images/mock_7.png" />
+<div class="figure align-default" id="mock-8">
+<img alt="_images/mock_8.png" src="_images/mock_8.png" />
+<p class="caption"><span class="caption-number">Fig. 17.19 </span><span class="caption-text">포트폴리오 매수 결과</span><a class="headerlink" href="#mock-8" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<div class="section" id="id19">
-<h3><span class="section-number">17.7.2. </span>포트폴리오 리밸런싱<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3><span class="section-number">17.7.2. </span>포트폴리오 리밸런싱<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>이번에는 매수와 매도를 동시에 하는 리밸런싱 작업을 해보도록 하겠다. 모델 포트폴리오는 ‘멀티팩터 포트폴리오’ 구성을 통해 나온 결과를 사용하겠으며, 나머지 코드는 위와 동일하다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 보유종목 및 계좌잔고</span>
-<span class="n">ap</span><span class="p">,</span> <span class="n">account</span> <span class="o">=</span> <span class="n">check_account</span><span class="p">()</span>
-
-<span class="c1"># 모델 포트폴리오</span>
-<span class="n">mp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;C:/Users/leebi/Dropbox/My Book/quant_python/model.xlsx&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
-
-<span class="c1"># 주당 투자 금액</span>
-<span class="n">invest_per_stock</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;tot_evlu_amt&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.98</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">mp</span><span class="p">)</span>
-
-<span class="c1"># 매매 구성</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;종목코드&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
-<span class="n">target</span><span class="p">[</span><span class="s1">&#39;보유수량&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;보유수량&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
-
-<span class="c1"># 현재가 확인</span>
-<span class="n">target</span><span class="p">[</span><span class="s1">&#39;현재가&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_price</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">종목코드</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 목표수량 및 투자수량 입력</span>
-<span class="n">target</span><span class="p">[</span><span class="s1">&#39;목표수량&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s1">&#39;종목코드&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="s1">&#39;종목코드&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
-                          <span class="nb">round</span><span class="p">(</span><span class="n">invest_per_stock</span> <span class="o">/</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;현재가&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">target</span><span class="p">[</span><span class="s1">&#39;투자수량&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;목표수량&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;보유수량&#39;</span><span class="p">]</span>
-
-<span class="c1"># 시간 분할</span>
-<span class="n">startDt1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">startDt2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="n">minute</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">startDt</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">startDt1</span><span class="p">,</span> <span class="n">startDt2</span><span class="p">)</span>
-<span class="n">endDt</span> <span class="o">=</span>  <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 스케줄 초기화</span>
-<span class="n">schedule</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-
-<span class="c1"># 스케줄 등록</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span>
-    
-    <span class="n">n</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;투자수량&#39;</span><span class="p">]</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;VTTC0802U&#39;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;VTTC0801U&#39;</span>
-    <span class="n">ticker</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;종목코드&#39;</span><span class="p">]</span>    
-    
-    <span class="n">time_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">startDt</span><span class="p">,</span> <span class="n">endDt</span><span class="p">,</span> <span class="n">periods</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>    
-    <span class="n">time_list</span> <span class="o">=</span> <span class="n">time_list</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>    
-    <span class="n">time_list_sec</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">time_list</span><span class="p">]</span>                 
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">time_list_sec</span><span class="p">:</span>
-        <span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">trading</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
-    
-<span class="c1"># 3시 1분에 모든 스케줄 정지</span>
-<span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s2">&quot;15:01&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
-
-<span class="c1"># 스키줄 실행</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">schedule</span><span class="o">.</span><span class="n">run_pending</span><span class="p">()</span>    
-    <span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">endDt</span> <span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;거래가 완료되었습니다.&#39;</span><span class="p">)</span>        
-        <span class="k">break</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 모델 포트폴리오</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;C:/Users/leebi/Dropbox/My Book/quant_py/model.xlsx&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>입력한 대로 9시 10분부터 매수와 매도가 동시에 일어남을 확인할 수 있다.</p>
-<p>[사진]</p>
-<p>이번에도 3시가 지난 후 거래가 제대로 진행되었는지 확인해보도록 하자.</p>
+<p>모델 포트폴리오를 토대로 매매수량을 계산해보도록 하자.</p>
+<div class="figure align-default" id="rebal-1">
+<img alt="_images/rebal_1.png" src="_images/rebal_1.png" />
+<p class="caption"><span class="caption-number">Fig. 17.20 </span><span class="caption-text">리밸런싱 매매수량 계산</span><a class="headerlink" href="#rebal-1" title="Permalink to this image">¶</a></p>
+</div>
+<p>새롭게 들어온 종목은 보유수량이 0이며, 총평가금액을 이용해 목표수량과 투자수량이 계산된다. 반면 제외되는 종목은 목표수량이 0이며, 투자수량 만큼 매도를 한다. 이를 토대로 시분할 주문을 스케줄에 입력한다. 9시 10분이 되면 스케줄에 따라 매수와 매도가 동시에 일어나며 리밸런싱 작업이 진행된다.</p>
+<div class="figure align-default" id="rebal-2">
+<img alt="_images/rebal_2.png" src="_images/rebal_2.png" />
+<p class="caption"><span class="caption-number">Fig. 17.21 </span><span class="caption-text">리밸런싱 진행</span><a class="headerlink" href="#rebal-2" title="Permalink to this image">¶</a></p>
+</div>
+<p>이번에도 3시가 지난 후 계좌를 확인해보면, 포트폴리오 리밸런싱 작업이 진행되어 기존 종목은 모두 매도되고 모델 포트폴리오에 해당하는 종목은 매수가 되었다.</p>
+<div class="figure align-default" id="rebal-3">
+<img alt="_images/rebal_3.png" src="_images/rebal_3.png" />
+<p class="caption"><span class="caption-number">Fig. 17.22 </span><span class="caption-text">리밸런싱 결과</span><a class="headerlink" href="#rebal-3" title="Permalink to this image">¶</a></p>
+</div>
+<p>마지막으로 목표수량과 실제수량이 차이가 없는지 확인해보도록 하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ap_after</span><span class="p">,</span> <span class="n">account_after</span> <span class="o">=</span> <span class="n">check_account</span><span class="p">()</span>        
+<span class="n">ap_after</span><span class="o">.</span><span class="n">columns</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;종목코드&#39;</span><span class="p">,</span> <span class="s1">&#39;매매후수량&#39;</span><span class="p">]</span>
+<span class="n">ap_after</span><span class="p">[</span><span class="s1">&#39;매매후수량&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ap_after</span><span class="p">[</span><span class="s1">&#39;매매후수량&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
+
+<span class="n">target_after</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ap_after</span><span class="p">)</span>
+<span class="n">target_after</span><span class="p">[</span><span class="s1">&#39;차이&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_after</span><span class="p">[</span><span class="s1">&#39;목표수량&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_after</span><span class="p">[</span><span class="s1">&#39;매매후수량&#39;</span><span class="p">]</span>
+
+<span class="n">target_after</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="rebal-4">
+<img alt="_images/rebal_4.png" src="_images/rebal_4.png" />
+</div>
+<ol class="simple">
+<li><p>계좌정보를 확인하는 <code class="docutils literal notranslate"><span class="pre">check_account()</span></code> 함수를 통해 보유종목과 계좌잔고를 불러온다.</p></li>
+<li><p>보유종목 데이터프레임의 열 이름을 바꾼다.</p></li>
+<li><p>‘매매후수량’열을 숫자 형태로 바꾼다.</p></li>
+<li><p>기존 데이터프레임과 합친다.</p></li>
+<li><p>‘목표수량’과 ‘매매후수량’의 차이를 구한다.</p></li>
+</ol>
+<p>목표와 실제 간의 차이가 거의 없는 것을 확인할 수 있다.</p>
 </div>
 </div>
 </div>

@@ -16,11 +16,11 @@
 # tiingo의 유/무료 서비스 비교
 # ```
 # 
-# tiingo는 무료 계정도 하루 1,000회까지 API 콜을 할 수 있으며, 파이썬에서 사용할 수 있는 패키지도 있으므로 이를 사용해 데이터를 수집해보도록 하겠다. 
+# tiingo는 무료 계정도 하루 1,000회까지 API 요청을 할 수 있으며, 파이썬에서 사용할 수 있는 패키지도 있으므로 이를 사용해 데이터를 수집해보도록 하겠다. 
 # 
 # ### 가입 및 API token 받기
 # 
-# 먼저 https://api.tiingo.com/ 사이트에 접속하여 우측 상단의 [Sign-up]을 클릭해 회원가입을 한다. 그 후 로그인을 한 후 우측 상단에서 본인의 ID를 클릭한 후 [Account]를 선택, [API] 부분에서 [Token]을 클릭하면 본인의 API token을 확인할 수 있다.
+# 먼저 https://api.tiingo.com/ 사이트에 접속하여 우측 상단의 [Sign-up]을 클릭해 회원가입을 한다. 그 후 로그인을 한 후 우측 상단에서 본인의 ID를 클릭한 후 [Account]를 선택, 좌측 메뉴의 [API] 부분에서 [Token]을 클릭하면 본인의 API token을 확인할 수 있다.
 # 
 # ```{figure} image/data_global/token.png
 # ---
@@ -29,7 +29,25 @@
 # API token 확인
 # ```
 # 
-# 해당 토큰을 keyring 패키지를 이용해 저장한다.
+# 발급받은 토큰을 PC에 저장할 경우, keyring 패키지를 이용하면 안전하게 저장할 수 있다. 패키지를 이용해 암호나 키 값을 저장하는 법은 다음과 같다.
+
+# In[ ]:
+
+
+import keyring
+
+keyring.set_password('System', 'User Name', 'Password')
+
+
+# [System]에는 시스템 종류, [User Name]에는 본인의 이름, [Password]에는 발급받은 API Key를 입력한다. 한번 입력된 값은 계속 저장되어 있다. 저장한 키를 불러오는 법은 다음과 같다.
+
+# In[ ]:
+
+
+api_key = keyring.get_password('System', 'User Name')
+
+
+# 이제 'Sysyem'에는 'tiingo', 'User Name'에는 본인의 이름, 'Password'에는 위에서 발급받은 API Token을 입력해 토큰을 저장하자.
 
 # In[ ]:
 
@@ -41,7 +59,7 @@ keyring.set_password('tiingo', 'User Name', 'Your API Token')
 
 # ### 데이터 다운로드
 # 
-# 데이터를 받기 전에 먼저 API 접속환경을 셋팅한다.
+# tiingo 패키지를 이용해 데이터를 받아보도록 하겠다. 데이터를 받기 전에 먼저 API 접속환경을 셋팅한다.
 
 # In[3]:
 
@@ -57,7 +75,7 @@ config['api_key'] = api_key
 client = TiingoClient(config)
 
 
-# API token을 불러온 후, 접속환경에 해당하는 config에 이를 입력한다. 이제 tiingo에서 제공하는 종목은 어떠한 것이 있는지 티커 정보들을 확인해보도록 한다.
+# API token을 불러온 후, 접속환경에 해당하는 config에 이를 입력한다. tiingo에서 제공하는 종목은 어떠한 것이 있는지 티커 정보들을 확인해보도록 한다.
 
 # In[4]:
 
@@ -68,7 +86,7 @@ tickers_df = pd.DataFrame.from_records(tickers)
 tickers_df.head()
 
 
-# ticker(티커), exchange(거래소), assetType(주식 종류), priceCurrency(거래 통화), startDate(시작일), endDate(마감일) 정보가 표시된다. 이번에는 거래소와 통화 별 종목이 몇개가 있는지 확인해보도록 하자.
+# ticker(티커), exchange(거래소), assetType(주식 종류), priceCurrency(거래 통화), startDate(시작일), endDate(마감일) 정보가 표시된다. 거래소와 통화 별 종목이 몇개가 있는지 확인해보도록 하자.
 
 # In[5]:
 
@@ -78,7 +96,7 @@ tickers_df.groupby(['exchange', 'priceCurrency'])['ticker'].count()
 
 # 이 중 마이너 거래소나 장외 거래소의 경우 정보를 받아도 우리나라의 증권사를 통해서는 실제로 거래를 할 수 없을수도 있다. 따라서 실제 거래가 가능한 거래소 데이터만 필터링한 후 해당 종목들을 받는 것이 효율적이다.
 # 
-# 이번에는 각 종목의 상세 정보를 확인해보도록 하며, 예로써 애플(AAPL)을 이용한다.
+# 각 종목의 상세 정보를 확인해보도록 하며, 예로써 애플(AAPL)을 이용한다.
 
 # In[6]:
 
@@ -101,7 +119,7 @@ historical_prices = client.get_dataframe("AAPL",
 historical_prices.head()
 
 
-# `get_dataframe()` 메서드 내에 티커를 입력하면 close(종가), high(고가), low(저가), open(시가), volumne(거래량) 및 수정주가와 divCash(현금 배당)와 splitFactor(주식분할 조정계수)까지 제공한다. 
+# `get_dataframe()` 메서드 내에 티커를 입력하면 close(종가), high(고가), low(저가), open(시가), volumne(거래량) 및 수정주가와 divCash(현금 배당), splitFactor(주식분할 조정계수)까지 제공한다. 
 # 
 # 이번에는 종목이 제공하는 재무제표 항목은 어떠한 것이 있는지 받아보도록 하겠다.
 
@@ -154,7 +172,7 @@ df_fs.head()
 # 
 # 결과를 확인해보면 연간 재무제표와 분기 재무제표의 상세 정보가 다운로드 될 뿐만 아니라 발표 날짜 또한 제공된다. 이처럼 유료 벤더를 이용하면 티커 및 주가, 재무제표, 가치지표를 매우 쉽고 빠르게 받을 수 있다. 
 # 
-# tiingo의 API 사용법 및 파이썬 패키지 사용법은 아래 페이지에 상세히 나와있다.
+# tiingo의 API 사용법 및 파이썬 패키지 사용법은 아래 페이지에 나와있다.
 # 
 # - tiingo API: https://api.tiingo.com/documentation/general/overview
 # - 파이썬 패키지: https://github.com/hydrosquall/tiingo-python
@@ -163,13 +181,13 @@ df_fs.head()
 # 
 # 이번에는 크롤링을 통해 데이터를 수집하는 방법에 대해 알아보겠다. 우리나라는 한국거래소를 통해 티커를 손쉽게 수집할 수 있지만 해외의 경우는 그렇지 않다. 먼저 우리나라와 달리 국가 별로 거래소가 여러개인 경우도 있으며, 홈페이지에 상장 종목 리스트를 제공하지 않는 경우도 많기 때문이다. 
 # 
-# 다행히 투자자들이 많이 참조하는 사이트인 인베스팅닷컴(https://www.investing.com/)에서는 전 세계 주식 및 각종 금융 데이터를 제공하고 있다. 이 중 스크리닝 기능을 활용하면 각 국가별 티커 리스트를 수집할 수 있다. 먼저 인베스팅 닷컴에 접속한 후 [Markets → Stocks → Stock Screener]에 접속한다.
+# 다행히 투자자들이 많이 참조하는 사이트인 인베스팅닷컴(https://www.investing.com/)에서는 전 세계 주식 및 각종 금융 데이터를 제공하고 있다. 이 중 스크리닝 기능을 활용하면 각 국가별 티커 리스트를 수집할 수 있다. 먼저 인베스팅닷컴에 접속한 후 [Markets → Stocks → Stock Screener]에 접속한다.
 # 
 # ```{figure} image/data_global/screen.png
 # ---
 # name: screen
 # ---
-# 인베스팅 닷컴의 주식 스크리너
+# 인베스팅닷컴의 주식 스크리너
 # ```
 # 
 # 페이지를 접속하면 미국 종목들이 나타나며, URL은 다음과 같다. 
@@ -178,7 +196,7 @@ df_fs.head()
 # https://www.investing.com/stock-screener/?sp=country::5|sector::a|industry::a|equityType::a%3Ceq_market_cap;1
 # ```
 # 
-# 하단에 표로 나타는 정보 중 Symbol이 티커에 해당하며, 이를 통해 티커를 손쉽게 수집할 수 있다. 다음으로 국가를 Japan(일본)을 선택하고, Equity Type은 ORD(보통주)를 선택하자.
+# 하단에 표로 나타는 정보 중 Symbol이 티커에 해당하며, 이를 통해 티커를 손쉽게 수집할 수 있다. 다음으로 국가를 Japan(일본)으로 선택하고, Equity Type은 ORD(보통주)를 선택하자.
 # 
 # ```{figure} image/data_global/japan.png
 # ---
@@ -195,7 +213,7 @@ df_fs.head()
 # 
 # 즉 기존 URL 중 국가에 해당하는 'country' 부분이 5에서 35로, 주식 종류에 해당하는 'equityType' 부분이 a에서 ORD로 변경되었다. 해당 페이지는 동적으로 페이지가 바뀌므로 셀레니움을 통해 크롤링을 해야한다. 예제로 미국의 보통주 전종목 정보를 크롤링 해보도록 하자.
 
-# In[11]:
+# In[9]:
 
 
 from selenium import webdriver
@@ -224,7 +242,7 @@ driver.get(url)
 # 
 # 다음으로 HTML 정보를 가져오도록 한다.
 
-# In[15]:
+# In[10]:
 
 
 html = BeautifulSoup(driver.page_source, 'lxml')
@@ -239,7 +257,7 @@ html = BeautifulSoup(driver.page_source, 'lxml')
 # 국가별 코드
 # ```
 # 
-# 이번에는 위젯에서 선택되어 있는 국가명을 확인해보도록 하자. 'newBtnDropdown noHover' 클래스의 하단의 'input' 태그의 'value' 속성의 속성명에는 국가명이 적혀 있다. 이를 코드를 통해 찾아보도록 하자.
+# 이번에는 위젯에서 선택되어 있는 국가명을 확인해보도록 하자. 'newBtnDropdown noHover' 클래스 하단의 'input' 태그의 'value' 속성의 속성명에는 국가명이 적혀 있다. 이를 코드를 통해 찾아보도록 하자.
 # 
 # ```{figure} image/data_global/country_name.png
 # ---
@@ -248,7 +266,7 @@ html = BeautifulSoup(driver.page_source, 'lxml')
 # 국가명 확인
 # ```
 
-# In[16]:
+# In[11]:
 
 
 html.find(class_='js-search-input inputDropDown')['value']
@@ -263,7 +281,7 @@ html.find(class_='js-search-input inputDropDown')['value']
 # 종목 테이블
 # ```
 
-# In[17]:
+# In[12]:
 
 
 html_table = html.select('table.genTbl.openTbl.resultsStockScreenerTbl.elpTbl')
@@ -275,23 +293,33 @@ html_table = html.select('table.genTbl.openTbl.resultsStockScreenerTbl.elpTbl')
 print(html_table[0])
 
 
+# ```{figure} image/data_global/selenium_1.png
+# ---
+# name: selenium_1
+# ---
+# ```
+# 
 # `select` 함수를 이용해 table 태그 중 해당 클래스명을 찾은 후 출력하면, 종목 정보들이 담긴 테이블의 HTML 정보가 출력된다. 이제 이를 데이터프레임 형태로 변환해보도록 하자.
 
-# In[19]:
+# In[18]:
 
 
 df_table = pd.read_html(html_table[0].prettify())
+df_table_result = df_table[0]
 
 
-# In[ ]:
+# `prettify()` 메서드를 이용해 BeautifulSoup 에서 파싱한 파서 트리를 유니코드 형태로 다시 돌려준 후, `read_html()` 함수를 통해 테이블을 읽어온다. Variable Explorer 창에서 df_table_result 변수를 확인해보자.
+# 
+# ```{figure} image/data_global/selenium_2.png
+# ---
+# name: selenium_2
+# ---
+# 크롤링 결과 확인
+# ```
+# 
+# 결과를 살펴보면 웹페이지에 있는 내역 외에도 Exchange(거래소), Sector, Industy 등 추가적인 정보를 확인할 수 있다. 이 중 필요한 열만 선택하자.
 
-
-print(df_table[0])
-
-
-# `prettify()` 메서드를 이용해 BeautifulSoup 에서 파싱한 파서 트리를 유니코드 형태로 다시 돌려준 후, `read_html()` 함수를 통해 테이블을 읽어온다. 결과물을 살펴보면 웹페이지에 있는 내역 외에도 Exchange(거래소), Sector, Industy 등 추가적인 정보를 확인할 수 있다. 이 중 필요한 열만 선택하자.
-
-# In[20]:
+# In[19]:
 
 
 df_table_select = df_table[0][['Name', 'Symbol', 'Exchange',  'Sector', 'Market Cap']]
@@ -324,9 +352,9 @@ driver.quit()
 
 # ### 전 종목 티커 크롤링
 # 
-# 위 과정을 통해 국가별 전 종목의 티커 및 관련 정보를 수집하는 방법과, 페이지 수를 계산할 수 있었다. 이제 `for loop` 문을 이용해 일본의 전 종목 티커를 크롤링해보도록 하겠다.
+# 위 과정을 통해 국가별 전 종목의 티커 및 관련 정보를 수집하는 방법과, 페이지 수를 계산할 수 있었다. 이제 for문을 이용해 일본의 전 종목 티커를 크롤링해보도록 하겠다.
 
-# In[23]:
+# In[ ]:
 
 
 from selenium import webdriver
@@ -359,10 +387,10 @@ end_num = math.ceil(int(end_num) / 50)
 # 2. 국가 코드는 미국에 해당하는 '35'를 입력한다.
 # 3. 먼저 첫페이지에 해당하는 URL을 생성한다.
 # 4. 셀레니움으로 해당 페이지를 연다
-# 5. 'Screener Results'에 해당하는 부분은 종목이 들어있는 테이블이 로딩된 이후 나타난다. 따라서 `WebDriverWait()` 함수를 통해 해당 테이블이 로딩될 때까지 기다리며, 테이블의 XPATH는 "//*[@id="resultsTable"]/tbody" 이다.
+# 5. 'Screener Results'에 해당하는 부분은 종목이 들어있는 테이블이 로딩된 이후 나타난다. 따라서 `WebDriverWait()` 함수를 통해 해당 테이블이 로딩될 때까지 기다리며, 테이블의 XPATH는 '//*[@id="resultsTable"]/tbody' 이다.
 # 6. 종목수에 해당하는 부분을 크롤링한 후, 이를 통해 페이지 수를 계산한다.
 # 
-# 이제 `for`문을 통해 모든 페이지의 데이터를 크롤링해보도록 하자.
+# 이제 for문을 통해 모든 페이지의 데이터를 크롤링해보도록 하자.
 
 # In[ ]:
 
@@ -411,14 +439,14 @@ driver.quit()
 
 
 # 1. 빈 리스트(all_data_df)를 생성한다.
-# 2. `for`문을 통해 전체 페이지에서 종목명과 티커 등의 정보를 크롤링한다.
+# 2. for문을 통해 전체 페이지에서 종목명과 티커 등의 정보를 크롤링한다.
 # 3. f-string을 통해 각 페이지에 해당하는 URL을 생성한 후 페이지를 연다.
 # 4. `WebDriverWait()` 함수를 통해 테이블이 로딩될때 까지 기다린다. 또한 간혹 페이지 오류가 발생할 때가 있으므로, `try except`문을 이용해 오류 발생 시 1초간 기다린 후 `refresh()`를 통해 새로고침을 하여 다시 테이블이 로딩되길 기다린다.
 # 5. HTML 정보를 불러온 후, 테이블에 해당하는 부분을 선택한다.
 # 6. 원하는 열만 선택한다.
 # 7. `append()` 메서드를 통해 해당 테이블을 리스트에 추가한다.
 # 8. 2초가 일시정지를 한다.
-# 9. `for`문이 끝나면 `concat()` 함수를 통해 리스트 내 모든 데이터프레임을 행으로 묶어준다.
+# 9. for문이 끝나면 `concat()` 함수를 통해 리스트 내 모든 데이터프레임을 행으로 묶어준다.
 # 10. 국가명에 해당하는 부분을 추출한 뒤, 'country' 열에 입력한다.
 # 11. 'date' 열에 오늘 날짜를 입력한다.
 # 12. 일부 종목의 경우 종목명이 빈칸으로 들어오므로 이를 제거한다.
@@ -546,7 +574,7 @@ price.head()
 # 
 # ### 전 종목 주가 다운로드
 # 
-# 미국 데이터 역시 국내 전종목 주가를 다운로드 받고 DB에 저장했던것과 동일하게 `for loop` 구문을 이용하면 된다. 먼저 SQL에서 주가 데이터에 해당하는 테이블(global_price)를 만든다.
+# 미국 데이터 역시 국내 전종목 주가를 다운로드 받고 DB에 저장했던것과 동일하게 for문을 이용하면 된다. 먼저 SQL에서 주가 데이터에 해당하는 테이블(global_price)를 만든다.
 
 # In[ ]:
 
@@ -567,7 +595,7 @@ create table global_price
 );
 
 
-# 파이썬에서 아래 코드를 실행하면 for loop 구문을 통해 전종목 주가가 DB에 저장된다.
+# 파이썬에서 아래 코드를 실행하면 for문을 통해 전종목 주가가 DB에 저장된다.
 
 # In[ ]:
 
@@ -648,9 +676,9 @@ con.close()
 # 2. 기준일이 최대, 즉 최근일 기준 보통주에 해당하며, 미국 종목의 리스트(ticker_list)만 불러온다.
 # 3. DB에 저장할 쿼리(query)를 입력한다.
 # 4. 페이지 오류, 통신 오류 등 오류가 발생한 티커명을 저장할 리스트(error_list)를 만든다.
-# 5. `for`문을 통해 전종목 주가를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
+# 5. for문을 통해 전종목 주가를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
 # 6. `DataReader()` 함수를 통해 야후 파이낸스에서 주가를 받은 후 클렌징 처리한다. 그 후 주가 데이터를 DB에 저장한다.
-# 7. `try except`문을 통해 오류가 발생시 'error_list'에 티커를 저장한다.
+# 7. try except문을 통해 오류가 발생시 'error_list'에 티커를 저장한다.
 # 8. 무한 크롤링을 방지하기 위해 한 번의 루프가 끝날 때마다 타임슬립을 적용한다.
 # 9. 모든 작업이 끝나면 DB와의 연결을 종료한다.
 # 
@@ -729,7 +757,7 @@ data_fs_q.head()
 
 # ### 전 종목 재무제표 다운로드
 # 
-# `for loop` 구문을 이용하여 전 종목 재무제표를 다운로드 받도록 하겠다. 먼저 SQL에서 재무제표 데이터에 해당하는 테이블(global_fs)를 만든다.
+# for문을 이용하여 전 종목 재무제표를 다운로드 받도록 하겠다. 먼저 SQL에서 재무제표 데이터에 해당하는 테이블(global_fs)를 만든다.
 
 # In[ ]:
 
@@ -747,7 +775,7 @@ create table global_fs
 );
 
 
-# 이제 파이썬에서 아래 코드를 실행하면 `for loop` 구문을 통해 전 종목 재무제표가 DB에 저장된다.
+# 이제 파이썬에서 아래 코드를 실행하면 for문을 통해 전 종목 재무제표가 DB에 저장된다.
 
 # In[ ]:
 
@@ -836,7 +864,7 @@ con.close()
 # 2. 기준일이 최대, 즉 최근일 기준 보통주에 해당하며, 미국 종목의 리스트(ticker_list)만 불러온다.
 # 3. DB에 저장할 쿼리(query)를 입력한다.
 # 4. 페이지 오류, 통신 오류 등 오류가 발생한 티커명을 저장할 리스트(error_list)를 만든다.
-# 5. for loop 구문을 통해 전종목 재무제표를 다운로드 받으며, 진행상황을 알기위해 tqdm() 함수를 이용한다.
+# 5. for문을 통해 전종목 재무제표를 다운로드 받으며, 진행상황을 알기위해 tqdm() 함수를 이용한다.
 # 6. get_financials() 함수를 이용해 연간 및 분기 재무제표를 받은 후, 두 테이블을 concat() 함수를 통해 행으로 묶어준다.
 # 6. 재무제표 데이터를 DB에 저장한다.
 # 7. 무한 크롤링을 방지하기 위해 한 번의 루프가 끝날 때마다 타임슬립을 적용한다.

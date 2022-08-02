@@ -2191,7 +2191,7 @@ Name: index1, dtype: int64
 </div>
 <div class="section" id="id9">
 <h2><span class="section-number">3.3. </span>데이터 불러오기 및 저장하기<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<p>데이터 분석에서 가장 첫 단계는 외부에 저장된 데이터를 프로그램으로 불러오는 일이다. 데이터가 없다면 분석도 할 수 없기 때문이다. 판다스의 함수를 사용하면 다양한 형태의 파일을 불러와 데이터프레임으로 변환할 수 있으며, 반대로 가공한 데이터프레임을 다양한 유형의 파일로 저장할 수도 있다.</p>
+<p>데이터 분석에서 가장 첫 단계는 외부에 저장된 데이터를 프로그램으로 불러오는 일이다. 데이터가 없다면 분석도 할 수 없기 때문이다. pandas의 함수를 사용하면 다양한 형태의 파일을 불러와 데이터프레임으로 변환할 수 있으며, 반대로 가공한 데이터프레임을 다양한 유형의 파일로 저장할 수도 있다.</p>
 <table class="colwidths-auto table" id="read-data">
 <caption><span class="caption-number">Table 3.2 </span><span class="caption-text">판다스의 데이터 입출력 함수</span><a class="headerlink" href="#read-data" title="Permalink to this table">¶</a></caption>
 <thead>
@@ -2882,7 +2882,7 @@ memory usage: 80.7+ KB
 <li><p>dtypes에는 데이터 형태가 요약되어 있다.</p></li>
 <li><p>memory usage에는 메모리 사용량이 표시된다.</p></li>
 </ol>
-<p>각 열의 고유값 개수를 구하는데는 <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> 메소드가 사용된다. 먼저 sex(성별)의 고유값의 종류와 개수를 확인해보도록 하자.</p>
+<p>각 열의 고유값 개수를 구하는데는 <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> 메서드가 사용된다. 먼저 sex(성별)의 고유값의 종류와 개수를 확인해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -2934,7 +2934,7 @@ dtype: float64
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> 내에 <code class="docutils literal notranslate"><span class="pre">normalize=True</span></code>를 입력하면 비중으로 계산된다. 즉 female/0은 전체 891개 데이터 중 81개 이므로 81/891 = 0.090909가 계산된다. 또한 <code class="docutils literal notranslate"><span class="pre">sort_index()</span></code> 메서드는 인덱스를 정렬해준다.</p>
-<p>판다스의 메서드를 이용하면 각종 통계값도 쉽게 구할 수 있다. 가장 많이 사용되는 통계값인 산술평균은 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 메서드를 통해 구할 수 있다.</p>
+<p>pandas의 메서드를 이용하면 각종 통계값도 쉽게 구할 수 있다. 가장 많이 사용되는 통계값인 산술평균은 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 메서드를 통해 구할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -6714,7 +6714,7 @@ Name: cylinders, dtype: bool
 </div>
 <div class="section" id="id21">
 <h2><span class="section-number">3.10. </span>데이터 재구조화<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
-<p>데이터프레임의 행과 열 구조를 변형하거나, 특정 요인에 따라 집계를 하는 방법에 대해 알아보겠다. 판다스에서 데이터 재구조화에 사용되는 함수는 <code class="docutils literal notranslate"><span class="pre">melt()</span></code>, <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code>, <code class="docutils literal notranslate"><span class="pre">stack()</span></code>, <code class="docutils literal notranslate"><span class="pre">unstack()</span></code> 등이 있다. 예제로써 seaborn 패키지의 팽귄 데이터를 사용한다.</p>
+<p>데이터프레임의 행과 열 구조를 변형하거나, 특정 요인에 따라 집계를 하는 방법에 대해 알아보겠다. pandas에서 데이터 재구조화에 사용되는 함수는 <code class="docutils literal notranslate"><span class="pre">melt()</span></code>, <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code>, <code class="docutils literal notranslate"><span class="pre">stack()</span></code>, <code class="docutils literal notranslate"><span class="pre">unstack()</span></code> 등이 있다. 예제로써 seaborn 패키지의 팽귄 데이터를 사용한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -7483,7 +7483,7 @@ dtype: float64
 </div>
 <div class="section" id="id22">
 <h2><span class="section-number">3.11. </span>데이터프레임에 함수 적용하기<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">apply()</span></code> 메서드를 사용하면 시리즈나 데이터프레임의 개별 원소에 함수를 적용할 수 있다. 이는 사용자가 직접 만든 함수(lambda 함수 포함)를 적용할 수 있어 기본함수로 처리하기 어려운 복잡한 연산도 가능하며, <code class="docutils literal notranslate"><span class="pre">for</span></code> 문을 사용해 각 데이터에 함수를 적용하는 것 보다 더 빠르게 연산이 가능하다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">apply()</span></code> 메서드를 사용하면 시리즈나 데이터프레임의 개별 원소에 함수를 적용할 수 있다. 이는 사용자가 직접 만든 함수(lambda 함수 포함)를 적용할 수 있어 기본함수로 처리하기 어려운 복잡한 연산도 가능하며, for문을 사용해 각 데이터에 함수를 적용하는 것 보다 더 빠르게 연산이 가능하다.</p>
 <div class="section" id="id23">
 <h3><span class="section-number">3.11.1. </span>시리즈에 함수 적용하기<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>시리즈 객체에 <code class="docutils literal notranslate"><span class="pre">apply()</span></code> 메서드를 적용하면 모든 원소를 함수에 적용하여 결과값을 반환한다.</p>
@@ -7657,7 +7657,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">apply(max)</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">apply(max,</span> <span class="pre">axis=0)</span></code>를 입력하면 각 열 별로 최대값을 구한다. 위 예에서는 bill_length_mm 열의 최대값인 59.6이 계산된다. 이번에는 각 행에 함수를 적용해보자.</p>
+<p><code class="docutils literal notranslate"><span class="pre">apply(max)</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">apply(max,</span> <span class="pre">axis=0)</span></code>를 입력하면 각 열 별로 최대값을 구한다. 이번에는 각 행에 함수를 적용해보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_num</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">max</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -7725,7 +7725,7 @@ dtype: int64
 <img alt="_images/group.png" src="_images/group.png" />
 <p class="caption"><span class="caption-number">Fig. 3.20 </span><span class="caption-text">그룹 연산의 개념</span><a class="headerlink" href="#group" title="Permalink to this image">¶</a></p>
 </div>
-<p><a class="reference internal" href="#group"><span class="std std-numref">Fig. 3.20</span></a>은 그룹 연산의 개념을 그림으로 나타낸 것이다. 먼저 데이터프레임에서 ‘Col 1’이 A, B, C인 데이터 별로 그룹을 나눈 후, 각 그룹에서 ‘Col 2’의 합을 구한다. 마지막으로 계산된 결과를 하나로 합친다. 펭귄 데이터셋을 통해 그룹 연산을 배워보도록 하자.</p>
+<p><a class="reference internal" href="sql.html#group"><span class="std std-numref">Fig. 5.23</span></a>은 그룹 연산의 개념을 그림으로 나타낸 것이다. 먼저 데이터프레임에서 ‘Col 1’이 A, B, C인 데이터 별로 그룹을 나눈 후, 각 그룹에서 ‘Col 2’의 합을 구한다. 마지막으로 계산된 결과를 하나로 합친다. 펭귄 데이터셋을 통해 그룹 연산을 배워보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -7934,7 +7934,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 함수 내에 기준이 되는 열을 입력하면 그룹 객체가 만들어진다. 현재는 분할만 이루어진 상태이므로 데이터를 출력해도 기존의 데이터프레임과는 크게 차이가 나지 않는다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 메서드 내에 기준이 되는 열을 입력하면 그룹 객체가 만들어진다. 현재는 분할만 이루어진 상태이므로 데이터를 출력해도 기존의 데이터프레임과는 크게 차이가 나지 않는다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">df_group</span><span class="p">:</span>
@@ -8105,7 +8105,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>그러나 <code class="docutils literal notranslate"><span class="pre">for</span></code> 문을 이용해 그룹객체의 이름과 데이터를 확인해보면 species인 Adelie, Chinstrap, Gentoo에 따라 데이터가 분할되어 있다.</p>
+<p>그러나 for문을 이용해 그룹객체의 이름과 데이터를 확인해보면 species인 Adelie, Chinstrap, Gentoo에 따라 데이터가 분할되어 있다.</p>
 </div>
 <div class="section" id="id27">
 <h3><span class="section-number">3.12.2. </span>그룹 별 연산하기<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
@@ -8959,7 +8959,7 @@ memory usage: 703.7+ KB
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">info()</span></code> 메서드를 통해 확인해보면 해당 열의 타입이 object 즉 문자열이다. 판다스에서는 <code class="docutils literal notranslate"><span class="pre">to_datetime()</span></code> 메서드를 통해 문자열을 datetime 객체로 변환할 수 있다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">info()</span></code> 메서드를 통해 확인해보면 해당 열의 타입이 object 즉 문자열이다. pandas에서는 <code class="docutils literal notranslate"><span class="pre">to_datetime()</span></code> 메서드를 통해 문자열을 datetime 객체로 변환할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pickup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pickup&#39;</span><span class="p">])</span>
@@ -9825,7 +9825,7 @@ Length: 6433, dtype: timedelta64[ns]
 <p>인덱서에 슬라이스 형태를 입력하면 이에 해당하는 기간의 데이터만 선택된다.</p>
 <div class="section" id="id29">
 <h3><span class="section-number">3.13.1. </span>시계열 데이터 만들기<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
-<p>앞서 <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수를 통해 숫자(정수) 리스트를 만들었듯이, 판다스의 <code class="docutils literal notranslate"><span class="pre">date_range()</span></code> 함수를 통해 여러 개의 날짜가 들어있는 배열 형태의 시계열 데이터를 만들 수 있다. 예제로 2021년 1월부터 2021년 12월까지 한 달 간격으로 시계열 데이터를 만들어보자.</p>
+<p>앞서 <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수를 통해 숫자(정수) 리스트를 만들었듯이, pandas의 <code class="docutils literal notranslate"><span class="pre">date_range()</span></code> 함수를 통해 여러 개의 날짜가 들어있는 배열 형태의 시계열 데이터를 만들 수 있다. 예제로 2021년 1월부터 2021년 12월까지 한 달 간격으로 시계열 데이터를 만들어보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>

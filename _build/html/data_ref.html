@@ -517,36 +517,24 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="dart-open-api">
 <h2><span class="section-number">12.1. </span>DART의 Open API를 이용한 데이터 수집하기<a class="headerlink" href="#dart-open-api" title="Permalink to this headline">¶</a></h2>
 <p>DART(Data Analysis, Retrieval and Transfer System)는 금융감독원 전자공시시스템으로써, 상장법인 등이 공시서류를 인터넷으로 제출하고, 투자자 등 이용자는 제출 즉시 인터넷을 통해 조회할 수 있도록 하는 종합적 기업공시 시스템이다. 홈페이지에서도 각종 공시내역을 확인할 수 있지만, 해당 사이트에서 제공하는 API를 이용할 경우 더욱 쉽게 공시 내용을 수집할 수 있다.</p>
-<p>API 제공자는 본인이 가진 데이터베이스를 다른 누군가가 쉽게 사용할 수 있는 형태로 가지고 있으며, 해당 데이터베이스에 접근할 수 있는 열쇠인 API 주소를 가진 사람은 이를 언제든지 사용할 수 있다. 즉, API 주소만 알고 있다면 데이터를 언제, 어디서, 누구나 쉽게 이용할 수 있다는 장점이 있다. 또한 대부분의 경우 사용자가 필요한 데이터만을 가지고 있으므로 접속 속도가 빠르며, 데이터를 가공하는 번거로움도 줄어든다.</p>
-<div class="figure align-default" id="api">
-<img alt="_images/api.png" src="_images/api.png" />
-<p class="caption"><span class="caption-number">Fig. 12.1 </span><span class="caption-text">API의 개념</span><a class="headerlink" href="#api" title="Permalink to this image">¶</a></p>
-</div>
 <div class="section" id="api-key">
 <h3><span class="section-number">12.1.1. </span>API Key 발급 및 추가하기<a class="headerlink" href="#api-key" title="Permalink to this headline">¶</a></h3>
 <p>먼저 <a class="reference external" href="https://opendart.fss.or.kr/">https://opendart.fss.or.kr/</a> 에서 회원가입을 한 후 [인증키 신청/관리] → [인증키 신청]을 통해 API Key를 발급받아야 한다.</p>
 <div class="figure align-default" id="dart-api-key">
 <img alt="_images/dart_api_key.png" src="_images/dart_api_key.png" />
-<p class="caption"><span class="caption-number">Fig. 12.2 </span><span class="caption-text">OpenAPI 인증키 신청</span><a class="headerlink" href="#dart-api-key" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12.1 </span><span class="caption-text">OpenAPI 인증키 신청</span><a class="headerlink" href="#dart-api-key" title="Permalink to this image">¶</a></p>
 </div>
 <p>계정을 생성하고 이메일을 통해 이용자 등록을 한 후 로그인을 한다. 그 후 [오픈API 이용현황]을 살펴보면 <strong>API Key</strong> 부분에 발급받은 Key가 있으며, 금일 몇번의 API를 요청했는지가 일일이용현황에 나온다. 하루 총 10,000번까지 데이터를 요청할 수 있다.</p>
 <div class="figure align-default" id="dart-api-status">
 <img alt="_images/dart_api_status.png" src="_images/dart_api_status.png" />
-<p class="caption"><span class="caption-number">Fig. 12.3 </span><span class="caption-text">OpenAPI 이용현황</span><a class="headerlink" href="#dart-api-status" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12.2 </span><span class="caption-text">OpenAPI 이용현황</span><a class="headerlink" href="#dart-api-status" title="Permalink to this image">¶</a></p>
 </div>
 <p>다음으로 발급받은 API Key를 keyring 패키지를 이용해 저장한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyring</span>
-<span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s1">&#39;System&#39;</span><span class="p">,</span> <span class="s1">&#39;User Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>[System]에는 시스템 종류, [User Name]에는 본인의 이름, [Password]에는 발급받은 API Key를 입력한다. 한번 입력된 값은 계속 저장되어 있다. 저장한 키를 불러오는 법은 다음과 같다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="s1">&#39;System&#39;</span><span class="p">,</span> <span class="s1">&#39;User Name&#39;</span><span class="p">)</span>
+
+<span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s1">&#39;dart_api_key&#39;</span><span class="p">,</span> <span class="s1">&#39;User Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -554,9 +542,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id2">
 <h3><span class="section-number">12.1.2. </span>고유번호 다운로드<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Open API에서 각 기업의 데이터를 받기 위해서는 종목에 해당하는 고유번호를 알아야한다. 이에 대한 개발가이드는 아래 페이지에 나와 있다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&amp;apiId=2019018
-</pre></div>
+<p>Open API에서 각 기업의 데이터를 받기 위해서는 종목에 해당하는 고유번호를 알아야한다. 이에 대한 자세한 내용은 홈페이지(<a class="reference external" href="https://opendart.fss.or.kr/">https://opendart.fss.or.kr/</a>)에서 [개발가이드 → 공시정보 → 고유번호] 화면에 설명되어 있다.</p>
+<div class="figure align-default" id="dart-guide">
+<img alt="_images/dart_guide.png" src="_images/dart_guide.png" />
+<p class="caption"><span class="caption-number">Fig. 12.3 </span><span class="caption-text">OPEN API 개발가이드</span><a class="headerlink" href="#dart-guide" title="Permalink to this image">¶</a></p>
 </div>
 <p>위 페이지의 내용을 코드로 나타내보도록 하자.</p>
 <div class="cell docutils container">
@@ -700,6 +689,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code> 함수를 통해 result 내에서 list 부분만 불러온다.</p></li>
 <li><p>데이터프레임 형태로 변경해준다.</p></li>
 </ol>
+<p>해당 데이터의 길이를 확인해보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">corp_list</span><span class="p">)</span>
@@ -803,11 +793,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h3><span class="section-number">12.1.3. </span>공시 데이터<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id4">
 <h4><span class="section-number">12.1.3.1. </span>전체 종목의 공시 데이터 수집<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<p>먼저 전체 종목의 공시를 수집하도록 하며, 개발가이드는 아래 페이지에 나와있다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&amp;apiId=2019001
-</pre></div>
-</div>
-<p>각종 요청인자를 통해 URL을 생성 후 전송하여, 요청에 맞는 데이터를 받을 수 있다. 공시 검색에 해당하는 인자는 <a class="reference internal" href="#dart-api-input"><span class="std std-numref">Fig. 12.4</span></a>와 같다.</p>
+<p>먼저 전체 종목의 공시를 수집하도록 하며, 개발가이드는 [개발가이드 → 공시정보 → 공시검색]에 나와있다. 각종 요청인자를 통해 URL을 생성 후 전송하여, 요청에 맞는 데이터를 받을 수 있다. 공시 검색에 해당하는 인자는 <a class="reference internal" href="#dart-api-input"><span class="std std-numref">Fig. 12.4</span></a>와 같다.</p>
 <div class="figure align-default" id="dart-api-input">
 <img alt="_images/dart_api_input.png" src="_images/dart_api_input.png" />
 <p class="caption"><span class="caption-number">Fig. 12.4 </span><span class="caption-text">OpenAPI 요청 인자 예시</span><a class="headerlink" href="#dart-api-input" title="Permalink to this image">¶</a></p>
@@ -817,7 +803,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/dart_api_exam.png" src="_images/dart_api_exam.png" />
 <p class="caption"><span class="caption-number">Fig. 12.5 </span><span class="caption-text">OpenAPI 테스트 예시</span><a class="headerlink" href="#dart-api-exam" title="Permalink to this image">¶</a></p>
 </div>
-<p>이를 참조하여 시작일과 종료일을 토대로 최근 공시 100건에 해당하는 url을 생성한다.</p>
+<p>이를 참조하여 시작일과 종료일을 토대로 최근 공시 100건에 해당하는 URL을 생성한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
@@ -1119,7 +1105,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>dart 홈페이지의 공시에 해당하는 url과 첫번째 공시에 해당하는 공시번호를 합쳐준다. 위 url에 접속하여 해당 공시를 좀 더 자세하게 확인할 수 있다.</p>
+<p>dart 홈페이지의 공시에 해당하는 url과 공시번호를 합쳐준다. 위 url에 접속하여 해당 공시를 좀 더 자세하게 확인할 수 있다.</p>
 <div class="figure align-default" id="dart-web">
 <img alt="_images/dart_web.png" src="_images/dart_web.png" />
 <p class="caption"><span class="caption-number">Fig. 12.6 </span><span class="caption-text">공시 정보의 확인</span><a class="headerlink" href="#dart-web" title="Permalink to this image">¶</a></p>
@@ -1129,14 +1115,11 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="id6">
 <h3><span class="section-number">12.1.4. </span>사업보고서 주요 정보<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>API를 이용하여 사업보고서의 주요 정보 역시 다운로드 받을 수 있으며, 제공하는 목록은 다음과 같다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&amp;apiId=2019005
-</pre></div>
+<div class="figure align-default" id="dart-report">
+<img alt="_images/dart_report.png" src="_images/dart_report.png" />
+<p class="caption"><span class="caption-number">Fig. 12.7 </span><span class="caption-text">사업보고서 주요정보 목록</span><a class="headerlink" href="#dart-report" title="Permalink to this image">¶</a></p>
 </div>
-<p>이 중 예시로써 [배당에 관한 사항]을 다운로드 받도록 하며, 개발가이드 페이지는 다음과 같다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&amp;apiId=2019006
-</pre></div>
-</div>
-<p>URL 생성에 필요한 요청 인자는 다음과 같다.</p>
+<p>이 중 예시로써 [배당에 관한 사항]을 다운로드 받도록 하자. URL 생성에 필요한 요청 인자는 다음과 같다.</p>
 <table class="colwidths-auto table" id="div-input">
 <caption><span class="caption-number">Table 12.1 </span><span class="caption-text">배당에 관한 사항 주요 인자</span><a class="headerlink" href="#div-input" title="Permalink to this table">¶</a></caption>
 <thead>
@@ -1160,7 +1143,7 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 <tr class="row-odd"><td><p>reprt_code</p></td>
 <td><p>보고서 코드</p></td>
-<td><p><ul>1분기보고서 : 11013</ul> <ul>반기보고서 : 11012 </ul> <ul>3분기보고서 : 11014</ul> <ul>사업보고서 : 11011 </ul></p></td>
+<td><p>1분기보고서 : 11013 <br> 반기보고서 : 11012 <br> 3분기보고서 : 11014 <br> 사업보고서 : 11011</p></td>
 </tr>
 </tbody>
 </table>
@@ -1285,11 +1268,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p>미국 연방준비은행에서 관리하는 Federal Reserve Economic Data(FRED)는 미국 및 각국의 중요 경제지표 데이터를 살펴볼 때 가장 많이 참조되는 곳 중 하나이다. 509,000여 개의 방대한 데이터를 API 형태로 제공하고 있으며, pandas_datareader 패키지의 <code class="docutils literal notranslate"><span class="pre">DataReader()</span></code> 함수를 이용하면 이곳에서 제공하는 여러 데이터를 쉽게 받을 수 있다.</p>
 <div class="section" id="id7">
 <h3><span class="section-number">12.2.1. </span>장단기 금리차<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>장기로 돈을 빌리는 것이 단기로 빌리는 것보다 위험하므로 금리 역시 높아야 하는 것이 당연하며, 이러한 장기금리와 단기금리와의 차이를 기간 프리미엄(Term Premium)이라고 한다. 그러나 가끔씩 장기금리가 단기금리보다 낮아지는 현상이 발생하며, 이는 주요 금융시장 및 경제지표 가운데 경기침체에 대한 예측력이 가장 정확한 것으로 알려져 있다. 실제로 미국에서는 1960년 이후 발생한 모든 경기침체에 앞서 장단기 금리가 역전되어 음수가 되었다.</p>
-<p>FRED에서 각 항목별 코드를 찾는 방법은 매우 간단하다. 먼저 FRED 웹사이트(<a class="reference external" href="https://fred.stlouisfed.org/">https://fred.stlouisfed.org/</a>) 에서 원하는 데이터를 검색한다. 만일 ‘10년-2년 장단기 금리차’에 해당하는 코드를 찾고자 한다면 [10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity]를 검색하여 해당 페이지로 이동한다. 이 중 <a class="reference internal" href="#fred-code"><span class="std std-numref">Fig. 12.7</span></a>에서 네모로 표시한 [T10Y2Y]가 10년 금리와 2년 금리차의 코드에 해당한다. 동일한 방법으로 10년 금리와 3개월 금리 차이에 해당하는 [10-Year Treasury Constant Maturity Minus 3-Month Treasury Constant Maturity]를 검색해보면 해당 코드가 [T10Y3M]임을 알 수 있다.</p>
+<p>장기로 돈을 빌리는 것이 단기로 빌리는 것보다 위험하므로 금리 역시 높아야 하는 것이 당연하며, 이러한 장기금리와 단기금리간의 차이를 기간 프리미엄(Term Premium)이라고 한다. 그러나 가끔씩 장기금리가 단기금리보다 낮아지는 현상이 발생하며, 이는 주요 금융시장 및 경제지표 가운데 경기침체에 대한 예측력이 가장 정확한 것으로 알려져 있다. 실제로 미국에서는 1960년 이후 발생한 모든 경기침체에 앞서 장단기 금리가 역전되어 음수가 되었다.</p>
+<p>FRED에서 각 항목별 코드를 찾는 방법은 매우 간단하다. 먼저 FRED 웹사이트(<a class="reference external" href="https://fred.stlouisfed.org/">https://fred.stlouisfed.org/</a>) 에서 원하는 데이터를 검색한다. 만일 ‘10년-2년 장단기 금리차’에 해당하는 코드를 찾고자 한다면 [10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity]를 검색하여 해당 페이지로 이동한다. 이 중 <a class="reference internal" href="#fred-code"><span class="std std-numref">Fig. 12.8</span></a>에서 네모로 표시한 [T10Y2Y]가 10년 금리와 2년 금리차의 코드에 해당한다. 동일한 방법으로 10년 금리와 3개월 금리 차이에 해당하는 [10-Year Treasury Constant Maturity Minus 3-Month Treasury Constant Maturity]를 검색해보면 해당 코드가 [T10Y3M]임을 알 수 있다.</p>
 <div class="figure align-default" id="fred-code">
 <img alt="_images/fred_code.png" src="_images/fred_code.png" />
-<p class="caption"><span class="caption-number">Fig. 12.7 </span><span class="caption-text">FRED 코드 확인</span><a class="headerlink" href="#fred-code" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12.8 </span><span class="caption-text">FRED 코드 확인</span><a class="headerlink" href="#fred-code" title="Permalink to this image">¶</a></p>
 </div>
 <p>해당 데이터를 다운로드 받아보자.</p>
 <div class="cell docutils container">
@@ -1395,7 +1378,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/data_ref_29_0.png" src="_images/data_ref_29_0.png" />
+<img alt="_images/data_ref_27_0.png" src="_images/data_ref_27_0.png" />
 </div>
 </div>
 <p>2000년 IT 버블, 20008년 금융위기, 2020년 코로나로 인한 하락 직전에는 항상 장단기 금리차가 음수를 기록했다.</p>
@@ -1481,7 +1464,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/data_ref_33_0.png" src="_images/data_ref_33_0.png" />
+<img alt="_images/data_ref_31_0.png" src="_images/data_ref_31_0.png" />
 </div>
 </div>
 </div>
@@ -1500,7 +1483,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>위 7개 지표를 합산하여 0점에서 100점 사이의 점수를 구하며, 점수가 낮을 수록 시장이 공포에 휩싸여 있음을, 점수가 높을 수록 시장이 탐욕에 물들어 있음을 나타낸다.</p>
 <div class="figure align-default" id="fear-greed">
 <img alt="_images/fear_greed.png" src="_images/fear_greed.png" />
-<p class="caption"><span class="caption-number">Fig. 12.8 </span><span class="caption-text">Fear &amp; Greed Index</span><a class="headerlink" href="#fear-greed" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12.9 </span><span class="caption-text">Fear &amp; Greed Index</span><a class="headerlink" href="#fear-greed" title="Permalink to this image">¶</a></p>
 </div>
 <p>해당 지표는 아래 사이트에서 확인할 수 있다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">money</span><span class="o">.</span><span class="n">cnn</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">fear</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">greed</span><span class="o">/</span>
@@ -1509,7 +1492,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>개발자도구 화면을 통해 현재 점수가 위치하는 곳을 찾아보면, 클래스 이름이 [market-fng-gauge__dial-number-value]이며, 내용이 동적으로 계속 변하기에 정적 크롤링이 아닌 동적 크롤링을 이용해야 한다. 셀레니움을 사용해 해당 지표를 크롤링 해보자.</p>
 <div class="figure align-default" id="fear-greed-html">
 <img alt="_images/fear_greed_html.png" src="_images/fear_greed_html.png" />
-<p class="caption"><span class="caption-number">Fig. 12.9 </span><span class="caption-text">해당 지표의 태그 확인</span><a class="headerlink" href="#fear-greed-html" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12.10 </span><span class="caption-text">해당 지표의 태그 확인</span><a class="headerlink" href="#fear-greed-html" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1539,7 +1522,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ol class="simple">
 <li><p>크롬 드라이버를 로드한다.</p></li>
 <li><p>해당 URL을 브라우저에 띄운다.</p></li>
-<li><p>클래스명이 [market-fng-gauge__dial-number-value]인 곳을 찾은 후, 텍스트를 추출한다.</p></li>
+<li><p>클래스명이 ‘market-fng-gauge__dial-number-value’인 곳을 찾은 후, 텍스트를 추출한다.</p></li>
 <li><p>브라우저를 닫는다.</p></li>
 <li><p>지표가 문자형이므로 정수형으로 변경한다.</p></li>
 </ol>

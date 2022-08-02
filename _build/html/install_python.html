@@ -409,18 +409,19 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>파이썬 다운로드 및 설치하기<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>파이썬 프로그램은 공식 홈페이지(<a class="reference external" href="https://www.python.org/">https://www.python.org/</a>)에서 직접 다운로드하여 설치할 수 있다. 그러나 아나콘다(Anaconda)를 설치하면 파이썬 뿐만 아니라 IDE, 각종 패키지를 함께 설치할 수 있으므로 훨씬 편치하다.</p>
+<p>파이썬 프로그램은 공식 홈페이지(<a class="reference external" href="https://www.python.org/">https://www.python.org/</a>)에서 직접 다운로드하여 설치할 수 있다. 그러나 아나콘다(Anaconda)를 설치하면 파이썬 뿐만 아니라 IDE, 각종 패키지를 함께 설치할 수 있으므로 훨씬 편리하다.</p>
 <div class="section" id="id2">
 <h2>아나콘다 설치하기<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>1. 아나콘다를 설치하기 위해서는 먼저 구글에서 [아나콘다 다운로드]를 검색하거나, 홈페이지(<a class="reference external" href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a>)에 접속한다. 그 후 본인의 운영체제에 맞는 파일을 다운로드 한다.</p>
+<p>아나콘다를 설치하기 위해서는 먼저 구글에서 [아나콘다 다운로드]를 검색하거나, 홈페이지(<a class="reference external" href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a>)에 접속한다. 그 후 본인의 운영체제에 맞는 파일을 다운로드 한다.</p>
 <div class="figure align-default" id="os">
 <img alt="_images/os.png" src="_images/os.png" />
 </div>
-<p>2. 다운로드한 설치 파일을 실행해 설치를 한다.</p>
+<p>[Download] 부분을 클릭한다.</p>
+<hr>
 <div class="figure align-default" id="ins1">
 <img alt="_images/ins1.png" src="_images/ins1.png" />
 </div>
-<p>[Next]를 클릭한다.</p>
+<p>다운로드한 설치 파일을 실행한 후 [Next]를 클릭한다.</p>
 <hr>
 <div class="figure align-default" id="ins2">
 <img alt="_images/ins2.png" src="_images/ins2.png" />
@@ -466,12 +467,17 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="figure align-default" id="spyder2">
 <img alt="_images/spyder2.png" src="_images/spyder2.png" />
 </div>
-<p>스파이더창은 총 3개로 구성되어 있다.</p>
+<p>스파이더는 크게 3개의 화면으로 구성되어 있다.</p>
+<ol class="simple">
+<li><p>Editor 창: 파이썬 코드를 작성하는 곳으로써, 이곳에서 작성된 스크립트는 F9나 Ctrl+Enter 등을 사용해 명시적으로 실행을 시켜야만 실행이 된다. 보통 이곳에서 코드를 작성한 후 파일로 저장한다.</p></li>
+<li><p>Variable Explorer: 현재 입력된 변수 및 값이 무엇인지 확인할 수 있으며, 그 외에도 Plot이나 File 등을 확인할 수 있는 탭도 있다.</p></li>
+<li><p>IPython 콘솔: 에디터 창에서 입력한 코드를 실행하면 이 부분에 결과가 출력되며, 파이썬 명령을 직접 입력하여 결과를 확인할 수도 있다.</p></li>
+</ol>
 <hr>
 <div class="figure align-default" id="spyder3">
 <img alt="_images/spyder3.png" src="_images/spyder3.png" />
 </div>
-<p>스크립트 창에 코드를 입력한다. 그 후 실행하고자 하는 부분을 드래그해 F9 키를 누르면 해당 부분이 콘솔창에 입력되면서 <code class="docutils literal notranslate"><span class="pre">print('Hello</span> <span class="pre">World')</span></code>에 해당하는 코드가 실행된다.</p>
+<p>스크립트 창에 코드를 입력해보자. 그 후 실행하고자 하는 부분을 드래그해 F9 키를 누르면 해당 부분이 콘솔창에 입력되면서 <code class="docutils literal notranslate"><span class="pre">print('Hello</span> <span class="pre">World')</span></code>에 해당하는 코드가 실행된다.</p>
 <hr>
 <div class="figure align-default" id="spyder4">
 <img alt="_images/spyder4.png" src="_images/spyder4.png" />
@@ -481,7 +487,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="figure align-default" id="spyder5">
 <img alt="_images/spyder5.png" src="_images/spyder5.png" />
 </div>
-<p>코드를 통해 변수를 입력해보자. <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span></code>를 입력한 후 우측 상단의 ‘Variable Explorer’를 확인해보면 a라는 이름에 1이라는 값이 입력된 것을 확인할 수 있다.</p>
+<p>코드를 통해 변수를 입력해보자. <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span></code>을 입력한 후 우측 상단의 ‘Variable Explorer’를 확인해보면 a라는 변수에 1이라는 값이 입력된 것을 확인할 수 있다.</p>
 </div>
 </div>
 

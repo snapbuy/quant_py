@@ -533,7 +533,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#if">
-     2.3.1. if문
+     2.3.1. if 문
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -781,7 +781,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#if">
-     2.3.1. if문
+     2.3.1. if 문
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1130,7 +1130,7 @@ You need python
 </div>
 </div>
 </div>
-<p>f-string의 형태는 <strong>f’문자열 {변수} 문자열’</strong> 이다. 즉 문자열 맨 앞에 f를 붙이면 f-string 포매팅이 선언되며, 중괄호 안에 변수를 넣으면 해당 부분에 변수의 값이 입력된다.</p>
+<p>f-string의 형태는 <code class="docutils literal notranslate"><span class="pre">f'문자열</span> <span class="pre">{변수}</span> <span class="pre">문자열'</span></code> 이다. 즉 문자열 맨 앞에 f를 붙이면 f-string 포매팅이 선언되며, 중괄호 안에 변수를 넣으면 해당 부분에 변수의 값이 입력된다.</p>
 </div>
 <div class="section" id="id7">
 <h4><span class="section-number">2.2.2.2. </span>문자열 길이 구하기<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
@@ -1250,7 +1250,7 @@ You need python
 </div>
 </div>
 </div>
-<p>슬라이싱은 [] 내부에 콜론(:) 기호를 사용하여 <code class="docutils literal notranslate"><span class="pre">시작:마지막</span></code>에 해당하는 문자를 출력한다. 즉 <code class="docutils literal notranslate"><span class="pre">var[0]</span></code> 부타 <code class="docutils literal notranslate"><span class="pre">var[3]</span></code>까지를 출력한다. 그런데 Quant에서 3에 해당하는 단어는 n임에도 불구하고 그 이전엔 Qua 까지만 출력이 되었다. 이는 슬리이싱에서 <code class="docutils literal notranslate"><span class="pre">var[시작:마지막]</span></code>을 지정할 때 마지막 번호에 해당하는 단어는 포함되지 않기 때문이며, <code class="docutils literal notranslate"><span class="pre">var[0:3]</span></code>은 0 이상 3 미만에 해당하는 문자만 출력한다.</p>
+<p>슬라이싱은 [] 내부에 콜론(:) 기호를 사용하여 <code class="docutils literal notranslate"><span class="pre">시작:마지막</span></code>에 해당하는 문자를 출력한다. 즉 <code class="docutils literal notranslate"><span class="pre">var[0]</span></code> 부터 <code class="docutils literal notranslate"><span class="pre">var[3]</span></code>까지를 출력한다. 그런데 Quant에서 3에 해당하는 단어는 n임에도 불구하고 그 이전인 Qua 까지만 출력이 되었다. 이는 슬리이싱에서 <code class="docutils literal notranslate"><span class="pre">var[시작:마지막]</span></code>을 지정할 때 마지막 번호에 해당하는 단어는 포함되지 않기 때문이며, <code class="docutils literal notranslate"><span class="pre">var[0:3]</span></code>은 0 이상 3 미만에 해당하는 문자만 출력한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
@@ -1553,7 +1553,7 @@ You need python
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">객체</span></code>를 이용하여 데이터를 삭제할 수 있다. 위의 예제에서 <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">var[0]</span></code>는 var에서 영번째 요소를 삭제하라는 의미다. 인덱싱 뿐만 아니라 <code class="docutils literal notranslate"><span class="pre">dal</span> <span class="pre">var[0:2]</span></code>와 같이 슬라이싱을 통해서도 데이터를 삭제할 수 있다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">객체</span></code>를 이용하여 데이터를 삭제할 수 있다. 위의 예제에서 <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">var[0]</span></code>는 var에서 첫번째 요소를 삭제하라는 의미다. 인덱싱 뿐만 아니라 <code class="docutils literal notranslate"><span class="pre">dal</span> <span class="pre">var[0:2]</span></code>와 같이 슬라이싱을 통해서도 데이터를 삭제할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -1684,18 +1684,8 @@ You need python
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
-<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">DOOMOO</span><span class="o">~</span><span class="mi">1</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_23248</span><span class="o">/</span><span class="mf">2714829066.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-      <span class="mi">1</span> <span class="n">var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="o">----&gt;</span> <span class="mi">2</span> <span class="k">del</span> <span class="n">var</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">doesn</span><span class="s1">&#39;t support item deletion</span>
-</pre></div>
-</div>
-</div>
+<div class="figure align-default" id="tuple-error">
+<img alt="_images/tuple_error.png" src="_images/tuple_error.png" />
 </div>
 <p>만일 <code class="docutils literal notranslate"><span class="pre">del</span></code> 명령어를 이용해 요소값을 삭제하려고 할 경우 오류가 발생한다. 이처럼 튜플은 수정 혹은 삭제가 불가능하다.</p>
 <div class="cell docutils container">
@@ -2495,7 +2485,7 @@ You need python
 </div>
 <div class="section" id="id30">
 <h4><span class="section-number">2.2.8.4. </span>코드를 일시정지 하기<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
-<p>time 패키지의 <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> 함수를 사용하면 일정 시간동안 프로세스를 일시정지할 수 있습니다.</p>
+<p>time 패키지의 <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> 함수를 사용하면 일정 시간동안 프로세스를 일시정지할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -2523,7 +2513,7 @@ You need python
 </div>
 </div>
 </div>
-<p>위 코드는 0부터 2까지 for문 내에서 i와 현재 시간을 출력하며, <code class="docutils literal notranslate"><span class="pre">time.sleep(2)</span></code>을 통해 루프당 2초의 일시정지를 준다. 출력된 결과를 살펴보면 한 번의 루프가 끝난 후 약 2초 후에 다음 루프가 실행된 것을 확인할 수 있다.</p>
+<p>위 코드는 0부터 2까지 <code class="docutils literal notranslate"><span class="pre">for</span></code> 문 내에서 i와 현재 시간을 출력하며, <code class="docutils literal notranslate"><span class="pre">time.sleep(2)</span></code>을 통해 루프당 2초의 일시정지를 준다. 출력된 결과를 살펴보면 한 번의 루프가 끝난 후 약 2초 후에 다음 루프가 실행된 것을 확인할 수 있다.</p>
 </div>
 </div>
 </div>
@@ -2531,7 +2521,7 @@ You need python
 <h2><span class="section-number">2.3. </span>제어문<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
 <p>파이썬 프로그래밍은 위에서부터 아래 방향으로 작성된 내용을 순서대로 실행한다. 반면 이러한 흐름을 제어하여 실행 순서를 바꾸거나 여러 번 반복하도록 하는 것이 제어문이다. 파이썬의 제어문에는 크게 if문, while문, for문이 있다.</p>
 <div class="section" id="if">
-<h3><span class="section-number">2.3.1. </span>if문<a class="headerlink" href="#if" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.1. </span>if 문<a class="headerlink" href="#if" title="Permalink to this headline">¶</a></h3>
 <p>if문, 혹은 조건문이란 입력된 조건을 판단하여 해당 조건에 맞는 상황을 실행한다. if문의 기본적인 구조는 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2827,7 +2817,7 @@ You need python
 <li><p>for문을 통해 var의 요소를 하나씩 i에 대입하여 아래의 코드들을 실행한다.</p></li>
 <li><p>if문을 통해 만일 나머지가 0일 경우 ‘짝수입니다.’라는 글자를, 그렇지 않을 경우 else를 통해 ‘홀수입니다.’라는 글자를 출력한다.</p></li>
 </ol>
-<p><code class="docutils literal notranslate"><span class="pre">for</span></code>문은 <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수와 함께 쓰이는 경우가 많다. <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수는 숫자(정수) 리스트를 자동으로 만들어준다.</p>
+<p>for문은 <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수와 함께 쓰이는 경우가 많다. <code class="docutils literal notranslate"><span class="pre">range()</span></code> 함수는 숫자(정수) 리스트를 자동으로 만들어준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -2880,7 +2870,7 @@ You need python
 </div>
 </div>
 </div>
-<p>만일 위 값들의 제곱을 구하려면 어떻게 해야할까? 일반적인 <code class="docutils literal notranslate"><span class="pre">for</span></code>문을 사용한 코드는 다음과 같다.</p>
+<p>만일 위 값들의 제곱을 구하려면 어떻게 해야할까? 일반적인 for문을 사용한 코드는 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2911,7 +2901,7 @@ You need python
 </div>
 </div>
 </div>
-<p>이는 기존의 <code class="docutils literal notranslate"><span class="pre">for</span></code>문에서 위아래를 변경한 후, 리스트 내에 넣어 표현한 것이다. 실제 코드로 나타내면 다음과 같다.</p>
+<p>이는 기존의 for문에서 위아래를 변경한 후, 리스트 내에 넣어 표현한 것이다. 실제 코드로 나타내면 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
@@ -2929,7 +2919,7 @@ You need python
 </div>
 <div class="section" id="id32">
 <h3><span class="section-number">2.3.4. </span>오류에 대한 예외처리<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">for</span></code>문을 실행하던 중 오류가 발생하면 작업이 끊겨 루프를 처음부터 다시 실행해야 한다. 대상이 얼마되지 않는다면 큰 문제가 되지 않겠지만, 수십분 혹은 몇시간이 걸리는 작업을 하던 중 오류가 발생해 작업을 처음부터 다시 해야하는 것은 매우 비효율적이다. <code class="docutils literal notranslate"><span class="pre">try-except</span></code>문을 이용하면 예외처리, 즉 오류가 발생할 경우 이를 무시하고 넘어갈 수 있다.</p>
+<p>for문을 실행하던 중 오류가 발생하면 작업이 끊겨 루프를 처음부터 다시 실행해야 한다. 대상이 얼마되지 않는다면 큰 문제가 되지 않겠지만, 수십분 혹은 몇시간이 걸리는 작업을 하던 중 오류가 발생해 작업을 처음부터 다시 해야하는 것은 매우 비효율적이다. <code class="docutils literal notranslate"><span class="pre">try-except</span></code>문을 이용하면 예외처리, 즉 오류가 발생할 경우 이를 무시하고 넘어갈 수 있다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">try-except</span></code>문의 구조는 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2970,7 +2960,7 @@ You need python
 <div class="figure align-default" id="loop-error">
 <img alt="_images/loop_error.png" src="_images/loop_error.png" />
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">for</span></code>문을 통해 순서대로 값들의 제곱을 출력하는 명령어를 실행하면 ‘문자 4’는 제곱을 할 수 없어 오류가 발생한다. <code class="docutils literal notranslate"><span class="pre">try-except</span></code>문을 사용하면 이처럼 오류가 발생하는 루프를 무시하고 다음 루프로 넘어갈 수 있다.</p>
+<p>for문을 통해 순서대로 값들의 제곱을 출력하는 명령어를 실행하면 ‘문자 4’는 제곱을 할 수 없어 오류가 발생한다. try-except문을 사용하면 이처럼 오류가 발생하는 루프를 무시하고 다음 루프로 넘어갈 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">number</span><span class="p">:</span>
@@ -2995,7 +2985,7 @@ Error at: 4
 </div>
 <div class="section" id="tqdm">
 <h3><span class="section-number">2.3.5. </span><code class="docutils literal notranslate"><span class="pre">tqdm()</span></code> 함수를 이용한 진행 단계 확인하기<a class="headerlink" href="#tqdm" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">for</span></code>문의 시간이 오래 걸리는 작업의 경우 어느정도 진행되었는지 궁금할 때가 있다. 파이썬에서는 tqdm 패키지를 통해 진행 정도를 손쉽게 확인할 수 있다.</p>
+<p>for문의 시간이 오래 걸리는 작업의 경우 어느정도 진행되었는지 궁금할 때가 있다. 파이썬에서는 tqdm 패키지를 통해 진행 정도를 손쉽게 확인할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -3012,7 +3002,7 @@ Error at: 4
 </div>
 </div>
 </div>
-<p>tqdm 패키지에서 <code class="docutils literal notranslate"><span class="pre">tqdm()</span></code> 함수를 불러온 뒤, <code class="docutils literal notranslate"><span class="pre">for</span></code>문의 loop에 해당하는 부분을 <code class="docutils literal notranslate"><span class="pre">tqdm()</span></code> 로 감싸주면, 진행 정도를 확인할 수 있다.</p>
+<p>tqdm 패키지에서 <code class="docutils literal notranslate"><span class="pre">tqdm()</span></code> 함수를 불러온 뒤, for문의 loop에 해당하는 부분을 <code class="docutils literal notranslate"><span class="pre">tqdm()</span></code> 로 감싸주면, 진행 정도를 확인할 수 있다.</p>
 </div>
 </div>
 <div class="section" id="id33">
@@ -3157,7 +3147,7 @@ Error at: 4
 <p>위 함수에서는 매개변수가 ‘x’, ‘n’ 2개가 필요함에도 불구하고 <code class="docutils literal notranslate"><span class="pre">divide(3)</span></code>은 1.5라는 값이 계산되었다. 즉 x에는 3이라는 값이 입력되었지만, n에는 값이 입력되지 않아 디폴트 값인 2가 들어갔으며, 3/2의 결과인 1.5가 계산된다. 반면 <code class="docutils literal notranslate"><span class="pre">divide(6,</span> <span class="pre">3)</span></code>의 경우 n에 3이라는 값을 입력하였으므로 6/3의 결과인 2가 계산되었다.</p>
 <div class="section" id="id34">
 <h3><span class="section-number">2.4.1. </span>람다 함수<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">if</span></code>문이나 <code class="docutils literal notranslate"><span class="pre">for</span></code>문을 한 줄로 간단하게 나타냈던 것과 같이, 람다(lambda)를 이용하면 간단하게 함수를 만들 수 있다. 람다의 사용법은 다음과 같다.</p>
+<p>if문이나 for문을 한 줄로 간단하게 나타냈던 것과 같이, 람다(lambda)를 이용하면 간단하게 함수를 만들 수 있다. 람다의 사용법은 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">함수명</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">매개변수1</span><span class="p">,</span> <span class="n">매개변수2</span><span class="p">,</span> <span class="o">...</span><span class="p">:</span> <span class="n">statement</span>
@@ -3196,6 +3186,7 @@ Error at: 4
 <img alt="_images/prompt.png" src="_images/prompt.png" />
 <p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">아나콘다 프롬프트 검색 및 실행</span><a class="headerlink" href="#prompt" title="Permalink to this image">¶</a></p>
 </div>
+<p>프롬프트에서 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">패키지명</span></code>을 입력하면 패키지를 설치한다. bt 패키지를 설치해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">bt</span>

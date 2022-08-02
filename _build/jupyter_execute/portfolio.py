@@ -7,7 +7,7 @@
 # 
 # 이번 장에서는 일반적으로 많이 사용되는 최대샤프지수 포트폴리오, 최소분산 포트폴리오, 위험균형 포트폴리오를 구현해보도록 하겠다. 먼저 포트폴리오 구성을 위해 글로벌 자산을 대표하는 ETF 데이터를 다운로드 한 후 DB에 저장한다.
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -50,14 +50,14 @@ engine.dispose()
 # 
 # 먼저 DB에서 ETF 데이터를 불러온 후 수익률을 계산한다.
 
-# In[3]:
+# In[4]:
 
 
 price = pd.read_sql('select * from sample_etf;', con = engine)
 rets = prices.pct_change(1).dropna()
 engine.dispose()
 
-rets.tail()
+rets.tail().round(4)
 
 
 # 1. ETF 데이터를 불러온다.
@@ -65,7 +65,7 @@ rets.tail()
 # 
 # 이번에는 각 ETF의 수익률 간 상관관계를 살펴보도록 하자.
 
-# In[4]:
+# In[5]:
 
 
 import matplotlib.pyplot as plt
@@ -82,7 +82,7 @@ plt.show()
 # 
 # 최대샤프지수 포트폴리오(Maximum Sharpe Ratio Portfolio)란 샤프지수가 최대가 되도록 하는 포트폴리오를 구성하는 것이다. 샤프지수는 $\frac{R_p-R_f}{\sigma_p}$, 즉 포트폴리오의 수익을 변동성으로 나눈 값이며, 위험 대비 수익률이라고도 볼 수 있다. 따라서 샤프지수가 최대가 되는 포트폴리오는 위험은 낮으면서 수익은 높은 지점이다. riskfolio-lib 패키지의 함수를 이용해 해당 포트폴리오를 구성하기 위한 자산 별 투자비중을 구해보도록 하자.
 
-# In[11]:
+# In[6]:
 
 
 import riskfolio as rp
@@ -110,14 +110,14 @@ w = port.optimization(model=model, rm=rm, obj=obj, rf=rf, l=l, hist=hist)
 round(w.T, 4)
 
 
-# 1. `Portfolio()` 함수를 통해 포트폴리오 객체를 생성하며, 'returns'에는 수익률 데이터를 입력한다.
+# 1. `Portfolio()` 함수를 통해 포트폴리오 객체를 생성하며, `returns`에는 수익률 데이터를 입력한다.
 # 2. 'mu(수익률)'과 'cov(분산-공분산 행렬)'을 구한 후 `assets_stats()` 함수에 이를 입력한다.
 # 3. 구하고자 하는 목적에 맞게 각종 파라미터를 입력한다.
 # 4. `optimization()` 함수를 통해 최대샤프지수를 만족하는 포트폴리오의 해를 구한다.
 # 
 # 이처럼 패키지를 사용할 경우 최적의 포트폴리오에 대한 수학적 지식이 부족하거나 복잡한 계산을 하지 않고도, 얼마든지 이를 만족하는 해를 구할 수 있다. 이번에는 효율적 투자선을 구성해보도록 하자. 효율적 투자선이란 각 포트폴리오의 기대수익률과 위험 수준을 바탕으로, 구성할 수 있는 모든 포트폴리오를 나타낸 것이다.
 
-# In[13]:
+# In[8]:
 
 
 points = 50  # 효율적 투자선을 구성하는 샘플 갯수
@@ -127,13 +127,13 @@ frontier = port.efficient_frontier(model=model,
                                    rf=rf,
                                    hist=hist)
 
-frontier.T.head()
+frontier.T.head().round(4)
 
 
 # 1. 몇 개의 점으로 효율적 투자선을 구성할 지 정한다.
 # 2. `efficient_frontier()` 함수를 이용해 효율적 투자선을 이루는 포트폴리오들의 비중을 계산한다.
 # 
-# 결과를 살펴보면 해당 비중들을 통해 효율적 투자선이 구성됨을 알 수 있다. 이번엔 그림으로 나타내보도록 하자.
+# 결과에 나오는 비중들을 통해 효율적 투자선을 구성할 수 있다. 이번엔 그림으로 나타내보도록 하자.
 
 # In[14]:
 
@@ -172,7 +172,7 @@ ax = rp.plot_frontier(w_frontier=frontier,
 # 
 # 1. 변동성 및 상관관계는 시간이 지나도 어느정도 유지되는 경향이 있다.
 # 2. 기대 수익률을 추정하는 것은 매우 어렵다. 이론에서는 과거 수익률을 미래 수익률의 예측치로 사용하지만 실제 투자에서 사용하기는 무리가 있는 가정이다.
-# 3. 위 결과를 살펴보면 10개 자산 중 일부 자산으로만 포트폴리오가 구성된다. 즉 상관관계가 높은 자산이 있으면 하나에만 투자하는 결과를 낳는다. 그러나 현실에서는 상관관계가 높아도 모든 자산에 투자해야 한다.
+# 3. 위 결과를 살펴보면 10개 자산 중 일부 자산으로만 포트폴리오가 구성된다. 즉 상관관계가 높은 자산이 있으면 하나에만 투자하는 결과를 낳는다. 그러나 현실에서는 상관관계가 높은 자산에도 투자해야 하는 경우가 많다.
 # 
 # 따라서 실무에서는 1번과 2번의 이유로 인해 기대 수익률에 대한 추정이 필요하지 않은 '최소분산 포트폴리오'를 사용하는 경우가 많으며, 3번의 이유로 인해 각종 제약조건을 추가하기도 한다. '최소분산 포트폴리오(Minimum Variance Portfolio)'는 변동성이 최소인 포트폴리오며, 이 역시 패키지를 이용하면 손쉽게 계산할 수 있다.
 
@@ -215,10 +215,14 @@ ax = rp.plot_bar(w=w, title='Portfolio',  kind='h', ax=None)
 # In[28]:
 
 
-asset_classes = {'Asset': ['SPY', 'IEV', 'EWJ', 'EEM', 'TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC'],
-                 'Class': ['stock', 'stock', 'stock', 'stock',
-                           'bond', 'bond', 'alternative', 'alternative', 'alternative', 'alternative']
-                 }
+asset_classes = {
+    'Asset':
+    ['SPY', 'IEV', 'EWJ', 'EEM', 'TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC'],
+    'Class': [
+        'stock', 'stock', 'stock', 'stock', 'bond', 'bond', 'alternative',
+        'alternative', 'alternative', 'alternative'
+    ]
+}
 
 asset_classes = pd.DataFrame(asset_classes)
 asset_classes
@@ -296,22 +300,50 @@ ax = rp.plot_bar(w=w, title='Portfolio',  kind='h', ax=None)
 # In[45]:
 
 
-constraints = {'Disabled': [False, False, False, False, False, False, False, False, False, False,
-                           False, False, False, False, False, False, False, False, False, False],
-               'Type': ['Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets',
-                       'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets'],
-               'Set': ['Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset',
-                      'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset'],
-               'Position': ['SPY', 'IEV', 'EWJ','EEM','TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC',
-                      'SPY', 'IEV', 'EWJ','EEM','TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC'],               
-               'Sign': ['>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=',
-                       '<=', '<=', '<=', '<=', '<=', '<=', '<=', '<=', '<=', '<='],
-               'Weight': [0.10, 0.10, 0.05, 0.05, 0.10, 0.10, 0.05, 0.05, 0.03, 0.03,
-                         0.25, 0.25, 0.20,0.20, 0.20, 0.20, 0.10, 0.10, 0.08, 0.08],
-               'Type Relative': ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-               'Relative Set': ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-               'Relative': ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-               'Factor': ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']}
+constraints = {
+    'Disabled': [
+        False, False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False, False
+    ],
+    'Type': [
+        'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets',
+        'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets',
+        'Assets', 'Assets', 'Assets', 'Assets', 'Assets', 'Assets'
+    ],
+    'Set': [
+        'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset',
+        'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset', 'Asset',
+        'Asset', 'Asset', 'Asset', 'Asset'
+    ],
+    'Position': [
+        'SPY', 'IEV', 'EWJ', 'EEM', 'TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC',
+        'SPY', 'IEV', 'EWJ', 'EEM', 'TLT', 'IEF', 'IYR', 'RWX', 'GLD', 'DBC'
+    ],
+    'Sign': [
+        '>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=', '>=', '<=', '<=',
+        '<=', '<=', '<=', '<=', '<=', '<=', '<=', '<='
+    ],
+    'Weight': [
+        0.10, 0.10, 0.05, 0.05, 0.10, 0.10, 0.05, 0.05, 0.03, 0.03, 0.25, 0.25,
+        0.20, 0.20, 0.20, 0.20, 0.10, 0.10, 0.08, 0.08
+    ],
+    'Type Relative': [
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+        '', ''
+    ],
+    'Relative Set': [
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+        '', ''
+    ],
+    'Relative': [
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+        '', ''
+    ],
+    'Factor': [
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+        '', ''
+    ]
+}
 
 constraints = pd.DataFrame(constraints)
 
@@ -364,16 +396,22 @@ ax = rp.plot_bar(w=w, title='Portfolio',  kind='h', ax=None)
 # In[38]:
 
 
-constraints = {'Disabled': [False, False, False, False, False, False, False, False],
-               'Type': ['All Assets', 'All Assets', 'Classes', 'Classes', 'Classes', 'Classes', 'Classes', 'Classes'],
-               'Set': ['', '', 'Class', 'Class', 'Class', 'Class', 'Class', 'Class'],
-               'Position': ['', '', 'stock', 'bond', 'alternative', 'stock', 'bond', 'alternative'],
-               'Sign': ['>=', '<=', '>=', '>=', '>=', '<=', '<=', '<='],
-               'Weight': [0.03, 0.20, 0.40, 0.30, 0.10, 0.70, 0.50, 0.20],
-               'Type Relative': ['', '', '', '', '', '', '', ''],
-               'Relative Set': ['', '', '', '', '', '', '', ''],
-               'Relative': ['', '', '', '', '', '', '', ''],
-               'Factor': ['', '', '', '', '', '', '', '']}
+constraints = {
+    'Disabled': [False, False, False, False, False, False, False, False],
+    'Type': [
+        'All Assets', 'All Assets', 'Classes', 'Classes', 'Classes', 'Classes',
+        'Classes', 'Classes'
+    ],
+    'Set': ['', '', 'Class', 'Class', 'Class', 'Class', 'Class', 'Class'],
+    'Position':
+    ['', '', 'stock', 'bond', 'alternative', 'stock', 'bond', 'alternative'],
+    'Sign': ['>=', '<=', '>=', '>=', '>=', '<=', '<=', '<='],
+    'Weight': [0.03, 0.20, 0.40, 0.30, 0.10, 0.70, 0.50, 0.20],
+    'Type Relative': ['', '', '', '', '', '', '', ''],
+    'Relative Set': ['', '', '', '', '', '', '', ''],
+    'Relative': ['', '', '', '', '', '', '', ''],
+    'Factor': ['', '', '', '', '', '', '', '']
+}
 
 constraints = pd.DataFrame(constraints)
 

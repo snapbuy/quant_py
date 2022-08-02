@@ -459,7 +459,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1><span class="section-number">4. </span>데이터 시각화 배워보기<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>이전 장에서는 데이터를 분석하는 법에 대해 배웠으며, 이번 장에서는 데이터 및 분석된 자료를 시각화 하는법에 대해 배워보겠다. 데이터를 글자나 표가 아닌 그림으로 나타낼 경우 훨씬 직관적으로 이해가 가능하다. 파이썬에서는 데이터 시각화에 <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> 혹은 <code class="docutils literal notranslate"><span class="pre">pandas</span></code> 패키지를 사용하며, 고급 시각화에는 <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> 패키지를 사용한다.</p>
+<p>이전 장에서는 데이터를 분석하는 법에 대해 배웠으며, 이번 장에서는 데이터 및 분석된 자료를 시각화 하는법에 대해 배워보겠다. 데이터를 글자나 표가 아닌 그림으로 나타낼 경우 훨씬 직관적으로 이해가 가능하다. 파이썬에서는 데이터 시각화에 matplotlib 혹은 pandas 패키지를 사용하며, 고급 시각화에는 seaborn 패키지를 사용한다.</p>
 <div class="section" id="id2">
 <h2><span class="section-number">4.1. </span>그래프의 구성요소<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>그래프를 그리기에 앞서, 그래프는 어떠한 요소들로 이루어져있는지 알아보도록 하자.</p>
@@ -476,8 +476,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Title: 제목</p></li>
 <li><p>Grid: 격자</p></li>
 <li><p>Spines: 윤곽선</p></li>
-<li><p>X axis label: X축 레이블</p></li>
-<li><p>Y axis label: Y축 레이블</p></li>
+<li><p>X axis label: x축 레이블</p></li>
+<li><p>Y axis label: y축 레이블</p></li>
 <li><p>Major tick: 메인 눈금</p></li>
 <li><p>Major tick label: 메인 눈금 레이블</p></li>
 <li><p>Minor tick: 서브 눈금</p></li>
@@ -491,7 +491,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id3">
 <h2><span class="section-number">4.2. </span>matplotlib 패키지를 이용한 시각화<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> 패키지는 파이썬 표준 시각화 도구라도 불릴 정도 널리 활용되고 있다. 그래프 요소를 세세하게 꾸밀 수 있을 뿐만 아니라 배우는것도 그리 어렵지 않다. 먼저 해당 패키지의 기본적인 사용법에 대해 알아보도록 하자.</p>
+<p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> 패키지는 파이썬 표준 시각화 도구라도 불릴 정도로 널리 활용되고 있다. 그래프 요소를 세세하게 꾸밀 수 있을 뿐만 아니라 배우는것도 그리 어렵지 않다. 먼저 해당 패키지의 기본적인 사용법에 대해 알아보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -552,7 +552,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ol class="simple">
 <li><p>Matplotlib은 한글 폰트를 지원하지 않아 한글이 깨지는 현상이 발생하므로, 한글을 나타낼 수 있는 ‘Malgun Gothic’으로 폰트를 지정한다.</p></li>
 <li><p>히스토그램을 나타내는 <code class="docutils literal notranslate"><span class="pre">hist()</span></code> 함수 내에 나타내고자 하는 열을 입력한다. <code class="docutils literal notranslate"><span class="pre">bins</span></code> 인자에는 히스토그램을 몇개의 구간으로 나눌지를 입력한다.</p></li>
-<li><p><span class="math notranslate nohighlight">\(X\)</span>축과 <span class="math notranslate nohighlight">\(Y\)</span>축 레이블, 제목에 원하는 글자를 입력한다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span>축과 <span class="math notranslate nohighlight">\(y\)</span>축 레이블, 제목에 원하는 글자를 입력한다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>를 통해 그래프를 출력한다.</p></li>
 </ol>
 <p>펭귄의 몸무게 분포를 히스토그램 형태로 표현할 수 있다. 이번에는 선 그래프를 나타내보도록 하자.</p>
@@ -914,7 +914,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/plot_21_0.png" src="_images/plot_21_0.png" />
 </div>
 </div>
-<p>히스토그램으로 표현하고 싶은 열만 선택한 후, <code class="docutils literal notranslate"><span class="pre">plot.hist()</span></code> 메서드를 적용하면 그래프가 표현된다. matplotlib 패키지를 사용했을 때가 동일하게 bins 인자를 통해 몇개의 구간으로 나눌지도 선택할 수 있다.</p>
+<p>히스토그램으로 표현하고 싶은 열만 선택한 후, <code class="docutils literal notranslate"><span class="pre">plot.hist()</span></code> 메서드를 적용하면 히스토그램이 표현된다. matplotlib 패키지를 사용했을 때와 동일하게 bins 인자를 통해 몇개의 구간으로 나눌지도 선택할 수 있다.</p>
 <p>이번에는 데이터 분석과 시각화를 동시에 진행해보도록 하자. color에 따른 carat의 평균을 막대 그래프로 나타내보도록 하겠다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1172,7 +1172,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/plot_33_0.png" src="_images/plot_33_0.png" />
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">heatmap()</span></code> 함수를 통해 히트맵을 나타낼 수 있으며, annot은 데이터의 값을 표시할 지 여부를 의미한다. 또한 cmap은 팔레트 종류로써 값이 높을 수록 붉은색, 낮을 수록 푸른색을 표현한다. class가 높을 수록 생존율이 높고, 남성에 비해 여성의 생존율이 높다는 것을 한 눈에 확인할 수 있다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">heatmap()</span></code> 함수를 통해 히트맵을 나타낼 수 있으며, annot은 데이터의 값을 표시할 지 여부를 의미한다. 또한 cmap은 팔레트 종류로써 coolwarm은 값이 높을 수록 붉은색, 낮을 수록 푸른색을 표현한다. class가 높을 수록 생존율이 높고, 남성에 비해 여성의 생존율이 높다는 것을 한 눈에 확인할 수 있다.</p>
 <div class="section" id="id5">
 <h3><span class="section-number">4.4.1. </span>한 번에 여러개의 그래프 나타내기<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>seaborn 패키지 역시 한번에 여러개의 그래프를 나타내는 것이 가능하지만, 표현 방법에 따라 사용하는 함수가 다르다. seaborn 패키지의 함수들은 크게 ‘figure-level’과 ‘axes-level’ 함수로 나누어져 있다.</p>

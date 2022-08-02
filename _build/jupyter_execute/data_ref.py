@@ -9,16 +9,6 @@
 # 
 # DART(Data Analysis, Retrieval and Transfer System)는 금융감독원 전자공시시스템으로써, 상장법인 등이 공시서류를 인터넷으로 제출하고, 투자자 등 이용자는 제출 즉시 인터넷을 통해 조회할 수 있도록 하는 종합적 기업공시 시스템이다. 홈페이지에서도 각종 공시내역을 확인할 수 있지만, 해당 사이트에서 제공하는 API를 이용할 경우 더욱 쉽게 공시 내용을 수집할 수 있다.
 # 
-# API 제공자는 본인이 가진 데이터베이스를 다른 누군가가 쉽게 사용할 수 있는 형태로 가지고 있으며, 해당 데이터베이스에 접근할 수 있는 열쇠인 API 주소를 가진 사람은 이를 언제든지 사용할 수 있다. 즉, API 주소만 알고 있다면 데이터를 언제, 어디서, 누구나 쉽게 이용할 수 있다는 장점이 있다. 또한 대부분의 경우 사용자가 필요한 데이터만을 가지고 있으므로 접속 속도가 빠르며, 데이터를 가공하는 번거로움도 줄어든다. 
-# 
-# ```{figure} image/data_ref/api.png
-# ---
-# name: api
-# ---
-# API의 개념
-# ```
-# 
-# 
 # ### API Key 발급 및 추가하기
 # 
 # 먼저 https://opendart.fss.or.kr/ 에서 회원가입을 한 후 [인증키 신청/관리] → [인증키 신청]을 통해 API Key를 발급받아야 한다.
@@ -46,23 +36,19 @@
 
 
 import keyring
-keyring.set_password('System', 'User Name', 'Password')
 
-
-# [System]에는 시스템 종류, [User Name]에는 본인의 이름, [Password]에는 발급받은 API Key를 입력한다. 한번 입력된 값은 계속 저장되어 있다. 저장한 키를 불러오는 법은 다음과 같다.
-
-# In[2]:
-
-
-api_key = keyring.get_password('System', 'User Name')
+keyring.set_password('dart_api_key', 'User Name', 'Password')
 
 
 # ### 고유번호 다운로드
 # 
-# Open API에서 각 기업의 데이터를 받기 위해서는 종목에 해당하는 고유번호를 알아야한다. 이에 대한 개발가이드는 아래 페이지에 나와 있다.
+# Open API에서 각 기업의 데이터를 받기 위해서는 종목에 해당하는 고유번호를 알아야한다. 이에 대한 자세한 내용은 홈페이지(https://opendart.fss.or.kr/)에서 [개발가이드 → 공시정보 → 고유번호] 화면에 설명되어 있다.
 # 
-# ```
-# https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019018
+# ```{figure} image/data_ref/dart_guide.png
+# ---
+# name: dart_guide
+# ---
+# OPEN API 개발가이드
 # ```
 # 
 # 위 페이지의 내용을 코드로 나타내보도록 하자.
@@ -124,6 +110,8 @@ corp_list.head()
 # 3. 위 데이터를 `dumps()` 함수를 통해 JSON 형태로 바꿔준 후, `loads()` 함수를 통해 불러온다.
 # 4. `get()` 함수를 통해 result 내에서 list 부분만 불러온다.
 # 5. 데이터프레임 형태로 변경해준다.
+# 
+# 해당 데이터의 길이를 확인해보자.
 
 # In[7]:
 
@@ -156,13 +144,7 @@ corp_list.to_sql(name='dart_code', con=engine, index=True, if_exists='append')
 # 
 # #### 전체 종목의 공시 데이터 수집
 # 
-# 먼저 전체 종목의 공시를 수집하도록 하며, 개발가이드는 아래 페이지에 나와있다.
-# 
-# ```
-# https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001
-# ```
-# 
-# 각종 요청인자를 통해 URL을 생성 후 전송하여, 요청에 맞는 데이터를 받을 수 있다. 공시 검색에 해당하는 인자는 {numref}`dart_api_input`와 같다.
+# 먼저 전체 종목의 공시를 수집하도록 하며, 개발가이드는 [개발가이드 → 공시정보 → 공시검색]에 나와있다. 각종 요청인자를 통해 URL을 생성 후 전송하여, 요청에 맞는 데이터를 받을 수 있다. 공시 검색에 해당하는 인자는 {numref}`dart_api_input`와 같다.
 # 
 # ```{figure} image/data_ref/dart_api_input.png
 # ---
@@ -180,7 +162,7 @@ corp_list.to_sql(name='dart_code', con=engine, index=True, if_exists='append')
 # OpenAPI 테스트 예시
 # ```
 # 
-# 이를 참조하여 시작일과 종료일을 토대로 최근 공시 100건에 해당하는 url을 생성한다.
+# 이를 참조하여 시작일과 종료일을 토대로 최근 공시 100건에 해당하는 URL을 생성한다.
 
 # In[11]:
 
@@ -250,7 +232,7 @@ notice_dart_url = f'http://dart.fss.or.kr/dsaf001/main.do?rcpNo={notice_url_exam
 print(notice_dart_url)
 
 
-# dart 홈페이지의 공시에 해당하는 url과 첫번째 공시에 해당하는 공시번호를 합쳐준다. 위 url에 접속하여 해당 공시를 좀 더 자세하게 확인할 수 있다.
+# dart 홈페이지의 공시에 해당하는 url과 공시번호를 합쳐준다. 위 url에 접속하여 해당 공시를 좀 더 자세하게 확인할 수 있다.
 # 
 # ```{figure} image/data_ref/dart_web.png
 # ---
@@ -263,16 +245,14 @@ print(notice_dart_url)
 # 
 # API를 이용하여 사업보고서의 주요 정보 역시 다운로드 받을 수 있으며, 제공하는 목록은 다음과 같다.
 # 
-# ```
-# https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019005
+# ```{figure} image/data_ref/dart_report.png
+# ---
+# name: dart_report
+# ---
+# 사업보고서 주요정보 목록
 # ```
 # 
-# 이 중 예시로써 [배당에 관한 사항]을 다운로드 받도록 하며, 개발가이드 페이지는 다음과 같다.
-# 
-# ```
-# https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019006
-# ```
-# URL 생성에 필요한 요청 인자는 다음과 같다.
+# 이 중 예시로써 [배당에 관한 사항]을 다운로드 받도록 하자. URL 생성에 필요한 요청 인자는 다음과 같다.
 # 
 # ```{table} 배당에 관한 사항 주요 인자
 # :name: div_input
@@ -281,7 +261,7 @@ print(notice_dart_url)
 # | crtfc_key	| API 인증키 |	발급받은 인증키
 # | corp_code	| 고유번호 | 공시대상회사의 고유번호(8자리) |
 # | bsns_year	| 사업년도 | 사업연도(4자리) |
-# | reprt_code | 보고서 코드 | <ul>1분기보고서 : 11013</ul> <ul>반기보고서 : 11012 </ul> <ul>3분기보고서 : 11014</ul> <ul>사업보고서 : 11011 </ul> |
+# | reprt_code | 보고서 코드 | 1분기보고서 : 11013 <br> 반기보고서 : 11012 <br> 3분기보고서 : 11014 <br> 사업보고서 : 11011 |
 # ```
 # 
 # 이를 바탕으로 삼성전자의 2021년 사업보고서를 통해 배당에 관한 사항을 살펴보도록 하자.
@@ -311,7 +291,7 @@ div_data_ss_df.head()
 # 
 # ### 장단기 금리차
 # 
-# 장기로 돈을 빌리는 것이 단기로 빌리는 것보다 위험하므로 금리 역시 높아야 하는 것이 당연하며, 이러한 장기금리와 단기금리와의 차이를 기간 프리미엄(Term Premium)이라고 한다. 그러나 가끔씩 장기금리가 단기금리보다 낮아지는 현상이 발생하며, 이는 주요 금융시장 및 경제지표 가운데 경기침체에 대한 예측력이 가장 정확한 것으로 알려져 있다. 실제로 미국에서는 1960년 이후 발생한 모든 경기침체에 앞서 장단기 금리가 역전되어 음수가 되었다.
+# 장기로 돈을 빌리는 것이 단기로 빌리는 것보다 위험하므로 금리 역시 높아야 하는 것이 당연하며, 이러한 장기금리와 단기금리간의 차이를 기간 프리미엄(Term Premium)이라고 한다. 그러나 가끔씩 장기금리가 단기금리보다 낮아지는 현상이 발생하며, 이는 주요 금융시장 및 경제지표 가운데 경기침체에 대한 예측력이 가장 정확한 것으로 알려져 있다. 실제로 미국에서는 1960년 이후 발생한 모든 경기침체에 앞서 장단기 금리가 역전되어 음수가 되었다.
 # 
 # FRED에서 각 항목별 코드를 찾는 방법은 매우 간단하다. 먼저 FRED 웹사이트(https://fred.stlouisfed.org/) 에서 원하는 데이터를 검색한다. 만일 '10년-2년 장단기 금리차'에 해당하는 코드를 찾고자 한다면 [10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity]를 검색하여 해당 페이지로 이동한다. 이 중 {numref}`fred_code`에서 네모로 표시한 [T10Y2Y]가 10년 금리와 2년 금리차의 코드에 해당한다. 동일한 방법으로 10년 금리와 3개월 금리 차이에 해당하는 [10-Year Treasury Constant Maturity Minus 3-Month Treasury Constant Maturity]를 검색해보면 해당 코드가 [T10Y3M]임을 알 수 있다.
 # 
@@ -461,7 +441,7 @@ print(idx)
 
 # 1. 크롬 드라이버를 로드한다.
 # 2. 해당 URL을 브라우저에 띄운다.
-# 3. 클래스명이 [market-fng-gauge__dial-number-value]인 곳을 찾은 후, 텍스트를 추출한다.
+# 3. 클래스명이 'market-fng-gauge__dial-number-value'인 곳을 찾은 후, 텍스트를 추출한다.
 # 4. 브라우저를 닫는다.
 # 5. 지표가 문자형이므로 정수형으로 변경한다.
 # 

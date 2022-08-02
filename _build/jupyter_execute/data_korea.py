@@ -22,7 +22,7 @@
 # 최근 영업일 부분
 # ```
 # 
-# 개발자도구 화면을 이용해 해당 데이터가 있는 부분을 확인해보면 [div 태그의 subtop_sise_graph2 클래스 → ul 태그의 subtop_chart_note 클래스  → li 태그 → span 태그의 tah 클래스]에 위치해 있다는 걸 알 수 있다. 이를 이용해 해당 데이터를 크롤링한다.
+# 개발자도구 화면을 이용해 해당 데이터가 있는 부분을 확인해보면 [클래스가 subtop_sise_graph2인 div 태그 → 클래스가 subtop_chart_note인 ul 태그 → li 태그 → 클래스가 tah인 span 태그]에 위치해 있다는 걸 알 수 있다. 이를 이용해 해당 데이터를 크롤링한다.
 
 # In[1]:
 
@@ -57,7 +57,7 @@ biz_day = ''.join(biz_day)
 print(biz_day)
 
 
-# 1. `findall()` 메서드 내에 정규 표현식을 이용해 숫자에 해당하는 부분만을 추출한다.**[0-9]+** 는 모든 숫자를 의미하는 표현식이다.
+# 1. `findall()` 메서드 내에 정규 표현식을 이용해 숫자에 해당하는 부분만을 추출한다. '[0-9]+' 는 모든 숫자를 의미하는 표현식이다.
 # 2. `join()` 함수를 통해 숫자를 합쳐준다.
 # 
 # 이를 통해 우리가 원하는 **yyyymmdd** 형태의 날짜가 만들어졌다. 해당 데이터를 최근 영업일이 필요한 곳에 사용하면 된다.
@@ -74,13 +74,13 @@ print(biz_day)
 # 
 # ### 업종분류 현황 크롤링
 # 
-# 먼저 업종분류 현황에 해당하는 페이지에 접속하여 F12를 눌러 개발자 도구 화면을 열고 [다운로드] 버튼을 클릭한 후 [CSV]를 누른다. 개발자도구 화면의 [Network] 탭에는 {numref}`krx_1`와 같이 **generate.cmd**와 **download.cmd** 두 가지 항목이 생긴다.
+# 먼저 업종분류 현황에 해당하는 페이지에 접속하여 F12를 눌러 개발자도구 화면을 열고 [다운로드] 버튼을 클릭한 후 [CSV]를 누른다. 개발자도구 화면의 [Network] 탭에는 {numref}`krx_1`와 같이 **generate.cmd**와 **download.cmd** 두 가지 항목이 생긴다.
 # 
 # ```{figure} image/data_korea/krx_1.png
 # ---
 # name: krx_1
 # ---
-# CSV 다운로드 시 개발자 도구 화면
+# CSV 다운로드 시 개발자도구 화면
 # ```
 # 
 # 거래소에서 엑셀 혹은 CSV 데이터를 받는 과정은 다음과 같다.
@@ -133,7 +133,7 @@ print(otp_stk)
 # 1. gen_otp_url 에 원하는 항목을 제출할 URL을 입력한다.
 # 2. 개발자도구 화면에 있는 쿼리 내용들을 딕셔너리 형태로 입력한다. 이 중 mktId의 'STK'는 코스피에 해당하며, 코스닥 데이터를 받고자 할 경우 'KSQ'를 입력하면 된다.
 # 3. 영업일을 뜻하는 trdDd에는 위에서 구한 최근 영업일 데이터를 입력한다.
-# 4. 헤더 부분에 리퍼러(Referer)를 추가한다. 리퍼러란 링크를 통해서 각각의 웹사이트로 방문할 때 남는 흔적이다. 거래소 데이터를 다운로드하는 과정을 살펴보면 첫 번째 URL에서 OTP를 부여받고, 이를 다시 두번째 URL에 제출했다. 그런데 이러한 과정의 흔적이 없이 OTP를 바로 두번째 URL에 제출하면 서버는 이를 로봇으로 인식해 데이터를 주지 않는다. 따라서 헤더 부분에 우리가 거쳐온 과정을 흔적으로 남겨야 데이터를 받을 수 있다. 이러한 리퍼러 주소는 개발자 도구 화면에서도 확인할 수 있다({numref}`referer`).
+# 4. 헤더 부분에 리퍼러(Referer)를 추가한다. 리퍼러란 링크를 통해서 각각의 웹사이트로 방문할 때 남는 흔적이다. 거래소 데이터를 다운로드하는 과정을 살펴보면 첫 번째 URL에서 OTP를 부여받고, 이를 다시 두번째 URL에 제출했다. 그런데 이러한 과정의 흔적이 없이 OTP를 바로 두번째 URL에 제출하면 서버는 이를 로봇으로 인식해 데이터를 주지 않는다. 따라서 헤더 부분에 우리가 거쳐온 과정을 흔적으로 남겨야 데이터를 받을 수 있다. 이러한 리퍼러 주소는 개발자도구 화면에서도 확인할 수 있다({numref}`referer`).
 # 5. `post()` 함수를 통해 해당 URL에 쿼리를 전송하면 이에 해당하는 데이터를 받으며, 이 중 텍스트에 해당하는 내용만 불러온다.
 # 
 # ```{figure} image/data_korea/referer.png
@@ -289,7 +289,7 @@ print(kor_ticker[kor_ticker['종목코드'].str[-1:] != '0']['종목명'].values
 print(kor_ticker[kor_ticker['종목명'].str.endswith('리츠')]['종목명'].values)
 
 
-# 1. 스팩 종목은 종목명에 '스팩' 혹은 'n호' 라는 단어가 들어간다. 따라서 `contains()` 메서드를 통해 종목명에 '스팩'이 들어가거나 정규표현식을 이용해 'n호'라는 문자가 들어간 종목명을 찾는다.
+# 1. 스팩 종목은 종목명에 '스팩' 혹은 '제n호' 라는 단어가 들어간다. 따라서 `contains()` 메서드를 통해 종목명에 '스팩'이 들어가거나 정규표현식을 이용해 '제n호'라는 문자가 들어간 종목명을 찾는다.
 # 2. 국내 종목 중 종목코드 끝이 0이 아닌 종목은 우선주에 해당한다.
 # 3. 리츠 종목은 종목명이 '리츠'로 끝난다. 따라서 `endswith()` 메서드를 통해 이러한 종목을 찾는다. (메리츠화재 등의 종목도 중간에 리츠라는 단어가 들어가므로 `contains()` 함수를 이용하면 안된다.)
 # 
@@ -315,7 +315,7 @@ kor_ticker['기준일'] = pd.to_datetime(kor_ticker['기준일'])
 kor_ticker.head()
 
 
-# 1. numpy 패키지의 `where()` 함수를 통해 각 조건에 맞는 종목구분을 입력한다. 종목명에 '스팩' 혹은 'n호'가 포함된 종목은 스팩으로, 종목코드 끝이 0이 아닌 종목은 '우선주'로, 종목명이 '리츠'로 끝나는 종목은 '리츠'로, 선박펀드, 광물펀드, 해외종목 등은 '기타'로, 나머지 종목들은 '보통주'로 구분한다.
+# 1. numpy 패키지의 `where()` 함수를 통해 각 조건에 맞는 종목구분을 입력한다. 종목명에 '스팩' 혹은 '제n호'가 포함된 종목은 스팩으로, 종목코드 끝이 0이 아닌 종목은 '우선주'로, 종목명이 '리츠'로 끝나는 종목은 '리츠'로, 선박펀드, 광물펀드, 해외종목 등은 '기타'로, 나머지 종목들은 '보통주'로 구분한다.
 # 2. `reset_index()` 메서드를 통해 인덱스를 초기화 한다.
 # 3. `replace()` 메서드를 통해 열 이름의 공백을 삭제한다.
 # 4. 필요한 열만 선택한다.
@@ -350,7 +350,7 @@ create table kor_ticker
 # ---
 # name: ticker_table
 # ---
-# 국내 티커정보 테이블
+# 국내 티커정보 테이블 생성
 # ```
 # 
 # 파이썬에서 아래 코드를 실행하면 다운로드 받은 정보가 kor_ticker 테이블에 upsert 형태로 저장된다. 
@@ -383,6 +383,13 @@ con.commit()
 con.close()
 
 
+# ```{figure} image/data_korea/sql_ticker.png
+# ---
+# name: sql_ticker
+# ---
+# 국내 티커정보 테이블
+# ```
+# 
 # ## WICS 기준 섹터정보 크롤링
 # 
 # 일반적으로 주식의 섹터를 나누는 기준은 MSCI와 S&P가 개발한 **GICS**를 가장 많이 사용한다. 국내 종목의 GICS 기준 정보 역시 한국거래소에서 제공하고 있으나, 이는 독점적 지적재산으로 명시했기에 사용하는데 무리가 있다. 그러나 지수제공업체인 FnGuide Index에서는 GICS와 비슷한 **WICS 산업분류**를 발표하고 있다. WICS를 크롤링하여 필요한 정보를 수집해보도록 하자.
@@ -416,7 +423,7 @@ con.close()
 # ---
 # name: wise_index_2
 # ---
-# WICS 페이지 개발자 도구 화면
+# WICS 페이지 개발자도구 화면
 # ```
 # 
 # 이번에는 Request URL에 해당하는 페이지를 열어보자.
@@ -443,7 +450,7 @@ data = rq.get(url).json()
 type(data)
 
 
-# 1. f-string 포매팅을 이용해 dt 부분에는 위에서 구한 최근 영업일 데이터를 입력하여 url을 생성한다. 
+# 1. f-string 포매팅을 이용해 dt 부분에는 위에서 구한 최근 영업일 데이터를 입력하여 URL을 생성한다. 
 # 2. `get()` 함수를 통해 페이지의 내용을 받아오며, `json()` 메서드를 통해 JSON 데이터만 불러올 수 있다.
 # 
 # 파이썬에서는 JSON 데이터가 딕셔너리 형태로 변경된다. 어떠한 키가 있는지 확인해보자.
@@ -478,7 +485,7 @@ data_pd = pd.json_normalize(data['list'])
 data_pd.head()
 
 
-# pandas 패키지의 `json_normalize()` 함수를 이용하면 JSON 형태의 데이터를 데이터프레임 형태로 매우 쉽게 변경할 수 있다. 이제 for 문을 이용하여 URL의 sec_cd=에 해당하는 부분만 변경하면 모든 섹터의 구성종목을 매우 쉽게 얻을 수 있다.
+# pandas 패키지의 `json_normalize()` 함수를 이용하면 JSON 형태의 데이터를 데이터프레임 형태로 매우 쉽게 변경할 수 있다. 이제 for문을 이용하여 URL의 sec_cd=에 해당하는 부분만 변경하면 모든 섹터의 구성종목을 매우 쉽게 얻을 수 있다.
 
 # In[20]:
 
@@ -511,7 +518,7 @@ kor_sector['기준일'] = pd.to_datetime(kor_sector['기준일'])
 
 
 # 1. 섹터 정보가 들어갈 빈 리스트(data_sector)를 만든다.
-# 2. for 문의 i에 섹터 코드를 입력하여 모든 섹터의 구성종목을 다운로드 받은 후 `append()` 메서드를 통해 리스트에 추가한다.
+# 2. for문의 i에 섹터 코드를 입력하여 모든 섹터의 구성종목을 다운로드 받은 후 `append()` 메서드를 통해 리스트에 추가한다.
 # 3. `tqdm()` 함수를 통해 진행상황을 출력한다. 
 # 4. `concat()` 함수를 이용해 리스트 내의 데이터프레임을 합친다.
 # 5. 필요한 열(섹터 코드, 티커, 종목명, 섹터명)만 선택한다.
@@ -565,6 +572,13 @@ con.close()
 
 
 # 파이썬에서 위 코드를 실행하면 다운로드 받은 정보가 kor_sector 테이블에 upsert 형태로 저장된다. 
+# 
+# ```{figure} image/data_korea/sql_sector.png
+# ---
+# name: sql_sector
+# ---
+# 섹터 테이블
+# ```
 # 
 # ## 수정주가 크롤링
 # 
@@ -650,7 +664,7 @@ data_price = pd.read_csv(BytesIO(data))
 data_price.head()
 
 
-# 1. 먼저 i = 0을 입력한다. 향후 for 문을 통해 i 값만 변경하면 모든 종목의 주가를 다운로드할 수 있다.
+# 1. 먼저 i = 0을 입력한다. 향후 for문을 통해 i 값만 변경하면 모든 종목의 주가를 다운로드할 수 있다.
 # 2. `ticker_list['종목코드'][i]`를 통해 원하는 종목의 티커를 선택한다.
 # 3. 시작일(fr)과 종료일(to)에 해당하는 날짜를 만들어준다. `today()` 메서드를 이용해 오늘 날짜를 불러온 후, 시작일은 `relativedelta()` 클래스를 이용해 5년을 빼준다. (본인이 원하는 기간 만큼을 빼주면 된다.) 그 후 `strftime()` 메서드를 통해 'yyyymmdd' 형식을 만들어 준다. 종료일은 오늘 날짜를 그대로 사용한다.
 # 4. 티커, 시작일, 종료일을 이용해 주가 데이터가 있는 URL을 생성한다.
@@ -677,8 +691,8 @@ price.head()
 # 1. `iloc()` 인덱서를 통해 날짜와 가격(시가, 고가, 저가, 종가), 거래량에 해당하는 데이터만을 선택한다.
 # 2. 열 이름을 변경한다.
 # 3. `dropna()` 함수를 통해 NA 데이터를 삭제한다.
-# 4. `extract()` 메서드 내에 정규 표현식을 이용해 숫자만을 추출한다.
-# 4. '날찌'열을 datetime 형태로 변경한다.
+# 4. `extract()` 메서드 내에 정규 표현식을 이용해 날짜 열에서 숫자만을 추출한다.
+# 4. '날짜'열을 datetime 형태로 변경한다.
 # 5. '종목코드'열에 티커를 입력한다.
 # 
 # 데이터를 확인해보면 우리에게 필요한 형태로 정리되었다.
@@ -800,7 +814,7 @@ con.close()
 # 2. 기준일이 최대, 즉 최근일 기준 보통주에 해당하는 티커 리스트(ticker_list)만 불러온다.
 # 3. DB에 저장할 쿼리(query)를 입력한다.
 # 4. 오류 발생시 저장할 리스트(error_list)를 만든다.
-# 5. for 문을 통해 전종목 주가를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
+# 5. for문을 통해 전종목 주가를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
 # 6. URL 생성, 데이터 다운로드 및 데이터 클렌징 및 DB에 저장은 위와 동일하며, `try except` 문을 통해 오류가 발생시 티커를 출력 후 error_list에 저장한다.
 # 7. 무한 크롤링을 방지하기 위해 한 번의 루프가 끝날 때마다 타임슬립을 적용한다.
 # 8. 모든 작업이 끝나면 DB와의 연결을 종료한다.
@@ -839,24 +853,20 @@ con.close()
 # 
 # 우리가 원하는 재무제표 항목들은 모두 테이블 형태로 제공되고 있으므로 pandas의 `read_html()` 함수를 이용해 쉽게 추출할 수 있다. 먼저 삼성전자 종목의 페이지 내용을 불러오자.
 
-# In[51]:
+# In[4]:
 
 
-import pymysql
+from sqlalchemy import create_engine
 import pandas as pd
 
-con = pymysql.connect(user='root',
-                      passwd='1234',
-                      host='127.0.0.1',
-                      db='stock_db',
-                      charset='utf8')
+engine = create_engine('mysql+pymysql://root:1234@127.0.0.1:3306/stock_db')
 query = """
 select * from kor_ticker
 where 기준일 = (select max(기준일) from kor_ticker) 
 	and 종목구분 = '보통주';
 """
-ticker_list = pd.read_sql(query, con=con)
-con.close()
+ticker_list = pd.read_sql(query, con=engine)
+engine.dispose()
 
 i = 0
 ticker = ticker_list['종목코드'][i]
@@ -888,7 +898,7 @@ data = pd.read_html(url, displayed_only=False)
 # 
 # 먼저 연간 기준 포괄손익계산서, 재무상태표, 현금흐름표의 열 이름을 살펴보자.
 
-# In[26]:
+# In[5]:
 
 
 print(data[0].columns.tolist(), '\n',
@@ -899,7 +909,7 @@ print(data[0].columns.tolist(), '\n',
 
 # 포괄손익계산서 테이블에는 '전년동기', '전년동기(%)' 열이 있으며, 이는 필요하지 않은 내용이므로 삭제해주어야 한다.
 
-# In[27]:
+# In[6]:
 
 
 data_fs_y = pd.concat(
@@ -924,7 +934,7 @@ data_fs_y.head()
 # 
 # 이제 해당 데이터를 크롤링 해보도록 하겠다.
 
-# In[28]:
+# In[7]:
 
 
 import requests as rq
@@ -934,7 +944,7 @@ import re
 page_data = rq.get(url)
 page_data_html = BeautifulSoup(page_data.content, 'html.parser')
 
-fiscal_data = page_data_html.select('div > .corp_group1 > h2')
+fiscal_data = page_data_html.select('div.corp_group1 > h2')
 fiscal_data_text = fiscal_data[1].text
 fiscal_data_text = re.findall('[0-9]+', fiscal_data_text)
 
@@ -942,7 +952,7 @@ print(fiscal_data_text)
 
 
 # 1. `get()` 함수를 통해 페이지의 데이터를 불러온 후, content 부분을 BeautifulSoup 객체로 만든다.
-# 2. 결산월 항목운 [div 태그 중 corp_group1 클래스 하부의 h2 태그]에 존재하므로, `select()` 함수를 이용해 추출한다.
+# 2. 결산월 항목운 [corp_group1 클래스의 div 태그 하부의 h2 태그]에 존재하므로, `select()` 함수를 이용해 추출한다.
 # 3. fiscal_data 중 첫번째는 종목코드에 해당하고, 두번째가 결산 데이터에 해당하므로 해당 부분을 선택해 텍스트만 추출한다.
 # 4. [n월 결산] 형태로 텍스트가 구성되어 있으므로, 정규 표현식을 이용해 숫자에 해당하는 부분만 추출한다.
 # 
@@ -1058,7 +1068,7 @@ create table kor_fs
 )
 
 
-# 이제 파이썬에서 아래 코드를 실행하면 for 문을 통해 전종목 재무제표가 DB에 저장된다.
+# 이제 파이썬에서 아래 코드를 실행하면 for문을 통해 전종목 재무제표가 DB에 저장된다.
 
 # In[ ]:
 
@@ -1144,7 +1154,7 @@ for i in tqdm(range(0, len(ticker_list))):
         page_data = rq.get(url)
         page_data_html = BeautifulSoup(page_data.content, 'html.parser')
 
-        fiscal_data = page_data_html.select('div > .corp_group1 > h2')
+        fiscal_data = page_data_html.select('div.corp_group1 > h2')
         fiscal_data_text = fiscal_data[1].text
         fiscal_data_text = re.findall('[0-9]+', fiscal_data_text)
 
@@ -1190,7 +1200,7 @@ con.close()
 # 2. 기준일이 최대, 즉 최근일 기준 보통주에 해당하는 티커 리스트(ticker_list)만 불러온다.
 # 3. DB에 저장할 쿼리(query)를 입력한다.
 # 4. 오류 발생시 저장할 리스트(error_list)를 만든다.
-# 5. for 문을 통해 전종목 재무제표를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
+# 5. for문을 통해 전종목 재무제표를 다운로드 받으며, 진행상황을 알기위해 `tqdm()` 함수를 이용한다.
 # 6. URL 생성, 데이터 다운로드 및 데이터 클렌징 및 DB에 저장은 위와 동일하며, `try except` 문을 통해 오류가 발생시 티커를 출력 후 error_list에 저장한다.
 # 7. 무한 크롤링을 방지하기 위해 한 번의 루프가 끝날 때마다 타임슬립을 적용한다.
 # 8. 모든 작업이 끝나면 DB와의 연결을 종료한다.

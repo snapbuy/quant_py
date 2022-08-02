@@ -574,7 +574,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="caption"><span class="caption-number">Fig. 8.4 </span><span class="caption-text">회차별 당첨번호</span><a class="headerlink" href="#lotto" title="Permalink to this image">¶</a></p>
 </div>
 <p>이번엔 회차 바로가기를 변경한 후 [조회]를 클릭한다. 페이지의 내용은 선택일 기준으로 변경되었지만, 주소는 변경되지 않고 그대로 남아 있다. GET 방식에서는 입력 항목에 따라 웹페이지 주소가 변경되었지만, POST 방식을 사용해 서버에 데이터를 요청하는 해당 웹사이트는 그렇지 않은 것을 알 수 있다.</p>
-<p>POST 방식의 데이터 요청 과정을 살펴보려면 개발자 도구를 이용해야 하며, 크롬에서는 [F12]키를 눌러 개발자 도구 화면을 열 수 있다. 개발자 도구 화면을 연 상태에서 다시 한번 [조회]를 클릭해보자. [Network] 탭을 클릭하면, [조회]을 클릭함과 동시에 브라우저와 서버 간의 통신 과정을 살펴볼 수 있다. 이 중 상단의 <a class="reference external" href="http://gameResult.do?method=byWin">gameResult.do?method=byWin</a> 이라는 항목이 POST 형태임을 알 수 있다.</p>
+<p>POST 방식의 데이터 요청 과정을 살펴보려면 개발자도구를 이용해야 하며, 크롬에서는 [F12]키를 눌러 개발자도구 화면을 열 수 있다. 개발자도구 화면을 연 상태에서 다시 한번 [조회]를 클릭해보자. [Network] 탭을 클릭하면, [조회]을 클릭함과 동시에 브라우저와 서버 간의 통신 과정을 살펴볼 수 있다. 이 중 상단의 <a class="reference external" href="http://gameResult.do?method=byWin">gameResult.do?method=byWin</a> 이라는 항목이 POST 형태임을 알 수 있다.</p>
 <div class="figure align-default" id="lotto-post">
 <img alt="_images/lotto_post.png" src="_images/lotto_post.png" />
 <p class="caption"><span class="caption-number">Fig. 8.5 </span><span class="caption-text">크롬 개발자도구의 Network 화면</span><a class="headerlink" href="#lotto-post" title="Permalink to this image">¶</a></p>
@@ -584,7 +584,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/lotto_query.png" src="_images/lotto_query.png" />
 <p class="caption"><span class="caption-number">Fig. 8.6 </span><span class="caption-text">POST 방식의 서버 요청 내역</span><a class="headerlink" href="#lotto-query" title="Permalink to this image">¶</a></p>
 </div>
-<p>이처럼 POST 방식은 요청하는 데이터에 대한 쿼리가 GET 방식처럼 URL을 통해 전송되는 것이 아닌 body를 통해 전송되므로, 이에 대한 정보는 웹 브라우저를 통해 확인할 수 없으며, 개발자 도구 화면을 통해 확인해야 한다.</p>
+<p>이처럼 POST 방식은 요청하는 데이터에 대한 쿼리가 GET 방식처럼 URL을 통해 전송되는 것이 아닌 body를 통해 전송되므로, 이에 대한 정보는 웹 브라우저를 통해 확인할 수 없으며, 개발자도구 화면을 통해 확인해야 한다.</p>
 </div>
 </div>
 <div class="section" id="id2">
@@ -600,7 +600,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">quotes</span><span class="o">.</span><span class="n">toscrape</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
 </pre></div>
 </div>
-<p>해당사이트에 접속한 후, 명언에 해당하는 부분에 마우스 커서를 올려둔 후 마우스 오른쪽 버튼을 클릭하고 [검사]를 선택하면 개발자 도구 화면이 나타난다. 여기서 해당 글자가 HTML 내에서 어떤 부분에 위치하는지 확인할 수 있다. 각 네모에 해당하는 부분은 [class가 quote인 div 태그]에 위치하고 있으며, 명언은 그 하부의 [class가 text인 span 태그]에, 말한 사람은 [span 태그 하단의 class가 author인 small 태그]에 위치하고 있다. 마지막으로 말한 사람에 대한 정보인 (about)의 링크는 [a 태그 href 속성]의 속성값에 위치하고 있다.</p>
+<p>해당사이트에 접속한 후, 명언에 해당하는 부분에 마우스 커서를 올려둔 후 마우스 오른쪽 버튼을 클릭하고 [검사]를 선택하면 개발자도구 화면이 나타난다. 여기서 해당 글자가 HTML 내에서 어떤 부분에 위치하는지 확인할 수 있다. 각 네모에 해당하는 부분은 [class가 quote인 div 태그]에 위치하고 있으며, 명언은 그 하부의 [class가 text인 span 태그]에, 말한 사람은 [span 태그 하단의 class가 author인 small 태그]에 위치하고 있다. 마지막으로 말한 사람에 대한 정보인 (about)의 링크는 [a 태그 href 속성]의 속성값에 위치하고 있다.</p>
 <div class="figure align-default" id="quote">
 <img alt="_images/quote.png" src="_images/quote.png" />
 <p class="caption"><span class="caption-number">Fig. 8.8 </span><span class="caption-text">Quotes to Scrape의 명언부분 HTML</span><a class="headerlink" href="#quote" title="Permalink to this image">¶</a></p>
@@ -693,7 +693,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="find">
 <h4><span class="section-number">8.2.1.1. </span><code class="docutils literal notranslate"><span class="pre">find()</span></code> 함수를 이용한 크롤링<a class="headerlink" href="#find" title="Permalink to this headline">¶</a></h4>
-<p>먼저 BeautifulSoup의 <code class="docutils literal notranslate"><span class="pre">find()</span></code> 함수를 통해 크롤링 하는법을 알아보자. 우리는 개발자도구 화면에서 명언에 해당하는 부분이 [class가 quote인 div 태그 → class가 text인 span 태그]에 위치하고 있음을 살펴보았다. 이를 활용해 명언만을 추출하는 방법은 다음과 같다.</p>
+<p>먼저 BeautifulSoup 모듈의 <code class="docutils literal notranslate"><span class="pre">find()</span></code> 함수를 통해 크롤링 하는법을 알아보자. 우리는 개발자도구 화면에서 명언에 해당하는 부분이 [class가 quote인 div 태그 → class가 text인 span 태그]에 위치하고 있음을 살펴보았다. 이를 활용해 명언만을 추출하는 방법은 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quote_div</span> <span class="o">=</span> <span class="n">quote_html</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;quote&#39;</span><span class="p">)</span>
@@ -721,7 +721,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">find_all()</span></code> 함수를 이용할 경우 원하는 태그의 값들을 찾아올 수 있다. 먼저 태그에 해당하는 ‘div’를 입력하고, class 이름인 ‘quote’를 입력한다. class라는 키워드는 파이썬에서 클래스를 만들 대 사용하는 키워드이므로 언더바(_)를 통해 중복을 피해준다. 조건에 만족하는 결과가 리스트 형태로 반환되므로, 첫번째 내용만 확인해보면 <code class="docutils literal notranslate"><span class="pre">div</span> <span class="pre">class=&quot;quote&quot;</span></code>에 해당하는 내용을 찾아왔으며, 이제 여기서 [class가 text인 span 태그]에 해당하는 내용을 추가로 찾도록 하자.</p>
+<p><code class="docutils literal notranslate"><span class="pre">find_all()</span></code> 함수를 이용할 경우 원하는 태그의 값들을 찾아올 수 있다. 먼저 태그에 해당하는 ‘div’를 입력하고, class 이름인 ‘quote’를 입력한다. class라는 키워드는 파이썬에서 클래스를 만들 때 사용하는 키워드이므로 언더바(_)를 통해 중복을 피해준다. 조건에 만족하는 결과가 리스트 형태로 반환되므로, 첫번째 내용만 확인해보면 <code class="docutils literal notranslate"><span class="pre">div</span> <span class="pre">class=&quot;quote&quot;</span></code>에 해당하는 내용을 찾아왔으며, 이제 여기서 [class가 text인 span 태그]에 해당하는 내용을 추가로 찾도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quote_span</span> <span class="o">=</span> <span class="n">quote_div</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
@@ -749,7 +749,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>결과물 마지막에 <code class="docutils literal notranslate"><span class="pre">.text</span></code>를 입력하면 텍스트 데이터만을 출력할 수 있다. <code class="docutils literal notranslate"><span class="pre">for</span></code> 문 중에서 리스트 내포 형태를 이용하여 명언에 해당하는 부분을 한번에 추출해보도록 하자.</p>
+<p>결과물 마지막에 <code class="docutils literal notranslate"><span class="pre">.text</span></code>를 입력하면 텍스트 데이터만을 출력할 수 있다. for문 중에서 리스트 내포 형태를 이용하여 명언에 해당하는 부분을 한번에 추출해보도록 하자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quote_div</span> <span class="o">=</span> <span class="n">quote_html</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span> <span class="o">=</span> <span class="s1">&#39;quote&#39;</span><span class="p">)</span>
@@ -922,7 +922,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/pagination.png" src="_images/pagination.png" />
 <p class="caption"><span class="caption-number">Fig. 8.9 </span><span class="caption-text">페이지네이션</span><a class="headerlink" href="#pagination" title="Permalink to this image">¶</a></p>
 </div>
-<p>url의 ‘page/’ 뒤에 위치하는 숫자를 <code class="docutils literal notranslate"><span class="pre">for</span></code> 문을 이용해 바꿔준다면, 모든 페이지의 데이터를 크롤링할 수 있다.</p>
+<p>url의 ‘page/’ 뒤에 위치하는 숫자를 for문을 이용해 바꿔준다면, 모든 페이지의 데이터를 크롤링할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">rq</span>
@@ -963,9 +963,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <ol class="simple">
 <li><p>명언과 말한이, 링크가 들어갈 빈 리스트(text_list, autho_list, infor_list)를 만든다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> 문을 1부터 100까지 적용하여 URL을 생성한다.</p></li>
+<li><p>for문을 1부터 100까지 적용하여 URL을 생성한다.</p></li>
 <li><p>HTML 정보를 받아온 후 BeautifulSoup() 함수를 통해 파싱한다.</p></li>
-<li><p>명언과 말한이, 링크에에 해당하는 내용을 각각 추출한다.</p></li>
+<li><p>명언과 말한이, 링크에 해당하는 내용을 각각 추출한다.</p></li>
 <li><p>해당 웹페이지는 10페이지까지 데이터가 존재하며, 11페이지부터는 아무런 내용이 없다. 그러나 이러한 정보는 사전에 알 수 없기에 만약 데이터가 있는 경우 위에서 생성한 리스트에 <code class="docutils literal notranslate"><span class="pre">extend()</span></code> 함수를 사용하여 데이터를 추가하며, 그렇지 않을 경우 <code class="docutils literal notranslate"><span class="pre">break</span></code>를 통해 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">loop</span></code> 구문을 종료한다.</p></li>
 <li><p>한 번 루프가 돌때마다 1초간 정지를 준다.</p></li>
 </ol>
@@ -1082,7 +1082,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://finance.naver.com/news/news_list.nhn?mode=LSS2D&amp;section_id=101&amp;section_id2=258
 </pre></div>
 </div>
-<p>이 중 뉴스의 제목에 해당하는 텍스트만 추출하도록 하고자 한다. 개발자 도구 화면을 통헤 제목에 해당하는 부분은 [dl 태그 → class가 articleSubject 인 dd 태그 → a 태그 중 title 속성]에 위치하고 있음을 확인할 수 있다.</p>
+<p>이 중 뉴스의 제목에 해당하는 텍스트만 추출하도록 하고자 한다. 개발자도구 화면을 통헤 제목에 해당하는 부분은 [dl 태그 → class가 articleSubject 인 dd 태그 → a 태그 중 title 속성]에 위치하고 있음을 확인할 수 있다.</p>
 <div class="figure align-default" id="naver-news">
 <img alt="_images/naver_news.png" src="_images/naver_news.png" />
 <p class="caption"><span class="caption-number">Fig. 8.10 </span><span class="caption-text">실시간 속보의 제목 부분 HTML</span><a class="headerlink" href="#naver-news" title="Permalink to this image">¶</a></p>
@@ -1127,7 +1127,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>속성값에 해당하는 내용을 추출해싿. 이제 <code class="docutils literal notranslate"><span class="pre">for</span></code> 문으로 묶어 한번에 제목들을 추출하도록 하겠다.</p>
+<p>속성값에 해당하는 내용을 추출했다. 이제 for문으로 묶어 한번에 제목들을 추출하도록 하겠다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">html_select</span><span class="p">]</span>
@@ -1270,8 +1270,8 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/kind.png" src="_images/kind.png" />
 <p class="caption"><span class="caption-number">Fig. 8.12 </span><span class="caption-text">오늘의공시 확인하기</span><a class="headerlink" href="#kind" title="Permalink to this image">¶</a></p>
 </div>
-<p>해당 페이지에서 날짜를 변경한 후 [검색]을 누르면, 페이지의 내용은 해당일의 공시로 변경되지만 URL은 변경되지 않는다. 이처럼 POST 방식은 요청하는 데이터에 대한 쿼리가 body의 형태를 통해 전송되므로, 개발자 도구 화면을 통해 해당 쿼리에 대한 내용을 확인해야 한다.</p>
-<p>개발자 도구 화면을 연 상태에서 조회일자를 원하는 날짜로 선택, [검색]을 클릭한 후 [Network] 탭의 <a class="reference external" href="http://todaydisclosure.do">todaydisclosure.do</a> 항목에서 [Headers]탭의 [General] 부분에는 데이터를 요청하는 서버 주소가, [Payload] 탭의 [Form Data]를 통해 서버에 데이터를 요청하는 내역을 확인할 수 있다. 여러 항목 중 selDate 부분이 우리가 선택한 일자로 설정되어 있다.</p>
+<p>해당 페이지에서 날짜를 변경한 후 [검색]을 누르면, 페이지의 내용은 해당일의 공시로 변경되지만 URL은 변경되지 않는다. 이처럼 POST 방식은 요청하는 데이터에 대한 쿼리가 body의 형태를 통해 전송되므로, 개발자도구 화면을 통해 해당 쿼리에 대한 내용을 확인해야 한다.</p>
+<p>개발자도구 화면을 연 상태에서 조회일자를 원하는 날짜로 선택, [검색]을 클릭한 후 [Network] 탭의 <a class="reference external" href="http://todaydisclosure.do">todaydisclosure.do</a> 항목에서 [Headers]탭의 [General] 부분에는 데이터를 요청하는 서버 주소가, [Payload] 탭의 [Form Data]를 통해 서버에 데이터를 요청하는 내역을 확인할 수 있다. 여러 항목 중 selDate 부분이 우리가 선택한 일자로 설정되어 있다.</p>
 <div class="figure align-default" id="kind-post">
 <img alt="_images/kind_post.png" src="_images/kind_post.png" />
 <p class="caption"><span class="caption-number">Fig. 8.13 </span><span class="caption-text">POST 방식의 데이터 요청</span><a class="headerlink" href="#kind-post" title="Permalink to this image">¶</a></p>
@@ -1303,6 +1303,9 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+</div>
+<div class="figure align-default" id="html">
+<img alt="_images/html.png" src="_images/html.png" />
 </div>
 <ol class="simple">
 <li><p>URL과 쿼리를 입력한다. 쿼리는 딕셔너리 형태로 입력하며, Form Data와 동일하게 입력해준다. 쿼리 중 marketType과 같이 값이 없는 항목은 입력하지 않아도 된다.</p></li>
@@ -1348,43 +1351,43 @@ const thebe_selector_output = ".output, .cell_output"
   <tbody>
     <tr>
       <th>0</th>
-      <td>18:55</td>
-      <td>넥스턴바이오</td>
-      <td>타법인주식및출자증권취득결정</td>
-      <td>넥스턴바이오사이언스</td>
+      <td>19:08</td>
+      <td>지나인제약</td>
+      <td>기타시장안내(상장적격성 실질심사 사유추가 안내)</td>
+      <td>코스닥시장본부</td>
       <td>공시차트  주가차트</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>18:54</td>
-      <td>넥스턴바이오</td>
-      <td>타법인주식및출자증권취득결정</td>
-      <td>넥스턴바이오사이언스</td>
+      <td>19:00</td>
+      <td>지나인제약</td>
+      <td>최대주주변경</td>
+      <td>지나인제약</td>
       <td>공시차트  주가차트</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>18:40</td>
-      <td>좋은사람들</td>
-      <td>소송등의제기(신주발행유지가처분)</td>
-      <td>좋은사람들</td>
+      <td>18:57</td>
+      <td>지나인제약</td>
+      <td>최대주주 변경을 수반하는 주식 담보제공 계약 체결</td>
+      <td>지나인제약</td>
       <td>공시차트  주가차트</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>18:28</td>
-      <td>씨씨에스</td>
-      <td>기준가산정 등에 관한 안내('20.06.26일자 공시사항 재안내)</td>
-      <td>코스닥시장본부</td>
+      <td>18:45</td>
+      <td>디딤</td>
+      <td>[정정]  최대주주 변경을 수반하는 주식 담보제공 계약 체결</td>
+      <td>디딤</td>
       <td>공시차트  주가차트</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>18:27</td>
-      <td>지유온</td>
-      <td>주권매매거래정지해제(상장폐지에 따른 정리매매 개시)</td>
+      <td>18:39</td>
+      <td>케이옥션</td>
+      <td>추가상장(무상증자)</td>
       <td>코스닥시장본부</td>
-      <td>NaN</td>
+      <td>공시차트  주가차트</td>
     </tr>
   </tbody>
 </table>
